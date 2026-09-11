@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" data-action="room">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <!-- Keeps the invite path out of the Referer header on outbound links. -->
+  <meta name="referrer" content="no-referrer" />
+  <title>Your DoubleSlash room invite</title>
+  <link rel="icon" href="/favicon.ico" />
+  <style>
+    :root {
+      --ink: #11131a;
+      --ink-soft: #3e4250;
+      --muted: #6f7482;
+      --paper: #fbfaf8;
+      --surface: #ffffff;
+      --surface-soft: #f3f2ef;
+      --line: #e4e2dd;
+      --brand: #5b61e6;
+      --brand-dark: #474cc7;
+      --brand-soft: #ececff;
+      --red: #ff2b40;
+      --radius-sm: 12px;
+      --radius: 20px;
+      --shadow-sm: 0 8px 26px rgba(20, 24, 38, 0.07);
+      --shadow-lg: 0 28px 80px rgba(20, 24, 38, 0.15);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #e9eaf0;
+        --ink-soft: #b9bdcc;
+        --muted: #8b90a2;
+        --paper: #0d0f14;
+        --surface: #161a24;
+        --surface-soft: #1c212e;
+        --line: #272d3c;
+        --brand: #7f85ff;
+        --brand-dark: #6c72f0;
+        --brand-soft: #232741;
+        --shadow-sm: 0 8px 26px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 28px 80px rgba(0, 0, 0, 0.55);
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 20px;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      padding: 34px 30px 28px;
+      text-align: center;
+    }
+
+    .mark {
+      display: inline-block;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+      color: var(--brand);
+      text-decoration: none;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 25px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+
+    .sub {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .who {
+      margin: 20px 0 0;
+      padding: 14px 16px;
+      background: var(--surface-soft);
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      color: var(--ink-soft);
+      text-align: left;
+      word-break: break-word;
+    }
+    .who strong { color: var(--ink); }
+    .who .meta {
+      display: block;
+      margin-top: 4px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px 20px;
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      background: var(--brand);
+      color: #fff;
+      font: inherit;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .btn:hover { background: var(--brand-dark); }
+
+    .btn.secondary {
+      margin-top: 10px;
+      background: transparent;
+      color: var(--ink);
+      border-color: var(--line);
+    }
+    .btn.secondary:hover { background: var(--surface-soft); }
+
+    .fine {
+      margin: 22px 0 0;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+    .fine a { color: var(--brand); }
+
+    .note {
+      margin: 16px 0 0;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    .bad h1 { color: var(--red); }
+
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <main class="card" id="card">
+    <a class="mark" href="/">D:// DoubleSlash</a>
+
+    <div id="ok">
+      <h1 id="title">You&rsquo;ve been invited to a room</h1>
+      <p class="sub" id="sub">Opening DoubleSlash&hellip;</p>
+
+      <div class="who" id="who" hidden></div>
+
+      <a class="btn" id="open" href="#">Open DoubleSlash</a>
+      <button class="btn secondary" id="copy" type="button">Copy invite link</button>
+
+      <p class="note">
+        The invite never leaves your browser &mdash; it rides in the part of the
+        link after the <code>#</code>, which is never sent to this site.
+      </p>
+
+      <p class="fine">
+        Don&rsquo;t have DoubleSlash yet?
+        <a href="https://github.com/ConquerD/DoubleSlash/releases/tag/nightly">Download it</a>,
+        then open this link again.
+      </p>
+    </div>
+
+    <div id="bad" class="bad" hidden>
+      <h1 id="bad-title">This invite link is incomplete</h1>
+      <p class="sub" id="bad-sub">
+        It was probably cut short on its way here. Ask whoever invited you to
+        send the whole link.
+      </p>
+      <a class="btn" href="/">About DoubleSlash</a>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var ACTION = document.documentElement.dataset.action || "invite";
+      // Long-form scheme on purpose: Chromium's Windows URL fixup reads the
+      // one-letter `d:` as drive D:, so `d://` is unreliable from a browser.
+      var HANDOFF = "doubleslash://";
+      // Base64url, tolerating the padding some clients add back.
+      var PAYLOAD_RE = /^[A-Za-z0-9_-]+={0,2}$/;
+
+      var payload = decodeURIComponent(location.hash.slice(1));
+      var els = {
+        ok: document.getElementById("ok"),
+        bad: document.getElementById("bad"),
+        badTitle: document.getElementById("bad-title"),
+        badSub: document.getElementById("bad-sub"),
+        title: document.getElementById("title"),
+        sub: document.getElementById("sub"),
+        who: document.getElementById("who"),
+        open: document.getElementById("open"),
+        copy: document.getElementById("copy")
+      };
+
+      function fail(title, sub) {
+        els.ok.hidden = true;
+        els.bad.hidden = false;
+        if (title) { els.badTitle.textContent = title; }
+        if (sub) { els.badSub.textContent = sub; }
+      }
+
+      if (!payload || !PAYLOAD_RE.test(payload)) {
+        fail();
+        return;
+      }
+
+      var handoff = HANDOFF + ACTION + "#" + payload;
+      els.open.href = handoff;
+
+      // Decode locally to show who is inviting. Nothing here is trusted: it is
+      // the same unverified blob the client re-checks against a signature.
+      function decodePayload(p) {
+        var b64 = p.replace(/-/g, "+").replace(/_/g, "/");
+        b64 += "=".repeat((4 - (b64.length % 4)) % 4);
+        var bin = atob(b64);
+        var bytes = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) { bytes[i] = bin.charCodeAt(i); }
+        return JSON.parse(new TextDecoder().decode(bytes));
+      }
+
+      var info = null;
+      try { info = decodePayload(payload); } catch (e) { info = null; }
+
+      if (info && typeof info === "object") {
+        var name = ACTION === "room" ? info.room_name : info.inviter_handle;
+        var lead = ACTION === "room" ? "Room" : "From";
+        if (typeof name === "string" && name.trim()) {
+          var strong = document.createElement("strong");
+          strong.textContent = name.trim().slice(0, 80);
+          els.who.append(lead + " ", strong);
+          els.who.hidden = false;
+        }
+
+        var expires = Number(info.expires_at);
+        if (isFinite(expires) && expires > 0) {
+          var when = new Date(expires * 1000);
+          var meta = document.createElement("span");
+          meta.className = "meta";
+          if (when.getTime() < Date.now()) {
+            meta.textContent = "This invite expired " + when.toLocaleString() +
+              ". Ask for a fresh one.";
+            els.title.textContent = "This invite has expired";
+            els.sub.textContent =
+              "Invites are short-lived on purpose. Ask whoever invited you " +
+              "for a new link.";
+          } else {
+            meta.textContent = "Expires " + when.toLocaleString();
+          }
+          els.who.appendChild(meta);
+          els.who.hidden = false;
+        }
+      }
+
+      // Try the installed client straight away. If no handler is registered
+      // this quietly does nothing and the page stays put with its buttons.
+      try { location.href = handoff; } catch (e) { /* no handler */ }
+
+      els.open.addEventListener("click", function () {
+        els.sub.textContent = "Opening DoubleSlash\u2026";
+      });
+
+      els.copy.addEventListener("click", function () {
+        var link = location.href;
+        function done(text) { els.copy.textContent = text; }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(link).then(
+            function () { done("Copied \u2014 paste it into DoubleSlash"); },
+            function () { done("Press \u2318/Ctrl+C to copy this page's URL"); }
+          );
+        } else {
+          done("Press \u2318/Ctrl+C to copy this page's URL");
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
