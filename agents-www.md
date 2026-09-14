@@ -34,8 +34,8 @@ Avoid freezing test totals, capability totals, or other fast-changing counts int
 
 ### Product and trust model
 
-- DoubleSlash is a privacy-first, modular peer-connectivity framework with a native Rust Qt/QML desktop client. The invite/portal protocol is branded D:// (`d://` URLs; legacy `conquerd://` is still accepted).
-- The rename from ConquerD is user-facing only. Do not rewrite identifiers that peers agree on: crate names (`conquerd-client`, `conquerd-features`, …), the QUIC TLS server name, HKDF labels, `window.conquerd`, `/_conquerd/channel/*`, `x.conquerd.*` capability ids, and the legacy `conquerd://` scheme. Quote them verbatim in copy; `rust/conquerd-features/src/brand.rs` is the source of truth for the names that did change.
+- DoubleSlash is a privacy-first, modular peer-connectivity framework with a native Rust Qt/QML desktop client. The invite/portal protocol is branded D:// (`d://` URLs; legacy `doubleslash://` is still accepted).
+- The rename from ConquerD is user-facing only. Do not rewrite identifiers that peers agree on: crate names (`doubleslash-client`, `doubleslash-features`, …), the QUIC TLS server name, HKDF labels, `window.doubleslash`, `/_doubleslash/channel/*`, `x.conquerd.*` capability ids, and the legacy `doubleslash://` scheme. Quote them verbatim in copy; `rust/doubleslash-features/src/brand.rs` is the source of truth for the names that did change.
 - Identity, discovery, and presence are client-owned. There is no first-party account or identity backend.
 - Peers connect through signed invites and an authenticated handshake using Ed25519 identities.
 - Cross-peer behavior is capability-negotiated. First-party UI is a consumer of feature modules, not a bypass around them.
@@ -43,9 +43,9 @@ Avoid freezing test totals, capability totals, or other fast-changing counts int
 
 ### Repository and workspaces
 
-- `rust/conquerd-client/` is its own Cargo workspace and contains the primary desktop client.
-- The outer `rust/` workspace contains `conquerd-features`, `conquerd-opus`, `conquerd-supernode`, and `conquerd-installer`.
-- `rust/conquerd-supernode-manager/` is a separate workspace for provisioning and cluster operations.
+- `rust/doubleslash-client/` is its own Cargo workspace and contains the primary desktop client.
+- The outer `rust/` workspace contains `doubleslash-features`, `doubleslash-opus`, `doubleslash-supernode`, and `doubleslash-installer`.
+- `rust/doubleslash-supernode-manager/` is a separate workspace for provisioning and cluster operations.
 - Do not present the legacy Python application described by this directory's `README.md` as the current product.
 
 ### Connectivity and signaling
@@ -72,7 +72,7 @@ Avoid freezing test totals, capability totals, or other fast-changing counts int
 - Portal content uses `web.host.app.v1` over an identity-authenticated QUIC bidirectional stream.
 - Multiplayer game traffic uses `game.relay.v1` over identity QUIC relay datagrams with fixed tag `0x05`.
 - Built-in portal examples include cursor sharing, brick relay, and shared drawing.
-- Hosted pages use the `window.conquerd` bridge and `/_conquerd/channel/*` endpoints. The desktop client also aliases the bridge as `window.doubleslash`, but `window.conquerd` remains the primary name.
+- Hosted pages use the `window.doubleslash` bridge and `/_doubleslash/channel/*` endpoints. The desktop client also aliases the bridge as `window.doubleslash`, but `window.doubleslash` remains the primary name.
 - There is no public HTTP or WebTransport game surface. Do not mention `web.host.h3.v1`, `web_port`, public game TLS certificates or fingerprints, or `webtransport.rs` as current architecture.
 - Use “browser game” only when the copy makes clear that HTML/JavaScript runs inside DoubleSlash's native in-app portal, not in an arbitrary external browser.
 
@@ -86,7 +86,7 @@ The current built-in catalogue contains these stable capability ids:
 - Video and content audio: `core.video.v1`, `core.audio.content.v1`, `room.video.sfu`, `room.audio.content.sfu`. These are in `local_capabilities()` and pinned by the `feature_ids_are_stable` golden test; they are advertised capabilities, which is not the same as video being a finished feature.
 - Portal and games: `web.host.app.v1`, `game.relay.v1`.
 
-Every feature has an authentication tier and quota policy. Third-party `x.<vendor>.*` capabilities require explicit consent. If the catalogue changes, verify it against `local_capabilities()` in `conquerd-features` rather than copying an old numeric total.
+Every feature has an authentication tier and quota policy. Third-party `x.<vendor>.*` capabilities require explicit consent. If the catalogue changes, verify it against `local_capabilities()` in `doubleslash-features` rather than copying an old numeric total.
 
 ### Updates and releases
 
@@ -94,7 +94,7 @@ Every feature has an authentication tier and quota policy. Third-party `x.<vendo
 - Tagged releases require the installer to verify an Ed25519-signed release manifest and the downloaded archive hash before applying an update.
 - The rolling nightly channel uses SHA-256 sidecars and an intentionally unsigned development manifest; do not describe nightlies as release-signed.
 - Platform signing and notarization are release-channel properties, so state them conditionally unless a published artifact has been verified.
-- Read the displayed application version from `rust/conquerd-client/Cargo.toml`; the installer version must remain synchronized for SignPath compatibility.
+- Read the displayed application version from `rust/doubleslash-client/Cargo.toml`; the installer version must remain synchronized for SignPath compatibility.
 
 ## Remaining Website Documentation Drift
 
@@ -140,7 +140,7 @@ The local website `README.md` describes the retired Python application, eight-pa
 - Do not imply that a supernode can decrypt room chat, audio, or file content.
 - Do not publish hard-coded test or capability counts without a maintained derivation and validation step.
 - Do not add new pages, frameworks, dependencies, build tooling, or deployment services unless the task calls for them.
-- The privacy policy is `../PRIVACY.md` in the product repository, not a second copy on this site. Footer and nav “Privacy policy” links must point at `https://github.com/ConquerD/DoubleSlash/blob/develop/PRIVACY.md`. Terms of use are `../TERMS.md` at the same GitHub blob URL. Do not fork either into HTML unless Play or a regulator requires a same-origin page.
+- The privacy policy is `../PRIVACY.md` in the product repository, not a second copy on this site. Footer and nav “Privacy policy” links must point at `https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/PRIVACY.md`. Terms of use are `../TERMS.md` at the same GitHub blob URL. Do not fork either into HTML unless Play or a regulator requires a same-origin page.
 - Use relative paths for local assets and preserve the canonical production URL in metadata.
 - Preserve unrelated user changes and keep website-only work scoped to `ConquerD_www/`.
 

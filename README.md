@@ -5,8 +5,8 @@
 > do not treat it as a source of truth for current product behavior.
 >
 > Current website: [doubleslash.space](https://doubleslash.space) ·
-> Current documentation: [`README.md`](https://github.com/ConquerD/DoubleSlash/blob/develop/README.md)
-> and [`agents.md`](https://github.com/ConquerD/DoubleSlash/blob/develop/agents.md) in the main repository.
+> Current documentation: [`README.md`](https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/README.md)
+> and [`agents.md`](https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/agents.md) in the main repository.
 
 Conquerd is a privacy-first peer-to-peer voice and chat application. Identity, discovery, and trust live entirely on your device — there is no central server, no account, no sign-up. Peers connect through cryptographically signed invite links and communicate directly over encrypted QUIC channels.
 
@@ -43,7 +43,7 @@ No telemetry. No cloud accounts. No third-party infrastructure required.
 
 ### Security & Identity
 - Cryptographic identity via long-term Ed25519 keys with derived peer IDs (SHA-256).
-- Invite-only discovery through signed `conquerd://` links (timestamped, expiry-checked).
+- Invite-only discovery through signed `doubleslash://` links (timestamped, expiry-checked).
 - Forward-secret handshakes using ephemeral X25519 + HKDF + AES-GCM.
 - All signaling is Ed25519-signed, transcript-bound, and replay-resistant (sliding-window counter bitmap).
 - Peer revocation with propagation (socket drop, relay eject, SFU eject).
@@ -68,7 +68,7 @@ No telemetry. No cloud accounts. No third-party infrastructure required.
 ### Desktop Application
 - Modern dark theme with DPI-aware scaling (125%, 150%, 200%+).
 - First-run onboarding wizard (display name, identity fingerprint + QR, optional supernode).
-- `conquerd://` URI scheme for one-click invite joining.
+- `doubleslash://` URI scheme for one-click invite joining.
 - Invite QR codes with toggle display and save-to-PNG.
 - System tray with badge notifications for unread messages and missed calls.
 - Collapsible event log panel (toggle with `Ctrl+B`).
@@ -124,12 +124,12 @@ On first launch, an onboarding wizard walks you through choosing a display name,
 
 | Platform | Package | URI Scheme |
 |----------|---------|------------|
-| Windows  | Rust installer or portable folder | Registry (`conquerd://`) |
+| Windows  | Rust installer or portable folder | Registry (`doubleslash://`) |
 | macOS    | `.app` bundle + `.dmg` | `CFBundleURLTypes` in Info.plist |
 | Linux    | AppImage | `.desktop` file + `xdg-mime` |
 
 ### Windows
-Run `conquerd-installer.exe` or extract the portable `conquerd/` folder. The installer registers the `conquerd://` URI scheme, creates Start Menu shortcuts, and supports silent upgrades (`--silent`) and uninstallation (`--uninstall`).
+Run `doubleslash-installer.exe` or extract the portable `conquerd/` folder. The installer registers the `doubleslash://` URI scheme, creates Start Menu shortcuts, and supports silent upgrades (`--silent`) and uninstallation (`--uninstall`).
 
 ### macOS
 Open the `.dmg` and drag Conquerd to Applications. Grant microphone access when prompted.
@@ -140,7 +140,7 @@ chmod +x ConquerD-x86_64.AppImage
 ./ConquerD-x86_64.AppImage
 ```
 
-To register the `conquerd://` URI scheme:
+To register the `doubleslash://` URI scheme:
 ```bash
 cp packaging/conquerd.desktop ~/.local/share/applications/
 update-desktop-database ~/.local/share/applications/
@@ -149,7 +149,7 @@ xdg-mime default conquerd.desktop x-scheme-handler/conquerd
 
 ### Uninstalling
 
-**Windows (installer):** Open *Add or Remove Programs* (Settings → Apps → Installed apps), search for **ConquerD**, and click Uninstall. Alternatively, run `conquerd-installer.exe --uninstall` from the command line for a silent uninstall.
+**Windows (installer):** Open *Add or Remove Programs* (Settings → Apps → Installed apps), search for **ConquerD**, and click Uninstall. Alternatively, run `doubleslash-installer.exe --uninstall` from the command line for a silent uninstall.
 
 **Windows (portable):** Delete the extracted `conquerd\` folder. No registry keys are written by the portable version.
 
@@ -189,9 +189,9 @@ xdg-mime default conquerd.desktop x-scheme-handler/conquerd
 | Audio I/O, DSP, Opus codec, VAD, jitter buffer | **Rust** (`conquerd_audio` — PyO3, compiled extension) |
 | Cryptographic primitives (Ed25519, X25519, Argon2id, AES-256-GCM, HKDF, session cipher) | **Rust** (`conquerd_crypto` — PyO3, compiled extension) |
 | QUIC transport, relay client, hole-punch, STUN | **Rust** (`conquerd_quic` — PyO3, compiled extension) |
-| Capability registry, `FeatureModule` trait, quota enforcement, auth-tier gating | **Rust** (`conquerd-features` — rlib linked into supernode; Python mirror in `client_shared/`) |
-| Supernode relay server (SFU + QUIC relay + portal) | **Rust** (`conquerd-supernode` — standalone binary) |
-| Installer / updater | **Rust** (`conquerd-installer` — standalone binary) |
+| Capability registry, `FeatureModule` trait, quota enforcement, auth-tier gating | **Rust** (`doubleslash-features` — rlib linked into supernode; Python mirror in `client_shared/`) |
+| Supernode relay server (SFU + QUIC relay + portal) | **Rust** (`doubleslash-supernode` — standalone binary) |
+| Installer / updater | **Rust** (`doubleslash-installer` — standalone binary) |
 
 The two PyO3 extension modules (`conquerd_audio`, `conquerd_quic`) are required and have no Python fallback path. They are linked at app startup and called directly from Python via native bindings.
 
@@ -202,7 +202,7 @@ The two PyO3 extension modules (`conquerd_audio`, `conquerd_quic`) are required 
 - **Relay**: QUIC relay protocol on supernodes (transport-only; no app-layer decryption).
 
 ### Core Model
-- **Invite-only discovery**: peers connect only from signed `conquerd://` links.
+- **Invite-only discovery**: peers connect only from signed `doubleslash://` links.
 - **Zero trust relay**: relays forward signed/encrypted payloads only — no app-layer central services.
 - **Cryptographic identity**: long-term Ed25519 identity key; `peer_id` = SHA-256 of public key.
 - **Forward secrecy**: invite handshakes use ephemeral X25519 + HKDF + AES-GCM.
@@ -281,7 +281,7 @@ User types → ChatManager.send_message()
 
 ## Modular Framework
 
-Conquerd is structured as a **modular peer-connectivity framework**: chat, voice, files, rooms, and games are not hard-coded behaviors but **features** advertised and negotiated between peers and supernodes. The spine is the `conquerd-features` crate (with mirrored Python bindings in `client_shared/capabilities.py`).
+Conquerd is structured as a **modular peer-connectivity framework**: chat, voice, files, rooms, and games are not hard-coded behaviors but **features** advertised and negotiated between peers and supernodes. The spine is the `doubleslash-features` crate (with mirrored Python bindings in `client_shared/capabilities.py`).
 
 ### Concepts
 
@@ -347,7 +347,7 @@ Disabled entries are kept on disk so an operator can flip them back on without r
 Implement `FeatureModule` and register it on the supernode (or any peer) at startup:
 
 ```rust
-use conquerd_features::{
+use doubleslash_features::{
     AuthTier, CapabilityDescriptor, ChannelKind, FeatureModule, PeerId,
 };
 
@@ -376,10 +376,10 @@ if !state.features.bind_module("x.acme.matchmaker", module.clone()) {
 
 ### Browser Participation (WebTransport)
 
-When `web.host.h3.v1` is enabled, the supernode runs an HTTP/3 + WebTransport listener at `/wt/<feature_id>`. Browser clients use the JavaScript SDK at `web-sdk/conquerd.mjs`:
+When `web.host.h3.v1` is enabled, the supernode runs an HTTP/3 + WebTransport listener at `/wt/<feature_id>`. Browser clients use the JavaScript SDK at `web-sdk/doubleslash.mjs`:
 
 ```js
-import { ConquerdClient } from "./conquerd.mjs";
+import { ConquerdClient } from "./doubleslash.mjs";
 
 const client = await ConquerdClient.connect({
   url: "https://supernode.example/wt/room.audio.sfu",
@@ -415,7 +415,7 @@ Conquerd uses an **invite-only** model. There is no user directory or friend sea
 4. The peer appears in your left panel as a trusted contact.
 
 ### URI Launch
-If Conquerd is installed, clicking a `conquerd://invite/...` link opens the app and processes the invite automatically.
+If Conquerd is installed, clicking a `doubleslash://invite/...` link opens the app and processes the invite automatically.
 
 ---
 
@@ -520,7 +520,7 @@ Running a supernode is **optional**. Peers who can connect directly to each othe
 Build the Rust supernode binary (one time):
 
 ```bash
-cd rust/conquerd-supernode
+cd rust/doubleslash-supernode
 cargo build --release
 ```
 
@@ -530,7 +530,7 @@ set CONQUERD_HOME=%USERPROFILE%\.conquerd
 set supernode_invite_ttl=-1
 set supernode_port=3478
 set supernode_signaling_port=34935
-rust\target\release\conquerd-supernode.exe
+rust\target\release\doubleslash-supernode.exe
 ```
 
 Or use the bundled helper:
@@ -544,7 +544,7 @@ export CONQUERD_HOME="$HOME/.conquerd"
 export supernode_invite_ttl=-1
 export supernode_port=3478
 export supernode_signaling_port=34935
-./rust/target/release/conquerd-supernode
+./rust/target/release/doubleslash-supernode
 ```
 
 Or use the bundled helper:
@@ -633,12 +633,12 @@ Build the binary once:
 
 ```bash
 . "$HOME/.cargo/env"
-cd /opt/conquerd/app/rust/conquerd-supernode
+cd /opt/conquerd/app/rust/doubleslash-supernode
 cargo build --release
-sudo cp target/release/conquerd-supernode /usr/local/bin/
+sudo cp target/release/doubleslash-supernode /usr/local/bin/
 ```
 
-Create `/etc/systemd/system/conquerd-supernode.service`:
+Create `/etc/systemd/system/doubleslash-supernode.service`:
 
 ```ini
 [Unit]
@@ -661,7 +661,7 @@ Environment=supernode_signaling_port=34935
 #Environment=supernode_web_title=My Relay Node
 #Environment=supernode_access_mode=open
 
-ExecStart=/usr/local/bin/conquerd-supernode
+ExecStart=/usr/local/bin/doubleslash-supernode
 Restart=on-failure
 RestartSec=5
 
@@ -679,13 +679,13 @@ WantedBy=multi-user.target
 
 ```bash
 sudo systemctl daemon-reload
-sudo systemctl enable conquerd-supernode
-sudo systemctl start conquerd-supernode
+sudo systemctl enable doubleslash-supernode
+sudo systemctl start doubleslash-supernode
 ```
 
 Retrieve the invite link:
 ```bash
-sudo journalctl -u conquerd-supernode | grep 'Invite URL'
+sudo journalctl -u doubleslash-supernode | grep 'Invite URL'
 ```
 
 ### Portal Customisation
@@ -847,7 +847,7 @@ Supernodes additionally store:
 | File | Purpose |
 |---|---|
 | `conquerd_entry.py` | PyInstaller / packaged distribution entry point |
-| `client_desktop/__main__.py` | Direct CLI entry (`python -m client_desktop`); handles `conquerd://` URI on launch, writes crash dumps |
+| `client_desktop/__main__.py` | Direct CLI entry (`python -m client_desktop`); handles `doubleslash://` URI on launch, writes crash dumps |
 
 ### Building from Source
 ```bash
@@ -893,7 +893,7 @@ The resulting `dist\conquerd\conquerd.exe` is self-contained and portable. Users
 
 #### Code Signing (Windows, optional)
 
-The build script automatically signs `conquerd.exe` and `conquerd-installer.exe` when a certificate is configured. Signing is **optional** — the build completes without it.
+The build script automatically signs `conquerd.exe` and `doubleslash-installer.exe` when a certificate is configured. Signing is **optional** — the build completes without it.
 
 `signtool.exe` must be on `PATH`. Install it via:
 - **Visual Studio Installer** → Modify → Individual Components → search "Windows SDK" (e.g. Windows 11 SDK 10.0.26100.x) — signing tools are included.
@@ -952,7 +952,7 @@ Version is controlled in one place: `client_shared/version.py` (`APP_VERSION` tu
 │   ├── ringtone.py              # Incoming call ringtone playback
 │   ├── taskbar_badge.py         # Unread/missed-call badges on taskbar (Win32 API)
 │   ├── upnp.py                  # UPnP IGD auto port-forwarding
-│   ├── uri_scheme.py            # Registers conquerd:// URI scheme (Windows Registry)
+│   ├── uri_scheme.py            # Registers doubleslash:// URI scheme (Windows Registry)
 │   ├── shortcuts.py             # Qt keyboard shortcuts
 │   ├── github_updater.py        # Polls GitHub Releases API; emits update_available signal
 │   └── ui/                      # PySide6 UI widgets
@@ -968,12 +968,12 @@ Version is controlled in one place: `client_shared/version.py` (`APP_VERSION` tu
 │       └── icons.py             # SVG + raster icon loading
 ├── client_shared/               # Shared crypto/protocol (no UI dependency)
 │   ├── identity.py              # Ed25519 keypair; public_id, peer_id, sign/verify
-│   ├── invite.py                # Create/parse conquerd:// invite links (signed, timestamped)
+│   ├── invite.py                # Create/parse doubleslash:// invite links (signed, timestamped)
 │   ├── handshake.py             # X25519 HKDF + AES-GCM SessionCipher; replay protection
 │   ├── crypto.py                # SHA-256, base64url, nonce gen, peer/room ID derivation
 │   ├── protocol.py              # MessageType enum (all message types)
 │   ├── peer_store.py            # Trusted peer persistence; invite history + revocations
-│   ├── capabilities.py          # Python mirror of conquerd-features well-known capability list
+│   ├── capabilities.py          # Python mirror of doubleslash-features well-known capability list
 │   ├── channel_tag.py           # Channel-tag registry (0x10–0xEF dynamic, 0xFF broadcast)
 │   ├── feature_modules.py       # FeatureRegistry: register/lookup/dispatch_invoke Python-side
 │   ├── feature_trust.py         # FeatureTrustStore + FeatureTrustGate (user-consent for bespoke namespaces)
@@ -982,8 +982,8 @@ Version is controlled in one place: `client_shared/version.py` (`APP_VERSION` tu
 ├── rust/
 │   ├── conquerd-audio/          # PyO3 crate: CPAL + Opus + DSP (AudioEngine, OpusEncoder/Decoder, VAD, etc.)
 │   ├── conquerd-quic/           # PyO3 crate: quinn + tokio (QUICTransport, QUICPeerManager, QUICRelayClient, etc.)
-│   ├── conquerd-supernode/      # Standalone binary: QUIC relay, SFU, WebSocket signaling, HTTPS portal
-│   └── conquerd-installer/      # Standalone binary: download + apply app releases
+│   ├── doubleslash-supernode/      # Standalone binary: QUIC relay, SFU, WebSocket signaling, HTTPS portal
+│   └── doubleslash-installer/      # Standalone binary: download + apply app releases
 ├── tests/                       # pytest tests (718): unit, integration, UI
 └── pyproject.toml               # Project configuration
 ```
@@ -1037,9 +1037,9 @@ Free code signing provided by [SignPath.io](https://signpath.io), certificate by
 
 | Role | Members |
 |---|---|
-| **Authors** (trusted committers) | [Members](https://github.com/orgs/ConquerD/teams/conquerd-authors) |
-| **Reviewers** (PR reviewers) | [Members](https://github.com/orgs/ConquerD/teams/conquerd-reviewers) |
-| **Approvers** (release signing) | [Owners](https://github.com/orgs/ConquerD/teams/conquerd-approvers) |
+| **Authors** (trusted committers) | [Members](https://github.com/orgs/DoubleSlashSpace/teams/doubleslash-authors) |
+| **Reviewers** (PR reviewers) | [Members](https://github.com/orgs/DoubleSlashSpace/teams/doubleslash-reviewers) |
+| **Approvers** (release signing) | [Owners](https://github.com/orgs/DoubleSlashSpace/teams/doubleslash-approvers) |
 
 ### Privacy Policy
 

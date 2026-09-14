@@ -17,7 +17,7 @@ client is registered for the scheme, nothing happens and the page stays put with
 its download link.
 
 The hand-off uses `doubleslash://`, **not** `d://` — Chromium's Windows URL
-fixup reads the one-letter `d:` as drive D:. `rust/conquerd-features/src/brand.rs`
+fixup reads the one-letter `d:` as drive D:. `rust/doubleslash-features/src/brand.rs`
 is the source of truth for both forms.
 
 ## Android App Links
@@ -34,8 +34,8 @@ Paste the colon-separated SHA-256 into `sha256_cert_fingerprints`. Verify after
 deploying with:
 
 ```
-adb shell pm verify-app-links --re-verify com.conquerd.client
-adb shell pm get-app-links com.conquerd.client
+adb shell pm verify-app-links --re-verify com.doubleslash.client
+adb shell pm get-app-links com.doubleslash.client
 ```
 
 Until then the manifest's `autoVerify` filter simply falls back to the chooser,
