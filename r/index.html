@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" data-action="room">
 <head>
+  <script>
+    (function () {
+      try {
+        if (localStorage.getItem("doubleslash-theme") === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
@@ -10,6 +19,26 @@
   <link rel="icon" href="/favicon.ico" />
   <style>
     :root {
+      color-scheme: dark;
+      --ink: #e9eaf0;
+      --ink-soft: #b9bdcc;
+      --muted: #8b90a2;
+      --paper: #0d0f14;
+      --surface: #161a24;
+      --surface-soft: #1c212e;
+      --line: #272d3c;
+      --brand: #7f85ff;
+      --brand-dark: #6c72f0;
+      --brand-soft: #232741;
+      --red: #ff2b40;
+      --radius-sm: 12px;
+      --radius: 20px;
+      --shadow-sm: 0 8px 26px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 28px 80px rgba(0, 0, 0, 0.55);
+    }
+
+    html[data-theme="light"] {
+      color-scheme: light;
       --ink: #11131a;
       --ink-soft: #3e4250;
       --muted: #6f7482;
@@ -20,28 +49,8 @@
       --brand: #5b61e6;
       --brand-dark: #474cc7;
       --brand-soft: #ececff;
-      --red: #ff2b40;
-      --radius-sm: 12px;
-      --radius: 20px;
       --shadow-sm: 0 8px 26px rgba(20, 24, 38, 0.07);
       --shadow-lg: 0 28px 80px rgba(20, 24, 38, 0.15);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --ink: #e9eaf0;
-        --ink-soft: #b9bdcc;
-        --muted: #8b90a2;
-        --paper: #0d0f14;
-        --surface: #161a24;
-        --surface-soft: #1c212e;
-        --line: #272d3c;
-        --brand: #7f85ff;
-        --brand-dark: #6c72f0;
-        --brand-soft: #232741;
-        --shadow-sm: 0 8px 26px rgba(0, 0, 0, 0.4);
-        --shadow-lg: 0 28px 80px rgba(0, 0, 0, 0.55);
-      }
     }
 
     *, *::before, *::after { box-sizing: border-box; }
