@@ -7,7 +7,7 @@
   <title>DoubleSlash &ndash; Private Communication, Without the Platform</title>
   <meta
     name="description"
-    content="DoubleSlash is invite-only voice, chat, rooms, files, and in-app games over the D:// protocol, with identity that stays on your device."
+    content="DoubleSlash is an invite-only peer-connectivity app for desktop and Android: chat, voice, files, rooms, video, and in-app portal pages, with identity that stays on your device."
   />
   <link rel="icon" href="favicon.ico" />
   <style>
@@ -556,7 +556,7 @@
 
     .portal-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
       gap: 0.5rem;
     }
 
@@ -997,7 +997,7 @@
           <p class="eyebrow">Invite-only by design</p>
           <h1>Private communication, without the platform.</h1>
           <p class="hero-copy">
-            Voice, chat, rooms, files, and in-app games for people you trust.
+            Chat, voice, files, rooms, video, and in-app games for people you invite.
             Your identity stays on your device, and direct connections stay direct.
           </p>
 
@@ -1015,7 +1015,7 @@
           </div>
 
           <div class="hero-note" aria-label="Availability and licensing">
-            <span>Windows, macOS, and Linux</span>
+            <span>Windows, macOS, Linux, and Android</span>
             <span>No account required</span>
             <span>Open source</span>
           </div>
@@ -1031,7 +1031,7 @@
           <p class="section-lede">
             There is no account system and no directory. Optional supernodes help
             when your network needs them &mdash; they never hold your identity or
-            your room keys.
+            the keys that seal room chat, files, and media.
           </p>
         </div>
 
@@ -1081,15 +1081,15 @@
         <div class="steps">
           <article class="step">
             <h3>Create your identity</h3>
-            <p>DoubleSlash generates a keypair on your device and stores it with your operating system.</p>
+            <p>DoubleSlash generates an Ed25519 identity on your device and locks it with a local passphrase.</p>
           </article>
           <article class="step">
             <h3>Share a signed invite</h3>
-            <p>Send an expiring <code>d://</code> invite through any channel you already trust.</p>
+            <p>Send an <code>https://doubleslash.space/i#&hellip;</code> link. The secret stays in the fragment, so the website never receives it.</p>
           </article>
           <article class="step">
             <h3>Connect</h3>
-            <p>You connect directly when the network allows, or through a supernode you chose when it does not.</p>
+            <p>You connect directly when the network allows, or through a supernode you chose when it does not. Rooms always use a supernode.</p>
           </article>
         </div>
       </div>
@@ -1101,7 +1101,7 @@
           <p class="eyebrow">Built for real groups</p>
           <h2>More than a private messenger.</h2>
           <p class="section-lede">
-            A native desktop app, with optional infrastructure you can run yourself.
+            Native desktop and Android clients, with optional infrastructure you can run yourself.
             <a href="architecture.html">See the full architecture &rarr;</a>
           </p>
         </div>
@@ -1110,32 +1110,38 @@
           <article class="bento-card large">
             <h3>Everything in one conversation</h3>
             <p>
-              Voice, chat, and file transfers run over the same connection, and
-              calls fall back to a private room rather than dropping when a direct
-              path is not available.
+              Voice, chat, files, and video share the same negotiated connection.
+              If a direct call cannot connect within five seconds, it can fall back
+              to a temporary private room on a supernode you already trust.
             </p>
           </article>
 
           <article class="bento-card medium">
             <h3>Rooms belong to the people in them</h3>
             <p>
-              Up to 32 people per room. The room is defined on participant devices,
-              so it survives a supernode going away.
+              Up to 32 people per room. Definitions live on participant devices
+              and come back when you reconnect. Public user-created rooms are off
+              unless the operator turns them on.
             </p>
           </article>
 
           <article class="bento-card large">
             <h3>Games and shared pages, inside the app</h3>
             <p>
-              Small multiplayer games and hosted pages open through <code>d://</code>
-              in the client itself &mdash; never on a public web server.
+              Hosted pages and seven demo apps open through <code>d://</code>
+              inside the native client &mdash; never on a public web server.
+              Shared state lives in open pages only.
             </p>
             <div class="portal-window" aria-label="Illustrative in-app portal">
               <div class="portal-bar">d://supernode-id/games/</div>
               <div class="portal-grid">
-                <div class="portal-tile">Cursor<br />Relay</div>
+                <div class="portal-tile">Presence<br />Playground</div>
                 <div class="portal-tile">Brick<br />Breaker</div>
-                <div class="portal-tile">Shared<br />Drawing</div>
+                <div class="portal-tile">Shared<br />Canvas</div>
+                <div class="portal-tile">Task<br />Board</div>
+                <div class="portal-tile">Focus<br />Timer</div>
+                <div class="portal-tile">Four in<br />a Row</div>
+                <div class="portal-tile">Memory<br />Match</div>
               </div>
             </div>
           </article>
@@ -1143,18 +1149,21 @@
           <article class="bento-card medium">
             <h3>Your history stays yours</h3>
             <p>
-              Conversation history and retention settings live on your device, not
-              in someone else&rsquo;s archive.
+              Conversation history, room definitions, and encrypted backups live on
+              your device, not in someone else&rsquo;s archive. There is no account
+              recovery service.
             </p>
           </article>
 
           <article class="bento-card wide">
-            <p class="card-flag">In development</p>
-            <h3>Video and screen sharing are being built in the open</h3>
+            <p class="card-flag">Platform coverage</p>
+            <h3>Video is implemented, with different capture on each OS</h3>
             <p>
-              Camera and screen sharing run encrypted on the same transport as
-              everything else, but they are not finished &mdash; coverage outside
-              Windows still needs work. <a href="architecture.html">See platform coverage &rarr;</a>
+              Windows can share a camera, a screen or window, and system or app
+              audio. Linux and macOS can send camera (VP8); screen and shared-audio
+              capture are still Windows-only. Android can send camera video; it
+              cannot play incoming video yet.
+              <a href="architecture.html#media">See platform coverage &rarr;</a>
             </p>
           </article>
         </div>
@@ -1170,7 +1179,7 @@
           </div>
           <a
             class="button button-secondary"
-            href="https://github.com/DoubleSlashSpace/DoubleSlash"
+            href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/docs/SUPERNODE.md"
             target="_blank"
             rel="noopener noreferrer"
           >View operator docs</a>
@@ -1194,20 +1203,23 @@
             <p class="status-tag shipped">Working today</p>
             <h3>Shipped in the client</h3>
             <ul class="status-list">
-              <li>Signed <code>d://</code> invites and local identity</li>
-              <li>Direct chat, voice, and file transfer</li>
+              <li>HTTPS invites and device-held identity</li>
+              <li>Direct and room chat, voice, and files</li>
               <li>Rooms for up to 32 people, sealed end to end</li>
-              <li>In-app pages and multiplayer games</li>
+              <li>In-app portal and seven demo apps</li>
+              <li>Windows camera, screen, and shared audio</li>
             </ul>
           </article>
 
           <article class="status-card building">
             <p class="status-tag building">In progress</p>
-            <h3>Being built now</h3>
+            <h3>Still open</h3>
             <ul class="status-list">
-              <li>Video calling and screen sharing</li>
-              <li>Camera support beyond Windows</li>
-              <li>Signed builds on every platform</li>
+              <li>Incoming video on Android</li>
+              <li>Screen and shared-audio capture outside Windows</li>
+              <li>Linux and macOS camera hardware validation</li>
+              <li>Device pairing and simultaneous-use acceptance</li>
+              <li>WASM plugin sandbox</li>
             </ul>
           </article>
 
@@ -1224,9 +1236,10 @@
         </div>
 
         <p class="status-note">
-          Desktop only for now. Current builds come from the rolling nightly
-          channel, which ships SHA-256 sidecars and an intentionally unsigned
-          development manifest; tagged releases are signed.
+          Desktop nightlies cover Windows, macOS, and Linux. Android is in the
+          same repository. Nightly packages ship SHA-256 sidecars and an unsigned
+          development manifest; a tagged release can include a signed manifest,
+          but the installer does not require one.
         </p>
       </div>
     </section>
@@ -1243,25 +1256,38 @@
           <details>
             <summary>Can a supernode read my conversations?</summary>
             <p>
-              No. Chat, voice, and files are sealed end to end, and supernodes never
-              receive room keys. They do see routing metadata: peer and room IDs,
-              membership, timing, and byte volumes.
+              No. Chat, voice, files, and video are sealed before they reach a
+              supernode, and nodes never receive room keys. They do see routing
+              metadata: peer and room IDs, membership, timing, byte volumes, room
+              names, and file-offer details such as filename and size.
             </p>
           </details>
           <details>
             <summary>Do I need a supernode at all?</summary>
             <p>
-              Often not &mdash; two peers with open networks connect directly. A
-              supernode is there for when that fails, and for shared rooms, so you
-              do not need port forwarding to reach your people.
+              Direct one-to-one chat and calls do not, if the two peers can reach
+              each other. A mutually trusted supernode can coordinate UDP hole
+              punching, relay traffic, and host rooms. Rooms always need a supernode.
             </p>
           </details>
           <details>
             <summary>Can I make video calls yet?</summary>
             <p>
-              Not as a finished feature. The camera and screen paths exist and are
-              encrypted, but coverage outside Windows is incomplete. Voice, chat,
-              rooms, and files are what to rely on today.
+              On Windows, yes: camera, a screen or window, and shared audio. Linux
+              and macOS can send camera video (VP8) but that path still needs hardware
+              validation, and they do not capture screens or shared audio. Android
+              can send camera video; incoming video is not wired yet. Voice, chat,
+              rooms, and files work across the clients.
+            </p>
+          </details>
+          <details>
+            <summary>Is there an Android app?</summary>
+            <p>
+              Yes. Android uses the same Rust core through JNI, with Kotlin/Compose
+              for chat, voice, files, rooms, portal access, backups, and camera
+              sending. Incoming video and shared-audio playback are not connected
+              yet. Desktop nightlies are the packaged client downloads; Android is
+              built from the repository.
             </p>
           </details>
           <details>
@@ -1274,10 +1300,10 @@
           <details>
             <summary>Was this called ConquerD?</summary>
             <p>
-              Yes. The project is now DoubleSlash and new links are minted as
-              <code>d://</code>. Nothing on the wire changed: existing
-              <code>doubleslash://</code> invites still work, and your identity, peers,
-              and saved rooms carry over.
+              Yes. The product is DoubleSlash. Invites people share are
+              <code>https://doubleslash.space/i#&hellip;</code> links. The in-app
+              portal uses <code>d://</code>. The landing page still hands an invite
+              to an installed desktop client through <code>doubleslash://</code>.
             </p>
           </details>
         </div>
