@@ -551,6 +551,19 @@
       font-size: 0.88rem;
     }
 
+    .invite-explainer {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+    }
+
+    .invite-explainer h3 { margin: 0 0 0.75rem; }
+    .invite-explainer p { max-width: 78ch; color: var(--ink-soft); }
+    .invite-explainer p:last-child { margin-bottom: 0; }
+    .invite-explainer code { overflow-wrap: anywhere; }
+
     .bento {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -1192,12 +1205,30 @@
           </article>
           <article class="step">
             <h3>Share a signed invite</h3>
-            <p>Send an <code>https://doubleslash.space/i#&hellip;</code> link. The secret stays in the fragment, so the website never receives it.</p>
+            <p>Send an <code>https://doubleslash.space/i#&hellip;</code> link. Everything after <code>#</code> carries the invite and stays out of the request to the website.</p>
           </article>
           <article class="step">
             <h3>Connect</h3>
             <p>You connect directly when the network allows, or through a supernode you chose when it does not. Rooms always use a supernode.</p>
           </article>
+        </div>
+
+        <div class="invite-explainer" aria-labelledby="invite-links">
+          <h3 id="invite-links">What does the # in an invite link do?</h3>
+          <p>
+            The <code>#</code> is a <strong>fragment separator</strong>. Everything
+            after it is the <strong>fragment identifier</strong>, often used as a
+            page anchor. DoubleSlash uses it to carry the invite instead.
+            Your browser requests <code>https://doubleslash.space/i</code> without
+            sending the <code>#</code> or anything after it to the web server.
+          </p>
+          <p>
+            The landing page reads the invite locally in your browser and passes
+            it to the installed DoubleSlash app, which validates it. Room invites
+            use <code>/r#&hellip;</code> the same way. Keep the whole link, including
+            everything after <code>#</code>, when you share or copy it.
+            <a href="architecture.html#invite-links">See how the handoff works &rarr;</a>
+          </p>
         </div>
       </div>
     </section>
