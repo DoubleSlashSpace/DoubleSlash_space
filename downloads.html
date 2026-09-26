@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download DoubleSlash | Windows, macOS, Linux &amp; Android</title>
+  <meta name="description" content="Download DoubleSlash for your device: Windows installer, macOS disk image, Linux AppImage, or Android APK. Simple installation steps and links to all releases." />
+  <link rel="canonical" href="https://doubleslash.space/downloads.html" />
+  <link rel="icon" href="favicon.ico" />
+  <script>
+    try {
+      if (localStorage.getItem("doubleslash-theme") === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    } catch (e) {}
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #e9eaf0; --soft: #b9bdcc; --muted: #9ca2b5;
+      --paper: #0d0f14; --surface: #161a24; --line: #272d3c;
+      --brand: #7f85ff; --button: #595fd7; --button-hover: #494fc4;
+      --header: rgba(13, 15, 20, .95); --logo-filter: none;
+    }
+    html[data-theme="light"] {
+      color-scheme: light;
+      --ink: #11131a; --soft: #434957; --muted: #616775;
+      --paper: #fbfaf8; --surface: #fff; --line: #dedfe3;
+      --brand: #474cc7; --header: rgba(251, 250, 248, .97);
+      --logo-filter: drop-shadow(0 0 .6px rgba(17, 19, 26, .55)) drop-shadow(0 1px 1.5px rgba(17, 19, 26, .2));
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { background: var(--paper); scroll-padding-top: 110px; }
+    body { margin: 0; color: var(--ink); font: 16px/1.65 "Segoe UI", sans-serif; }
+    a { color: var(--brand); text-underline-offset: 4px; }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--brand); outline-offset: 5px; }
+    .shell { width: min(calc(100% - 40px), 1060px); margin-inline: auto; }
+    .skip { position: absolute; top: -100px; left: 16px; padding: 12px; background: var(--surface); z-index: 20; }
+    .skip:focus { top: 12px; }
+    header { position: sticky; top: 0; z-index: 10; background: var(--header); border-bottom: 1px solid var(--line); }
+    .topbar { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: inline-flex; }
+    .brand img { display: block; width: 194.4px; height: 36px; filter: var(--logo-filter); }
+    .topbar nav { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; font-size: 14px; }
+    .topbar nav a { color: var(--soft); text-decoration: none; }
+    .topbar nav [aria-current] { color: var(--brand); border-bottom: 2px solid; }
+    .theme-toggle { font: inherit; padding: 7px 11px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--ink); cursor: pointer; }
+    .intro { padding: 58px 0 30px; max-width: 730px; }
+    .eyebrow { color: var(--brand); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    h1 { font-size: clamp(32px, 5vw, 48px); line-height: 1.15; letter-spacing: -.035em; margin: 12px 0 18px; }
+    h2 { font-size: 26px; line-height: 1.25; margin: 0 0 8px; }
+    p { margin: 0 0 16px; }
+    .intro > p:not(.eyebrow) { color: var(--soft); font-size: 18px; }
+    .release-note { color: var(--muted); font-size: 14px; margin-bottom: 30px; }
+    .downloads { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+    .platform { display: flex; flex-direction: column; padding: 30px; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); }
+    .platform .eyebrow { margin-bottom: 10px; }
+    .compat { color: var(--muted); font-size: 14px; }
+    .instructions { padding-left: 22px; margin: 4px 0 24px; color: var(--soft); }
+    .instructions li + li { margin-top: 6px; }
+    .download { display: block; margin-top: auto; padding: 12px 16px; border-radius: 10px; background: var(--button); color: #fff; text-align: center; font-weight: 600; text-decoration: none; }
+    .download:hover { background: var(--button-hover); }
+    .download-note { margin: 10px 0 0; font-size: 13px; color: var(--muted); }
+    .download-note a { color: inherit; }
+    .more { padding: 32px 0 48px; }
+    .more p { color: var(--soft); max-width: 78ch; }
+    details { border-bottom: 1px solid var(--line); padding: 18px 0; }
+    summary { cursor: pointer; font-weight: 600; }
+    details p { margin: 12px 0 0; font-size: 14px; }
+    code { font-size: .9em; overflow-wrap: anywhere; }
+    footer { border-top: 1px solid var(--line); padding: 24px 0; color: var(--muted); font-size: 13px; }
+    .footer-inner { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+    @media (max-width: 680px) {
+      .topbar { align-items: flex-start; flex-direction: column; gap: 12px; padding-block: 16px; }
+      .topbar nav { gap: 14px; }
+      .downloads { grid-template-columns: 1fr; }
+      .platform { padding: 24px; }
+      .intro { padding-top: 36px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to downloads</a>
+  <header>
+    <div class="shell topbar">
+      <a class="brand" href="index.html"><img src="logo-full.svg" width="486" height="90" alt="DoubleSlash home" /></a>
+      <nav aria-label="Main navigation">
+        <a href="index.html">Overview</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="downloads.html" aria-current="page">Downloads</a>
+        <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Use light appearance">Light theme</button>
+      </nav>
+    </div>
+  </header>
+  <main class="shell" id="main">
+    <div class="intro">
+      <p class="eyebrow">Get DoubleSlash</p>
+      <h1>Choose your device.<br />Download one file.</h1>
+      <p>Pick your platform below, install the app, then open your invite link.</p>
+    </div>
+    <p class="release-note">These are development nightly builds. <a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases">Full releases and release notes &rarr;</a></p>
+    <div class="downloads">
+      <section class="platform" aria-labelledby="windows">
+        <p class="eyebrow">Windows</p>
+        <h2 id="windows">Windows installer</h2>
+        <p class="compat">64-bit Intel or AMD PCs &middot; .exe</p>
+        <ol class="instructions">
+          <li>Download and run the installer.</li>
+          <li>Follow the setup prompts, then launch DoubleSlash.</li>
+        </ol>
+        <a class="download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/doubleslash-installer-nightly.exe">Download Windows installer</a>
+        <p class="download-note">Recommended for most Windows users.</p>
+      </section>
+      <section class="platform" aria-labelledby="macos">
+        <p class="eyebrow">macOS</p>
+        <h2 id="macos">Mac disk image</h2>
+        <p class="compat">Apple Silicon (M-series) Macs &middot; .dmg</p>
+        <ol class="instructions">
+          <li>Download and open the disk image.</li>
+          <li>Drag DoubleSlash to Applications, then open it.</li>
+        </ol>
+        <a class="download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/DoubleSlash-nightly-macos-arm64.dmg">Download for Apple Silicon</a>
+        <p class="download-note">The current Mac download is for Apple Silicon only.</p>
+      </section>
+      <section class="platform" aria-labelledby="linux">
+        <p class="eyebrow">Linux</p>
+        <h2 id="linux">Linux AppImage</h2>
+        <p class="compat">64-bit Intel or AMD PCs (x86-64) &middot; .AppImage</p>
+        <ol class="instructions">
+          <li>Download the AppImage.</li>
+          <li>In its file properties, allow execution as a program, then open it.</li>
+        </ol>
+        <a class="download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/DoubleSlash-nightly-x86_64.AppImage">Download Linux AppImage</a>
+        <p class="download-note">No separate installer needed.</p>
+      </section>
+      <section class="platform" aria-labelledby="android">
+        <p class="eyebrow">Android</p>
+        <h2 id="android">Android app</h2>
+        <p class="compat">Android 8.0 or later &middot; ARM64 &middot; .apk</p>
+        <ol class="instructions">
+          <li>Download the APK on your phone and open it.</li>
+          <li>If prompted, allow your browser to install apps, then tap Install.</li>
+        </ol>
+        <a class="download" id="android-download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/android-nightly/DoubleSlash-android-arm64-68-b996201.apk">Download Android APK</a>
+        <p class="download-note"><span id="android-build">Build 68</span> &middot; <a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/tag/android-nightly">Android release notes</a></p>
+      </section>
+    </div>
+    <div class="more">
+      <details>
+        <summary>Prefer a portable Windows app?</summary>
+        <p><a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/DoubleSlash-nightly-win64.7z">Download the Windows portable archive</a>, extract the whole archive with a 7z-compatible tool, then run <code>DoubleSlash.exe</code> from the extracted folder.</p>
+      </details>
+      <details>
+        <summary>Updating an existing Android installation?</summary>
+        <p>Install the APK over your existing app. If Android reports a signature mismatch, keep the existing installation: uninstalling removes its local identity and messages. See the <a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/tag/android-nightly">Android release notes</a> before proceeding.</p>
+      </details>
+      <details>
+        <summary>Looking for checksums, supernodes, or source code?</summary>
+        <p>The <a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases">full releases page</a> includes portable packages, SHA-256 checksums, supernode downloads, and source archives. These extra files are not required for a normal app installation.</p>
+      </details>
+    </div>
+  </main>
+  <footer>
+    <div class="shell footer-inner">
+      <span>DoubleSlash &middot; Open source, invite-only communication.</span>
+      <a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases">All releases</a>
+      <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/PRIVACY.md">Privacy policy</a>
+      <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/TERMS.md">Terms</a>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      var button = document.querySelector("[data-theme-toggle]");
+      function apply() {
+        var light = document.documentElement.getAttribute("data-theme") === "light";
+        button.textContent = light ? "Dark theme" : "Light theme";
+        button.setAttribute("aria-label", light ? "Use dark appearance" : "Use light appearance");
+        button.setAttribute("aria-pressed", light ? "true" : "false");
+      }
+      apply();
+      button.addEventListener("click", function () {
+        var light = document.documentElement.getAttribute("data-theme") !== "light";
+        if (light) document.documentElement.setAttribute("data-theme", "light");
+        else document.documentElement.removeAttribute("data-theme");
+        try { localStorage.setItem("doubleslash-theme", light ? "light" : "dark"); } catch (e) {}
+        apply();
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      // APK names include the build number. Keep the verified link above usable
+      // without JavaScript or when GitHub is unavailable or rate-limits requests.
+      var prefix = "https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/android-nightly/";
+      var controller = new AbortController();
+      var timeout = setTimeout(function () { controller.abort(); }, 5000);
+      fetch("https://api.github.com/repos/DoubleSlashSpace/DoubleSlash/releases/tags/android-nightly", {
+        credentials: "omit",
+        referrerPolicy: "no-referrer",
+        signal: controller.signal
+      }).then(function (response) {
+        if (!response.ok) throw new Error("Release lookup unavailable");
+        return response.json();
+      }).then(function (release) {
+        if (!Array.isArray(release.assets)) return;
+        var newest = null;
+        release.assets.forEach(function (asset) {
+          var match = /^DoubleSlash-android-arm64-(\d+)-[a-f0-9]+\.apk$/.exec(asset.name);
+          if (!match || asset.browser_download_url !== prefix + asset.name || asset.state !== "uploaded") return;
+          var build = Number(match[1]);
+          if (Number.isSafeInteger(build) && build >= 68 && (!newest || build > newest.build)) {
+            newest = { build: build, url: asset.browser_download_url };
+          }
+        });
+        if (!newest) return;
+        document.getElementById("android-download").href = newest.url;
+        document.getElementById("android-build").textContent = "Build " + newest.build;
+      }).catch(function () {
+        // The static download remains available.
+      }).finally(function () { clearTimeout(timeout); });
+    })();
+  </script>
+</body>
+</html>
