@@ -82,12 +82,25 @@
 
     .mark {
       display: inline-block;
+      max-width: 100%;
       font-weight: 700;
       font-size: 15px;
       letter-spacing: 0.02em;
       color: var(--brand);
       text-decoration: none;
       margin-bottom: 22px;
+    }
+
+    .mark img {
+      display: block;
+      width: 243px;
+      max-width: 100%;
+      height: auto;
+    }
+
+    html[data-theme="light"] .mark img {
+      filter: drop-shadow(0 0 0.6px rgba(17, 19, 26, 0.55))
+              drop-shadow(0 1px 1.5px rgba(17, 19, 26, 0.2));
     }
 
     h1 {
@@ -168,7 +181,7 @@
 </head>
 <body>
   <main class="card" id="card">
-    <a class="mark" href="https://doubleslash.space"><img src="https://doubleslash.space/logo-full.svg" alt="DoubleSlash" /></a>
+    <a class="mark" href="https://doubleslash.space"><img src="../logo-full.svg" width="486" height="90" alt="DoubleSlash" /></a>
 
     <div id="ok">
       <h1 id="title">You&rsquo;ve been invited to a room</h1>
