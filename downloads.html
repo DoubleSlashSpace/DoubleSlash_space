@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Download DoubleSlash | Windows, macOS, Linux &amp; Android</title>
-  <meta name="description" content="Download DoubleSlash for your device: Windows installer, macOS disk image, Linux AppImage, or Android APK. Simple installation steps and links to all releases." />
+  <meta name="description" content="Choose a DoubleSlash release channel. The signed stable release is not available yet; development nightlies are available for Windows, macOS, Linux, and Android." />
   <link rel="canonical" href="https://doubleslash.space/downloads.html" />
   <link rel="icon" href="favicon.ico" />
   <script>
@@ -19,14 +19,14 @@
       color-scheme: dark;
       --ink: #e9eaf0; --soft: #b9bdcc; --muted: #9ca2b5;
       --paper: #0d0f14; --surface: #161a24; --line: #272d3c;
-      --brand: #7f85ff; --button: #595fd7; --button-hover: #494fc4;
+      --pending: #b9bdcc; --nightly: #e0b56a; --brand: #7f85ff; --button: #595fd7; --button-hover: #494fc4;
       --header: rgba(13, 15, 20, .95); --logo-filter: none;
     }
     html[data-theme="light"] {
       color-scheme: light;
       --ink: #11131a; --soft: #434957; --muted: #616775;
       --paper: #fbfaf8; --surface: #fff; --line: #dedfe3;
-      --brand: #474cc7; --header: rgba(251, 250, 248, .97);
+      --pending: #616775; --nightly: #895013; --brand: #474cc7; --header: rgba(251, 250, 248, .97);
       --logo-filter: drop-shadow(0 0 .6px rgba(17, 19, 26, .55)) drop-shadow(0 1px 1.5px rgba(17, 19, 26, .2));
     }
     *, *::before, *::after { box-sizing: border-box; }
@@ -34,7 +34,7 @@
     body { margin: 0; color: var(--ink); font: 16px/1.65 "Segoe UI", sans-serif; }
     a { color: var(--brand); text-underline-offset: 4px; }
     a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--brand); outline-offset: 5px; }
-    .shell { width: min(calc(100% - 40px), 1060px); margin-inline: auto; }
+    .shell { width: min(calc(100% - 40px), 1180px); margin-inline: auto; }
     .skip { position: absolute; top: -100px; left: 16px; padding: 12px; background: var(--surface); z-index: 20; }
     .skip:focus { top: 12px; }
     header { position: sticky; top: 0; z-index: 10; background: var(--header); border-bottom: 1px solid var(--line); }
@@ -51,9 +51,25 @@
     h2 { font-size: 26px; line-height: 1.25; margin: 0 0 8px; }
     p { margin: 0 0 16px; }
     .intro > p:not(.eyebrow) { color: var(--soft); font-size: 18px; }
-    .release-note { color: var(--muted); font-size: 14px; margin-bottom: 30px; }
-    .downloads { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
-    .platform { display: flex; flex-direction: column; padding: 30px; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); }
+    .release-note { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+    .channels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; align-items: start; }
+    .channel { min-width: 0; padding: 28px; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); }
+    .channel-stable { position: sticky; top: 104px; }
+    .channel-nightly { border-top: 3px solid var(--nightly); }
+    .channel-header { padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+    .channel-header > p:last-child { margin-bottom: 0; color: var(--soft); }
+    .channel-status { display: inline-block; padding: 4px 10px; margin-bottom: 16px; border: 1px solid currentColor; border-radius: 6px; color: var(--pending); font-size: 12px; font-weight: 600; }
+    .channel-nightly .channel-status { color: var(--nightly); }
+    .channel h2 { font-size: 30px; }
+    .channel h3 { margin: 0 0 8px; font-size: 22px; line-height: 1.3; }
+    .pending-platforms { margin: 8px 0 24px; }
+    .pending-platforms > div { padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .pending-platforms dt { font-weight: 600; }
+    .pending-platforms dd { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+    .pending-note { color: var(--soft); font-size: 14px; }
+    .downloads { display: grid; grid-template-columns: 1fr; }
+    .platform { display: flex; flex-direction: column; padding: 26px 0; border-bottom: 1px solid var(--line); }
+    .platform:last-child { padding-bottom: 0; border-bottom: 0; }
     .platform .eyebrow { margin-bottom: 10px; }
     .compat { color: var(--muted); font-size: 14px; }
     .instructions { padding-left: 22px; margin: 4px 0 24px; color: var(--soft); }
@@ -70,11 +86,15 @@
     code { font-size: .9em; overflow-wrap: anywhere; }
     footer { border-top: 1px solid var(--line); padding: 24px 0; color: var(--muted); font-size: 13px; }
     .footer-inner { display: flex; flex-wrap: wrap; gap: 12px 24px; }
+    @media (max-width: 860px) {
+      .channels { grid-template-columns: 1fr; }
+      .channel-stable { position: static; }
+    }
     @media (max-width: 680px) {
       .topbar { align-items: flex-start; flex-direction: column; gap: 12px; padding-block: 16px; }
       .topbar nav { gap: 14px; }
       .downloads { grid-template-columns: 1fr; }
-      .platform { padding: 24px; }
+      .channel { padding: 22px; }
       .intro { padding-top: 36px; }
     }
   </style>
@@ -95,60 +115,84 @@
   <main class="shell" id="main">
     <div class="intro">
       <p class="eyebrow">Get DoubleSlash</p>
-      <h1>Choose your device.<br />Download one file.</h1>
-      <p>Pick your platform below, install the app, then open your invite link.</p>
+      <h1>Choose your release.</h1>
+      <p>The signed release is on its way. To try DoubleSlash today, <a href="#nightly">choose a nightly download</a> for your device.</p>
     </div>
-    <p class="release-note">These are development nightly builds. <a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases">Full releases and release notes &rarr;</a></p>
-    <div class="downloads">
+    <p class="release-note"><a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases">Full releases and release notes &rarr;</a></p>
+    <div class="channels">
+      <section class="channel channel-stable" aria-labelledby="stable">
+        <div class="channel-header">
+          <span class="channel-status">Not released yet</span>
+          <h2 id="stable">Signed release</h2>
+          <p>The stable release channel. The first signed release has not been published yet.</p>
+        </div>
+        <dl class="pending-platforms">
+          <div><dt>Windows</dt><dd>Installer &middot; Not available yet</dd></div>
+          <div><dt>macOS</dt><dd>Disk image &middot; Not available yet</dd></div>
+          <div><dt>Linux</dt><dd>AppImage &middot; Not available yet</dd></div>
+          <div><dt>Android</dt><dd>App &middot; Not available yet</dd></div>
+        </dl>
+        <p class="pending-note">Signed release downloads will appear here when they are ready.</p>
+        <a href="#nightly">Try a development nightly &rarr;</a>
+      </section>
+      <section class="channel channel-nightly" aria-labelledby="nightly">
+        <div class="channel-header">
+          <span class="channel-status">Available now &middot; Development builds</span>
+          <h2 id="nightly">Nightly downloads</h2>
+          <p>Current builds for testing the latest changes. Desktop nightlies are unsigned. Android APKs use development signing.</p>
+        </div>
+        <div class="downloads">
       <section class="platform" aria-labelledby="windows">
         <p class="eyebrow">Windows</p>
-        <h2 id="windows">Windows installer</h2>
+        <h3 id="windows">Windows installer</h3>
         <p class="compat">64-bit Intel or AMD PCs &middot; .exe</p>
         <ol class="instructions">
           <li>Download and run the installer.</li>
           <li>Follow the setup prompts, then launch DoubleSlash.</li>
         </ol>
-        <a class="download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/doubleslash-installer-nightly.exe">Download Windows installer</a>
-        <p class="download-note">Recommended for most Windows users.</p>
+        <a class="download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/doubleslash-installer-nightly.exe">Download Windows nightly</a>
+        <p class="download-note">Unsigned installer &middot; For testing.</p>
       </section>
       <section class="platform" aria-labelledby="macos">
         <p class="eyebrow">macOS</p>
-        <h2 id="macos">Mac disk image</h2>
+        <h3 id="macos">Mac disk image</h3>
         <p class="compat">Apple Silicon (M-series) Macs &middot; .dmg</p>
         <ol class="instructions">
           <li>Download and open the disk image.</li>
           <li>Drag DoubleSlash to Applications, then open it.</li>
         </ol>
-        <a class="download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/DoubleSlash-nightly-macos-arm64.dmg">Download for Apple Silicon</a>
-        <p class="download-note">The current Mac download is for Apple Silicon only.</p>
+        <a class="download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/DoubleSlash-nightly-macos-arm64.dmg">Download macOS nightly</a>
+        <p class="download-note">Unsigned disk image &middot; Apple Silicon only.</p>
       </section>
       <section class="platform" aria-labelledby="linux">
         <p class="eyebrow">Linux</p>
-        <h2 id="linux">Linux AppImage</h2>
+        <h3 id="linux">Linux AppImage</h3>
         <p class="compat">64-bit Intel or AMD PCs (x86-64) &middot; .AppImage</p>
         <ol class="instructions">
           <li>Download the AppImage.</li>
           <li>In its file properties, allow execution as a program, then open it.</li>
         </ol>
-        <a class="download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/DoubleSlash-nightly-x86_64.AppImage">Download Linux AppImage</a>
-        <p class="download-note">No separate installer needed.</p>
+        <a class="download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/DoubleSlash-nightly-x86_64.AppImage">Download Linux nightly</a>
+        <p class="download-note">Unsigned AppImage &middot; No separate installer needed.</p>
       </section>
       <section class="platform" aria-labelledby="android">
         <p class="eyebrow">Android</p>
-        <h2 id="android">Android app</h2>
+        <h3 id="android">Android app</h3>
         <p class="compat">Android 8.0 or later &middot; ARM64 &middot; .apk</p>
         <ol class="instructions">
           <li>Download the APK on your phone and open it.</li>
           <li>If prompted, allow your browser to install apps, then tap Install.</li>
         </ol>
-        <a class="download" id="android-download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/android-nightly/DoubleSlash-android-arm64-68-b996201.apk">Download Android APK</a>
+        <a class="download" id="android-download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/android-nightly/DoubleSlash-android-arm64-68-b996201.apk">Download Android nightly</a>
         <p class="download-note"><span id="android-build">Build 68</span> &middot; <a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/tag/android-nightly">Android release notes</a></p>
+      </section>
+        </div>
       </section>
     </div>
     <div class="more">
       <details>
-        <summary>Prefer a portable Windows app?</summary>
-        <p><a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/DoubleSlash-nightly-win64.7z">Download the Windows portable archive</a>, extract the whole archive with a 7z-compatible tool, then run <code>DoubleSlash.exe</code> from the extracted folder.</p>
+        <summary>Prefer a portable Windows nightly?</summary>
+        <p><a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/DoubleSlash-nightly-win64.7z">Download the unsigned Windows portable nightly</a>, extract the whole archive with a 7z-compatible tool, then run <code>DoubleSlash.exe</code> from the extracted folder.</p>
       </details>
       <details>
         <summary>Updating an existing Android installation?</summary>
