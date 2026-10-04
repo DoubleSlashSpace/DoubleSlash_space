@@ -1163,7 +1163,7 @@
             <span class="privacy-check" aria-hidden="true">&#10003;</span>
             <div>
               <strong>Conversations stay sealed</strong>
-              <p>Chat, voice, files, and video are encrypted end to end. A relay moves bytes it cannot read.</p>
+              <p>Chat, voice, files, and video are encrypted between the people in them. A relay moves bytes it cannot read.</p>
             </div>
           </div>
           <div class="privacy-item">
@@ -1178,6 +1178,13 @@
             <div>
               <strong>Nothing turns on quietly</strong>
               <p>Features are agreed per connection, and anything outside the core set asks for your consent first.</p>
+            </div>
+          </div>
+          <div class="privacy-item">
+            <span class="privacy-check" aria-hidden="true">&#10003;</span>
+            <div>
+              <strong>Other network use, named</strong>
+              <p>Desktop chat can show link-preview cards. Playing one contacts that video host from your machine, and you can turn the cards off. An optional assistant, off until you enable it, talks only to the Ollama address you configure.</p>
             </div>
           </div>
         </div>
@@ -1201,7 +1208,7 @@
           </article>
           <article class="step">
             <h3>Share a signed invite</h3>
-            <p>Send an <code>https://doubleslash.space/i#&hellip;</code> link. Everything after <code>#</code> carries the invite and stays out of the request to the website.</p>
+            <p>Send an <code>https://doubleslash.space/i#&hellip;</code> link. Everything after <code>#</code> carries the invite and stays out of the request to the website. A personal invite works once, for 15 minutes, and only on the device that created it.</p>
           </article>
           <article class="step">
             <h3>Connect</h3>
@@ -1236,6 +1243,7 @@
           <h2>More than a private messenger.</h2>
           <p class="section-lede">
             Native desktop and Android clients, with optional infrastructure you can run yourself.
+            Desktop can use a local Ollama assistant, off until you enable it.
             <a href="architecture.html">See the full architecture &rarr;</a>
           </p>
         </div>
@@ -1293,10 +1301,13 @@
             <p class="card-flag">Platform coverage</p>
             <h3>Video is implemented, with different capture on each OS</h3>
             <p>
-              Windows can share a camera, a screen or window, and system or app
-              audio. Linux and macOS can send camera (VP8); screen and shared-audio
-              capture are still Windows-only. Android can send camera video; it
-              cannot play incoming video yet.
+              Every client can send and receive VP9 and VP8. Rooms default to VP9,
+              and a sender that falls behind on VP9 encoding switches to VP8 for
+              that session. Windows also offers H.264, screen or window sharing,
+              and system or app audio. Linux and macOS camera paths still need a
+              hardware check. On Android, incoming video is opt-in per person and
+              has not been checked on a device yet. Shared-audio playback on
+              Android remains open work.
               <a href="architecture.html#media">See platform coverage &rarr;</a>
             </p>
           </article>
@@ -1338,10 +1349,10 @@
             <h3>Shipped in the client</h3>
             <ul class="status-list">
               <li>HTTPS invites and device-held identity</li>
-              <li>Direct and room chat, voice, and files</li>
+              <li>Direct and room chat, voice, and files up to 4&nbsp;GiB</li>
               <li>Rooms for up to 32 people, sealed end to end</li>
               <li>In-app portal and seven demo apps</li>
-              <li>Windows camera, screen, and shared audio</li>
+              <li>VP9 and VP8 video, plus Windows screen share and shared audio</li>
             </ul>
           </article>
 
@@ -1349,9 +1360,9 @@
             <p class="status-tag building">In progress</p>
             <h3>Still open</h3>
             <ul class="status-list">
-              <li>Incoming video on Android</li>
+              <li>Shared-audio playback on Android</li>
               <li>Screen and shared-audio capture outside Windows</li>
-              <li>Linux and macOS camera hardware validation</li>
+              <li>Linux and macOS camera checks, plus two-client and room media acceptance</li>
               <li>Device pairing and simultaneous-use acceptance</li>
               <li>WASM plugin sandbox</li>
             </ul>
@@ -1371,9 +1382,11 @@
 
         <p class="status-note">
           Desktop nightlies cover Windows, macOS, and Linux. Android APKs have their own
-          <a href="downloads.html#android">download</a>. Desktop nightly packages ship SHA-256 sidecars and an unsigned
-          development manifest; a tagged release can include a signed manifest,
-          but the installer does not require one.
+          <a href="downloads.html#android">download</a>. A nightly install requires a development
+          manifest and checks its archive hash; that manifest is accepted unsigned.
+          A stable install proceeds when no manifest is supplied. When one is supplied,
+          the installer requires a valid project signature and a matching archive hash.
+          Published SHA-256 sidecars are checked when present. Android updates are separate APK installs.
         </p>
       </div>
     </section>
@@ -1407,11 +1420,15 @@
           <details>
             <summary>Can I make video calls yet?</summary>
             <p>
-              On Windows, yes: camera, a screen or window, and shared audio. Linux
-              and macOS can send camera video (VP8) but that path still needs hardware
-              validation, and they do not capture screens or shared audio. Android
-              can send camera video; incoming video is not wired yet. Voice, chat,
-              rooms, and files work across the clients.
+              Yes, with limits that depend on the device. Every client can send and
+              receive VP9 and VP8. Rooms use VP9 unless the sender falls behind,
+              in which case that session switches to VP8. Windows can also use
+              H.264, share a screen or window, and share system or app audio.
+              Linux and macOS camera capture still needs a hardware check, and
+              screen or shared-audio capture is a Windows feature. On Android,
+              incoming video is opt-in per person and has not been validated on a
+              device. Shared-audio playback on Android remains open work. Voice,
+              chat, rooms, and files work across the clients.
             </p>
           </details>
           <details>
@@ -1419,9 +1436,19 @@
             <p>
               Yes. Android uses the same Rust core through JNI, with Kotlin/Compose
               for chat, voice, files, rooms, portal access, backups, and camera
-              sending. Incoming video and shared-audio playback are not connected
-              yet. <a href="downloads.html#android">Download the Android APK</a> or build it
+              video. Incoming video is opt-in per person and has not been checked
+              on a device. Shared-audio playback remains open work.
+              <a href="downloads.html#android">Download the Android APK</a> or build it
               from the repository.
+            </p>
+          </details>
+          <details>
+            <summary>Is there an AI assistant?</summary>
+            <p>
+              On desktop, if you turn it on. It sends prompts to an Ollama server
+              you configure, which defaults to your own machine. Tools that send
+              chat, join calls, or share files stay off until you enable them.
+              The assistant is a desktop setting.
             </p>
           </details>
           <details>
