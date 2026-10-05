@@ -47,6 +47,8 @@
       --step-arrow: #5c6375;
       --out-dot: #4a5160;
       --focus-ring: rgba(127, 133, 255, 0.4);
+      --card-sheen: linear-gradient(180deg, rgba(127, 133, 255, 0.1), transparent 92px);
+      --line-strong: #3a4256;
       --radius-sm: 12px;
       --radius: 20px;
       --radius-lg: 30px;
@@ -83,6 +85,8 @@
       --step-arrow: #b8bbc4;
       --out-dot: #c3c6cf;
       --focus-ring: rgba(91, 97, 230, 0.28);
+      --card-sheen: linear-gradient(180deg, rgba(91, 97, 230, 0.07), transparent 92px);
+      --line-strong: #c8c6bf;
       --shadow-sm: 0 8px 26px rgba(20, 24, 38, 0.07);
       --shadow-lg: 0 28px 80px rgba(20, 24, 38, 0.15);
     }
@@ -101,7 +105,7 @@
       margin: 0;
       background: var(--paper);
       color: var(--ink);
-      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
     }
@@ -198,6 +202,18 @@
       color: var(--brand);
     }
 
+    .nav-drawer {
+      display: none;
+    }
+
+    .nav-drawer summary {
+      list-style: none;
+    }
+
+    .nav-drawer summary::-webkit-details-marker {
+      display: none;
+    }
+
     .button {
       display: inline-flex;
       min-height: 48px;
@@ -291,7 +307,7 @@
     .hero {
       position: relative;
       overflow: hidden;
-      padding: 6.6rem 0 5rem;
+      padding: 5.1rem 0 4.2rem;
     }
 
     .hero::before {
@@ -311,13 +327,139 @@
     .hero-grid {
       position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.12fr) minmax(260px, 0.88fr);
+      gap: clamp(1.5rem, 4vw, 3.5rem);
       align-items: center;
     }
 
     .hero-content {
-      max-width: 860px;
+      max-width: none;
       min-width: 0;
+    }
+
+    .hero-panel {
+      min-width: 0;
+      padding: 1.05rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(127, 133, 255, 0.18), transparent 46%),
+        var(--surface);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .hero-panel-bar,
+    .session-relay,
+    .session-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-panel-bar {
+      justify-content: space-between;
+      margin-bottom: 0.9rem;
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 750;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
+    .hero-panel-bar span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .live-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 5px var(--green-soft);
+    }
+
+    .session-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: 0.65rem;
+      align-items: center;
+    }
+
+    .session-peer {
+      min-width: 0;
+      padding: 0.9rem 0.8rem;
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--brand);
+      border-radius: 16px;
+      background: var(--paper);
+    }
+
+    .session-peer strong,
+    .session-relay strong {
+      display: block;
+    }
+
+    .session-peer span,
+    .session-relay div span {
+      display: block;
+      margin-top: 0.18rem;
+      color: var(--muted);
+      font-size: 0.74rem;
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 500;
+    }
+
+    .session-link {
+      flex-direction: column;
+      gap: 0.3rem;
+      color: var(--brand);
+      font-size: 0.66rem;
+      font-weight: 780;
+      letter-spacing: 0.06em;
+    }
+
+    .session-link i {
+      width: 2.2rem;
+      height: 2px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, transparent, var(--brand), transparent);
+    }
+
+    .session-relay {
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.7rem;
+      padding: 0.85rem 0.9rem;
+      border: 1px dashed var(--line-strong);
+      border-radius: 14px;
+      color: var(--ink-soft);
+      font-size: 0.78rem;
+    }
+
+    .session-relay strong {
+      font-size: 0.86rem;
+      color: var(--ink);
+    }
+
+    .session-relay .relay-tag {
+      flex-shrink: 0;
+      margin-top: 0;
+      padding: 0.28rem 0.5rem;
+      border-radius: 999px;
+      background: var(--green-soft);
+      color: var(--green);
+      font-size: 0.68rem;
+      font-weight: 750;
+    }
+
+    .hero-panel-caption {
+      margin: 0.85rem 0.15rem 0.1rem;
+      color: var(--muted);
+      font-size: 0.75rem;
     }
 
     .eyebrow {
@@ -349,12 +491,25 @@
     }
 
     h1 {
-      max-width: 760px;
+      max-width: 14em;
       margin-bottom: 1.45rem;
-      font-size: clamp(3.25rem, 6vw, 5.3rem);
+      font-size: clamp(2.9rem, 4.6vw, 4.35rem);
       line-height: 0.98;
-      letter-spacing: -0.066em;
+      letter-spacing: -0.055em;
       overflow-wrap: break-word;
+      text-wrap: balance;
+    }
+
+    h2 {
+      text-wrap: balance;
+    }
+
+    code {
+      padding: 0.08em 0.38em;
+      border-radius: 6px;
+      background: var(--surface-soft);
+      font-family: Consolas, ui-monospace, monospace;
+      font-size: 0.92em;
     }
 
     .hero-copy {
@@ -392,7 +547,7 @@
     }
 
     .section {
-      padding: 6.5rem 0;
+      padding: 5.25rem 0;
     }
 
     .section-white {
@@ -412,9 +567,9 @@
 
     h2 {
       margin-bottom: 1rem;
-      font-size: clamp(2.35rem, 4vw, 3.55rem);
-      line-height: 1.04;
-      letter-spacing: -0.052em;
+      font-size: clamp(2.15rem, 3.6vw, 3.15rem);
+      line-height: 1.06;
+      letter-spacing: -0.048em;
     }
 
     .section-lede {
@@ -571,12 +726,12 @@
     }
 
     .bento-card {
-      min-height: 250px;
+      min-height: 220px;
       padding: 1.6rem;
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: var(--surface);
+      background: var(--card-sheen), var(--surface);
     }
 
     .bento-card h3 {
@@ -708,7 +863,7 @@
       padding: 1.55rem;
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: var(--surface);
+      background: var(--card-sheen), var(--surface);
       box-shadow: var(--shadow-sm);
     }
 
@@ -814,6 +969,10 @@
       cursor: pointer;
       font-weight: 720;
       list-style: none;
+    }
+
+    .faq summary:hover {
+      color: var(--brand);
     }
 
     .faq summary::-webkit-details-marker {
@@ -932,6 +1091,59 @@
         display: none;
       }
 
+      .nav-drawer {
+        display: block;
+        position: relative;
+      }
+
+      .nav-drawer summary {
+        min-height: 38px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 0.85rem;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: var(--surface);
+        color: var(--ink);
+        font-size: 0.84rem;
+        font-weight: 720;
+        cursor: pointer;
+      }
+
+      .nav-drawer summary:focus-visible {
+        outline: 3px solid var(--focus-ring);
+        outline-offset: 3px;
+      }
+
+      .nav-drawer nav {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        z-index: 30;
+        display: grid;
+        min-width: 220px;
+        padding: 0.4rem;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--surface);
+        box-shadow: var(--shadow-lg);
+      }
+
+      .nav-drawer a {
+        padding: 0.72rem 0.8rem;
+        border-radius: 9px;
+        color: var(--ink-soft);
+        font-size: 0.92rem;
+        font-weight: 650;
+        text-decoration: none;
+      }
+
+      .nav-drawer a:hover,
+      .nav-drawer a:focus-visible {
+        background: var(--surface-soft);
+        color: var(--ink);
+      }
+
       .hero {
         padding-top: 4.8rem;
       }
@@ -1005,6 +1217,14 @@
         font-size: 0.72rem;
       }
 
+      .brand img {
+        height: 1.75rem;
+      }
+
+      .nav-actions {
+        gap: 0.45rem;
+      }
+
       .section {
         padding: 4.5rem 0;
       }
@@ -1046,6 +1266,21 @@
       }
     }
 
+    @media (max-width: 540px) {
+      .session-row {
+        grid-template-columns: 1fr;
+      }
+
+      .session-link {
+        flex-direction: row;
+        justify-content: flex-start;
+      }
+
+      .session-link i {
+        width: 1.5rem;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html {
         scroll-behavior: auto;
@@ -1079,6 +1314,18 @@
       </nav>
 
       <div class="nav-actions">
+        <details class="nav-drawer">
+          <summary>Menu</summary>
+          <nav aria-label="Primary navigation">
+            <a href="#privacy">Privacy</a>
+            <a href="#how-it-works">How it works</a>
+            <a href="#features">Features</a>
+            <a href="#status">Status</a>
+            <a href="#faq">FAQ</a>
+            <a href="architecture.html">Architecture</a>
+            <a href="downloads.html">Downloads</a>
+          </nav>
+        </details>
         <button
           type="button"
           class="theme-toggle"
@@ -1136,6 +1383,32 @@
             <span>Open source</span>
           </div>
         </div>
+
+        <figure class="hero-panel">
+          <div class="hero-panel-bar">
+            <span><i class="live-dot" aria-hidden="true"></i> Direct session</span>
+            <span>Invite only</span>
+          </div>
+          <div class="session-row">
+            <div class="session-peer">
+              <strong>You</strong>
+              <span>Identity on this device</span>
+            </div>
+            <div class="session-link" aria-hidden="true"><i></i>QUIC</div>
+            <div class="session-peer">
+              <strong>A person</strong>
+              <span>Someone you invited</span>
+            </div>
+          </div>
+          <div class="session-relay">
+            <div>
+              <strong>Optional supernode</strong>
+              <span>Rooms and relay. Content stays sealed.</span>
+            </div>
+            <span class="relay-tag">When you choose one</span>
+          </div>
+          <figcaption class="hero-panel-caption">Direct when the path is open. A supernode you trust when you want a room or a relay.</figcaption>
+        </figure>
       </div>
     </section>
 
