@@ -64,7 +64,14 @@ Avoid freezing test totals, capability totals, or other fast-changing counts int
 - Room chat bodies, Opus audio, and file chunks are signed and end-to-end sealed. Supernodes route opaque wire bytes and must not decrypt, log, or persist content.
 - Supernodes may see routing metadata such as peer ids, room ids, membership, timing, signatures, message types, and byte volumes.
 - A supernode may persist its own identity, trusted peer public ids, endpoint mailbox, manifest, and invite configuration. Do not simplify this to “the supernode stores no identity.”
-- The client UI keeps ordinary peers in the Peers rail and trusted supernodes in the Rooms sidebar.
+- The client UI keeps ordinary peers in the Peers list and trusted supernodes in the Rooms list. Members of a room are rows in that room's tree, not a separate member rail.
+- Message myself is live text between devices of one identity. Both clients pin it above contacts. It keeps local history on each device, and it does not offer calls, files, or delivery to a device that is offline.
+- Room text alerts stay off until enabled for that room. The setting is per device and is not part of the snapshot shared with other devices of the same identity.
+- An invite can be shown as a QR code of the same `https://doubleslash.space` URL. The code does not mint another invite.
+- A stalled file download keeps stored bytes and re-requests from the first missing chunk, up to three times, then waits for a manual retry. Hash, size, and protocol failures discard the partial. An offer stays available for one hour.
+- The desktop runs one process for the profile it has open. A second launch of that profile exits, and an invite link opened while it is running does not open another window.
+- Desktop watched video can open in its own window or fill the screen.
+- When the elected room keyer is another device of the same identity, key recovery reopens the encrypted own-device handoff.
 
 ### In-app portal and games
 
@@ -84,6 +91,8 @@ The current built-in catalogue contains these stable capability ids:
 - Peer features: `core.chat.v1`, `core.audio.opus`, `core.file.v1`.
 - Room features: `room.audio.sfu`, `room.chat.v1`, `room.file.v1`.
 - Video and content audio: `core.video.v1`, `core.audio.content.v1`, `room.video.sfu`, `room.audio.content.sfu`. These are in `local_capabilities()` and pinned by the `feature_ids_are_stable` golden test; they are advertised capabilities, which is not the same as video being a finished feature.
+- Devices: `core.devices.v1`. The default build advertises it. It describes root-authorized endpoint routing. Pairing and continuous history sync are not finished.
+- Local assistant: `x.ollama.v1`. Desktop only, off by default, and limited to the Ollama URL the user configures.
 - Portal and games: `web.host.app.v1`, `game.relay.v1`.
 
 Every feature has an authentication tier and quota policy. Third-party `x.<vendor>.*` capabilities require explicit consent. If the catalogue changes, verify it against `local_capabilities()` in `doubleslash-features` rather than copying an old numeric total.

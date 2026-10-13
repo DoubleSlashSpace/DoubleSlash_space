@@ -1481,7 +1481,7 @@
           </article>
           <article class="step">
             <h3>Share a signed invite</h3>
-            <p>Send an <code>https://doubleslash.space/i#&hellip;</code> link. Everything after <code>#</code> carries the invite and stays out of the request to the website. A personal invite works once, for 15 minutes, and only on the device that created it.</p>
+            <p>Send an <code>https://doubleslash.space/i#&hellip;</code> link, or show that same link as a QR code. The code does not create another invite. Everything after <code>#</code> carries the invite and stays out of the request to the website. A personal invite works once, for 15 minutes, and only on the device that created it.</p>
           </article>
           <article class="step">
             <h3>Connect</h3>
@@ -1528,6 +1528,9 @@
               Voice, chat, files, and video share the same negotiated connection.
               If a direct call cannot connect within five seconds, it can fall back
               to a temporary private room on a supernode you already trust.
+              Message myself is a separate text chat with your other devices of
+              this identity. It keeps history on each device, and it does not
+              place calls, send files, or reach a device that is offline.
             </p>
           </article>
 
@@ -1536,7 +1539,8 @@
             <p>
               Up to 32 people per room. Definitions live on participant devices
               and come back when you reconnect. Public user-created rooms are off
-              unless the operator turns them on.
+              unless the operator turns them on. Message alerts for a room stay
+              off until you enable them there.
             </p>
           </article>
 
@@ -1577,10 +1581,11 @@
               Every client can send and receive VP9 and VP8. Rooms default to VP9,
               and a sender that falls behind on VP9 encoding switches to VP8 for
               that session. Windows also offers H.264, screen or window sharing,
-              and system or app audio. Linux and macOS camera paths still need a
-              hardware check. On Android, incoming video is opt-in per person and
-              has not been checked on a device yet. Shared-audio playback on
-              Android remains open work.
+              and system or app audio. On the desktop, a person&rsquo;s video can open
+              in its own window or fill the screen. Linux and macOS camera paths
+              still need a hardware check. On Android, incoming video is opt-in
+              per person and has not been checked on a device yet. Shared-audio
+              playback on Android remains open work.
               <a href="architecture.html#media">See platform coverage &rarr;</a>
             </p>
           </article>
@@ -1621,11 +1626,12 @@
             <p class="status-tag shipped">Working today</p>
             <h3>Shipped in the client</h3>
             <ul class="status-list">
-              <li>HTTPS invites and device-held identity</li>
-              <li>Direct and room chat, voice, and files up to 4&nbsp;GiB</li>
-              <li>Rooms for up to 32 people, sealed end to end</li>
+              <li>HTTPS invites, including a QR code of the same link, and device-held identity</li>
+              <li>Direct and room chat, voice, and files up to 4&nbsp;GiB that can resume after an interruption</li>
+              <li>Message myself: live text between your own devices, kept on each device</li>
+              <li>Rooms for up to 32 people, sealed end to end, with alerts off until you enable them</li>
               <li>In-app portal and seven demo apps</li>
-              <li>VP9 and VP8 video, plus Windows screen share and shared audio</li>
+              <li>VP9 and VP8 video, desktop pop-out and full screen, plus Windows screen share and shared audio</li>
             </ul>
           </article>
 
@@ -1697,8 +1703,10 @@
               receive VP9 and VP8. Rooms use VP9 unless the sender falls behind,
               in which case that session switches to VP8. Windows can also use
               H.264, share a screen or window, and share system or app audio.
-              Linux and macOS camera capture still needs a hardware check, and
-              screen or shared-audio capture is a Windows feature. On Android,
+              On the desktop, a person&rsquo;s video can open in its own window or
+              fill the screen. Linux and macOS camera capture still needs a
+              hardware check, and screen or shared-audio capture is a Windows
+              feature. On Android,
               incoming video is opt-in per person and has not been validated on a
               device. Shared-audio playback on Android remains open work. Voice,
               chat, rooms, and files work across the clients.
@@ -1713,6 +1721,16 @@
               on a device. Shared-audio playback remains open work.
               <a href="downloads.html#android">Download the Android APK</a> or build it
               from the repository.
+            </p>
+          </details>
+          <details>
+            <summary>Can I message my other devices?</summary>
+            <p>
+              Yes. Message myself sits above your contacts on desktop and Android.
+              It is live text with the other devices of this identity, and each
+              device keeps its own history. It does not place calls, send files,
+              or deliver a message to a device that is offline. Pairing and
+              continuous history sync are still open.
             </p>
           </details>
           <details>

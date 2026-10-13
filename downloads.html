@@ -190,8 +190,8 @@
           <li>Download the APK on your phone and open it.</li>
           <li>If prompted, allow your browser to install apps, then tap Install.</li>
         </ol>
-        <a class="download" id="android-download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/android-nightly/DoubleSlash-android-arm64-68-b996201.apk">Download Android nightly</a>
-        <p class="download-note"><span id="android-build">Build 68</span> &middot; <a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/tag/android-nightly">Android release notes</a></p>
+        <a class="download" id="android-download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/android-nightly/DoubleSlash-android-arm64-85-a26f646.apk">Download Android nightly</a>
+        <p class="download-note"><span id="android-build">Build 85</span> &middot; <a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/tag/android-nightly">Android release notes</a></p>
       </section>
         </div>
       </section>
@@ -266,7 +266,7 @@
           var match = /^DoubleSlash-android-arm64-(\d+)-[a-f0-9]+\.apk$/.exec(asset.name);
           if (!match || asset.browser_download_url !== prefix + asset.name || asset.state !== "uploaded") return;
           var build = Number(match[1]);
-          if (Number.isSafeInteger(build) && build >= 68 && (!newest || build > newest.build)) {
+          if (Number.isSafeInteger(build) && build >= 85 && (!newest || build > newest.build)) {
             newest = { build: build, url: asset.browser_download_url };
           }
         });
