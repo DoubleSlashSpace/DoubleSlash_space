@@ -9,7 +9,7 @@
 | `index.html` | All public page content, metadata, inline diagrams, and small interaction scripts |
 | `architecture.html` | Technical architecture reference |
 | `downloads.html` | Release-channel downloads |
-| `support.html` | Server rental for a supernode. Vultr is the affiliate link (`https://www.vultr.com/?ref=6956347`). Keep the commission disclosure beside it. Do not add a provider here until its affiliate link exists. |
+| `support.html` | How to run a supernode on a Linux server you operate. The page stays provider-neutral except for the Vultr affiliate card (`https://www.vultr.com/?ref=6956347`). Keep the commission disclosure beside that card. Do not add a provider here until its affiliate link exists. |
 | `styles.css` | Site layout, typography, responsive behavior, and visual styling |
 | `logo.svg`, `logo-full.svg`, `logo.png`, `logo_padding.png`, `favicon.ico` | Brand assets (the D:// mark) |
 | `CNAME` | Custom-domain configuration |
