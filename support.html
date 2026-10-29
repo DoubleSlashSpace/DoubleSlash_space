@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Rent a server for a DoubleSlash supernode</title>
-  <meta name="description" content="Rent a Linux server and run your own DoubleSlash supernode. The Vultr button is an affiliate link. The DigitalOcean button is not an affiliate link yet." />
+  <meta name="description" content="Rent a Linux server and run your own DoubleSlash supernode. The Vultr button is an affiliate link, and DoubleSlash may earn a commission." />
   <link rel="canonical" href="https://doubleslash.space/support.html" />
   <link rel="icon" href="favicon.ico" />
   <script>
@@ -71,7 +71,7 @@
       color: var(--ink);
     }
     .disclosure strong { display: block; margin-bottom: 6px; }
-    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; align-items: stretch; margin-top: 28px; }
+    .grid { display: grid; grid-template-columns: minmax(0, 560px); gap: 28px; align-items: stretch; margin-top: 28px; }
     .card {
       min-width: 0;
       display: flex;
@@ -83,7 +83,6 @@
       box-shadow: var(--shadow);
     }
     .card-affiliate { border-top: 3px solid var(--brand); }
-    .card-plain { border-top: 3px solid var(--line); }
     .flag {
       display: inline-block;
       align-self: flex-start;
@@ -97,7 +96,6 @@
       text-transform: uppercase;
     }
     .card-affiliate .flag { color: var(--brand); }
-    .card-plain .flag { color: var(--muted); }
     .card p { color: var(--soft); }
     .card .fine {
       margin-top: auto;
@@ -105,14 +103,6 @@
       color: var(--ink);
       font-size: 15px;
     }
-    .future {
-      margin: 0 0 18px;
-      padding: 14px 16px;
-      border-left: 3px solid var(--line);
-      color: var(--soft);
-      font-size: 15px;
-    }
-    .future strong { color: var(--ink); }
     .go {
       display: block;
       min-height: 48px;
@@ -126,12 +116,6 @@
       text-decoration: none;
     }
     .go:hover { background: var(--button-hover); }
-    .go-plain {
-      background: transparent;
-      color: var(--ink);
-      border: 1px solid var(--line);
-    }
-    .go-plain:hover { background: var(--paper); }
     .go-note { margin: 10px 0 0; font-size: 13px; color: var(--muted); }
     .after { max-width: 760px; padding-top: 48px; }
     .after h2 { margin-bottom: 12px; }
@@ -139,9 +123,6 @@
     .after ol, .after ul { color: var(--soft); padding-left: 22px; }
     footer { border-top: 1px solid var(--line); padding: 24px 0; color: var(--muted); font-size: 13px; }
     .footer-inner { display: flex; flex-wrap: wrap; gap: 12px 24px; }
-    @media (max-width: 860px) {
-      .grid { grid-template-columns: 1fr; }
-    }
     @media (max-width: 680px) {
       .topbar { align-items: flex-start; flex-direction: column; gap: 12px; padding-block: 16px; }
       .topbar nav { gap: 14px; }
@@ -169,12 +150,12 @@
     <div class="intro">
       <p class="eyebrow">Support the project</p>
       <h1>Rent a server. Run your own supernode.</h1>
-      <p>A supernode is a Linux machine you operate. It can relay connections and host rooms for the people you invite. It is not an account system, and it cannot read sealed chat, voice, or files. DoubleSlash does not rent the machine. The companies on this page do. You pay them, and you keep the server.</p>
+      <p>A supernode is a Linux machine you operate. It can relay connections and host rooms for the people you invite. It is not an account system, and it cannot read sealed chat, voice, or files. DoubleSlash does not rent the machine. Vultr does. You pay Vultr, and you keep the server.</p>
     </div>
 
     <aside class="disclosure" aria-label="Advertising disclosure">
       <strong>Advertising disclosure</strong>
-      When a button on this page is marked as an affiliate link, DoubleSlash may earn a small commission if you sign up or purchase through it. The company pays that commission. It is not added to your price. A button that is not marked as an affiliate link does not pay DoubleSlash. You can rent from anyone else, or use a machine you already have. Opening a link does not install DoubleSlash, create an account with us, or connect the server. This page does not use tracking cookies. After you leave, that company’s own site and privacy policy apply.
+      The Vultr button is an affiliate link. DoubleSlash may earn a small commission if you sign up or purchase through it. Vultr pays that commission. It is not added to your price. You can rent from anyone else, or use a machine you already have. Opening the link does not install DoubleSlash, create an account with us, or connect the server. This page does not use tracking cookies. After you leave, Vultr’s own site and privacy policy apply.
     </aside>
 
     <div class="grid">
@@ -185,16 +166,6 @@
         <p class="fine"><strong>DoubleSlash is a Vultr affiliate.</strong> DoubleSlash may earn a commission if you sign up or purchase through this link. You pay Vultr’s price either way. Vultr does not operate DoubleSlash, and a commission is not an endorsement of DoubleSlash by Vultr.</p>
         <a class="go" href="https://www.vultr.com/?ref=6956347" rel="sponsored noopener noreferrer" target="_blank">Create a Vultr server</a>
         <p class="go-note">Affiliate link. Opens vultr.com in a new tab.</p>
-      </section>
-
-      <section class="card card-plain" id="digitalocean" aria-labelledby="do-title">
-        <span class="flag">Not an affiliate link</span>
-        <h2 id="do-title">DigitalOcean</h2>
-        <p>DigitalOcean rents Linux virtual machines, which it calls Droplets. This card is the placement DigitalOcean reviews before it issues an affiliate link. The button below opens DigitalOcean’s own site.</p>
-        <p class="fine"><strong>This button does not earn a commission.</strong> It is not an affiliate link, and DoubleSlash is not a DigitalOcean affiliate yet.</p>
-        <p class="future"><strong>Disclosure that will replace this notice after approval.</strong> DoubleSlash is a DigitalOcean affiliate. DoubleSlash may earn a commission if you sign up or purchase through this link. You pay DigitalOcean’s price either way.</p>
-        <a class="go go-plain" href="https://www.digitalocean.com/" rel="noopener noreferrer" target="_blank">Open DigitalOcean</a>
-        <p class="go-note">Not an affiliate link. Opens digitalocean.com in a new tab.</p>
       </section>
     </div>
 
@@ -216,9 +187,8 @@
         <li>Note the public address and the admin login the provider gives you.</li>
         <li>Install the supernode from the desktop app, or follow the <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/docs/SUPERNODE.md">operator guide</a>. Packages are on the <a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases">releases page</a>.</li>
         <li>Read the responsibility notice before the first install. You remain responsible for the server: its cost, security, updates, backups, and the law where you live and where it runs. DoubleSlash does not operate it.</li>
-        <li>Connect with the node’s own invite. Renting a server does not join you to anyone else’s network, and it does not make the provider a DoubleSlash identity.</li>
+        <li>Connect with the node’s own invite. Renting a server does not join you to anyone else’s network, and it does not make Vultr a DoubleSlash identity.</li>
       </ol>
-      <p>Only the Vultr button on this page is an affiliate link today. When DigitalOcean supplies one, it will replace the button in the DigitalOcean card, and the disclosure there will change to the sentence already printed in that card.</p>
     </section>
   </main>
   <footer>
