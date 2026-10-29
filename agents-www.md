@@ -8,6 +8,8 @@
 |---|---|
 | `index.html` | All public page content, metadata, inline diagrams, and small interaction scripts |
 | `architecture.html` | Technical architecture reference |
+| `downloads.html` | Release-channel downloads |
+| `support.html` | Server rental for a supernode. Vultr is an affiliate link (`https://www.vultr.com/?ref=6956347`). DigitalOcean is listed for program review and is not an affiliate link until that program issues one. Keep the commission disclosure beside each affiliate link. Do not describe a non-affiliate link as earning a commission. |
 | `styles.css` | Site layout, typography, responsive behavior, and visual styling |
 | `logo.svg`, `logo-full.svg`, `logo.png`, `logo_padding.png`, `favicon.ico` | Brand assets (the D:// mark) |
 | `CNAME` | Custom-domain configuration |
