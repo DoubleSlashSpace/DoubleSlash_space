@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Run your own DoubleSlash supernode</title>
-  <meta name="description" content="Run a Linux server as your own DoubleSlash supernode. It can relay connections and host rooms. One signup button is an affiliate link, and DoubleSlash may earn a commission." />
+  <meta name="description" content="Run a Linux server as your own DoubleSlash supernode. It can relay connections and host rooms. The signup buttons are affiliate links, and DoubleSlash may earn a commission." />
   <link rel="canonical" href="https://doubleslash.space/support.html" />
   <link rel="icon" href="favicon.ico" />
   <script>
@@ -71,7 +71,7 @@
       color: var(--ink);
     }
     .disclosure strong { display: block; margin-bottom: 6px; }
-    .grid { display: grid; grid-template-columns: minmax(0, 560px); gap: 28px; align-items: stretch; margin-top: 28px; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; align-items: stretch; margin-top: 28px; }
     .card {
       min-width: 0;
       display: flex;
@@ -100,7 +100,7 @@
     .go {
       display: block;
       min-height: 48px;
-      margin-top: 8px;
+      margin-top: auto;
       padding: 13px 16px;
       border-radius: 12px;
       background: var(--button);
@@ -121,6 +121,7 @@
       .topbar { align-items: flex-start; flex-direction: column; gap: 12px; padding-block: 16px; }
       .topbar nav { gap: 14px; }
       .intro { padding-top: 36px; }
+      .grid { grid-template-columns: 1fr; }
       .card { padding: 22px; }
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
@@ -159,6 +160,13 @@
         <p>Vultr rents Linux virtual machines with a public address. Create the server in your own Vultr account, then install the supernode yourself or from the DoubleSlash desktop app.</p>
         <a class="go" href="https://www.vultr.com/?ref=6956347" rel="sponsored noopener noreferrer" target="_blank">Create a Vultr server</a>
         <p class="go-note">Affiliate link. Opens vultr.com in a new tab.</p>
+      </section>
+      <section class="card card-affiliate" id="digitalocean" aria-labelledby="digitalocean-title">
+        <span class="flag">Affiliate link</span>
+        <h2 id="digitalocean-title">DigitalOcean</h2>
+        <p>DigitalOcean rents Linux virtual machines with a public address. Create the server in your own DigitalOcean account, then install the supernode yourself or from the DoubleSlash desktop app.</p>
+        <a class="go" href="https://www.awin1.com/cread.php?awinmid=123996&amp;awinaffid=3125578&amp;ued=https%3A%2F%2Fwww.digitalocean.com%2Fproducts%2Fdroplets" rel="sponsored noopener noreferrer" target="_blank">Create a DigitalOcean server</a>
+        <p class="go-note">Affiliate link. Opens digitalocean.com in a new tab.</p>
       </section>
     </div>
 
