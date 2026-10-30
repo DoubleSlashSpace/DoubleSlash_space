@@ -9,7 +9,7 @@
 | `index.html` | All public page content, metadata, inline diagrams, and small interaction scripts |
 | `architecture.html` | Technical architecture reference |
 | `downloads.html` | Release-channel downloads |
-| `support.html` | How to run a supernode on a Linux server you operate. The page stays provider-neutral except for the Vultr affiliate card (`https://www.vultr.com/?ref=6956347`). Keep the Advertising disclosure above that card, with the wording: "Each company below was hand selected by us as a partner, and through this relationship we earn a referral fee at no additional cost to you." Do not add a second commission paragraph inside the card. Do not add a provider here until its affiliate link exists. |
+| `support.html` | How to run a supernode on a Linux server you operate. The page stays provider-neutral except for two affiliate cards: Vultr (`https://www.vultr.com/?ref=6956347`) and DigitalOcean (`https://www.awin1.com/cread.php?awinmid=123996&awinaffid=3125578&ued=https%3A%2F%2Fwww.digitalocean.com%2Fproducts%2Fdroplets`). Keep the Advertising disclosure above the cards, with the wording: "Each company below was hand selected by us as a partner, and through this relationship we earn a referral fee at no additional cost to you." Do not add a second commission paragraph inside a card. Do not add a provider here until its affiliate link exists. |
 | `styles.css` | Site layout, typography, responsive behavior, and visual styling |
 | `logo.svg`, `logo-full.svg`, `logo.png`, `logo_padding.png`, `favicon.ico` | Brand assets (the D:// mark) |
 | `CNAME` | Custom-domain configuration |
