@@ -101,12 +101,12 @@ Every feature has an authentication tier and quota policy. Third-party `x.<vendo
 
 ### Updates and releases
 
-- The Windows release is published on the Microsoft Store: `https://apps.microsoft.com/detail/9N09Q23FW92M`. Microsoft signs that MSIX and delivers its updates. It uses the same desktop profile folder, and uninstalling the package leaves the profile in place. macOS, Linux, and Android still have no signed stable download; nightlies remain their download. Do not describe the Store package as the GitHub signed-manifest channel.
-- Releases are distributed through GitHub Releases; do not describe peer-pushed source updates as the current update model.
+- The official Windows release is the Microsoft Store listing `https://apps.microsoft.com/detail/9N09Q23FW92M`. Microsoft signs that MSIX and delivers its updates. It uses the same desktop profile folder, and uninstalling the package leaves the profile in place. SignPath signing of GitHub Windows builds is not in use. It waits until SignPath accepts the project on the strength of the Store distribution. macOS, Linux, and Android still have no signed stable download; nightlies remain their download. Do not describe a GitHub Windows file, or the Store package, as the GitHub signed-manifest channel.
+- macOS, Linux, Android, and Windows nightlies are distributed through GitHub Releases. Do not describe peer-pushed source updates as the current update model, and do not describe those GitHub Windows files as the official Windows release.
 - Tagged releases require the installer to verify an Ed25519-signed release manifest and the downloaded archive hash before applying an update.
 - The rolling nightly channel uses SHA-256 sidecars and an intentionally unsigned development manifest; do not describe nightlies as release-signed.
-- Platform signing and notarization are release-channel properties, so state them conditionally unless a published artifact has been verified.
-- Read the displayed application version from `rust/doubleslash-client/Cargo.toml`; the installer version must remain synchronized for SignPath compatibility.
+- Do not describe SignPath, Apple signing, or notarization as current unless a published artifact has been verified. SignPath for Windows is future work that depends on the Store release already existing.
+- The displayed product version is `{major}.{minor}.{build}.0`. Cargo.toml remains the release line (`major.minor.patch`) and `scripts/check_version_sync.ps1` keeps those crate versions aligned. The build count is shared by desktop, Android `versionName`, the supernode, and the MSIX. Android `versionCode` stays 1. Do not describe the Cargo.toml version by itself as the version a build reports.
 
 ## Remaining Website Documentation Drift
 
