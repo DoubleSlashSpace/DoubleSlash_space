@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Download DoubleSlash | Windows, macOS, Linux &amp; Android</title>
-  <meta name="description" content="Choose a DoubleSlash release channel. The signed stable release is not available yet; development nightlies are available for Windows, macOS, Linux, and Android." />
+  <meta name="description" content="Get DoubleSlash for Windows from the Microsoft Store. Development nightlies are available for Windows, macOS, Linux, and Android." />
   <link rel="canonical" href="https://doubleslash.space/downloads.html" />
   <link rel="icon" href="favicon.ico" />
   <script>
@@ -61,19 +61,16 @@
     .release-note { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
     .channels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; align-items: start; }
     .channel { min-width: 0; padding: 28px; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); box-shadow: var(--shadow); }
-    .channel-stable { position: sticky; top: 104px; border-top: 3px solid var(--line); }
+    .channel-stable { position: sticky; top: 104px; border-top: 3px solid var(--brand); }
     .channel-nightly { border-top: 3px solid var(--nightly); }
     .channel-header { padding-bottom: 22px; border-bottom: 1px solid var(--line); }
     .channel-header > p:last-child { margin-bottom: 0; color: var(--soft); }
     .channel-status { display: inline-block; padding: 4px 10px; margin-bottom: 16px; border: 1px solid currentColor; border-radius: 6px; color: var(--pending); font-size: 12px; font-weight: 600; }
+    .channel-stable .channel-status { color: var(--brand); }
     .channel-nightly .channel-status { color: var(--nightly); }
     .channel h2 { font-size: 30px; }
     .channel h3 { margin: 0 0 8px; font-size: 22px; line-height: 1.3; }
-    .pending-platforms { margin: 8px 0 24px; }
-    .pending-platforms > div { padding: 18px 0; border-bottom: 1px solid var(--line); }
-    .pending-platforms dt { font-weight: 600; }
-    .pending-platforms dd { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
-    .pending-note { color: var(--soft); font-size: 14px; }
+    .pending-note { margin-top: 22px; color: var(--soft); font-size: 14px; }
     .downloads { display: grid; grid-template-columns: 1fr; }
     .platform { display: flex; flex-direction: column; padding: 26px 0; border-bottom: 1px solid var(--line); }
     .platform:last-child { padding-bottom: 0; border-bottom: 0; }
@@ -124,23 +121,30 @@
     <div class="intro">
       <p class="eyebrow">Get DoubleSlash</p>
       <h1>Choose your release.</h1>
-      <p>The signed release is on its way. To try DoubleSlash today, <a href="#nightly">choose a nightly download</a> for your device.</p>
+      <p>Windows is available on the <a href="https://apps.microsoft.com/detail/9N09Q23FW92M?hl=en-us&amp;gl=US">Microsoft Store</a>. For macOS, Linux, Android, or the latest changes, <a href="#nightly">choose a nightly download</a>.</p>
     </div>
     <p class="release-note"><a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases">Full releases and release notes &rarr;</a></p>
     <div class="channels">
       <section class="channel channel-stable" aria-labelledby="stable">
         <div class="channel-header">
-          <span class="channel-status">Not released yet</span>
-          <h2 id="stable">Signed release</h2>
-          <p>The stable release channel. The first signed release has not been published yet.</p>
+          <span class="channel-status">Available now</span>
+          <h2 id="stable">Microsoft Store</h2>
+          <p>The Windows app is free on the Microsoft Store. Microsoft signs the package and delivers updates.</p>
         </div>
-        <dl class="pending-platforms">
-          <div><dt>Windows</dt><dd>Installer &middot; Not available yet</dd></div>
-          <div><dt>macOS</dt><dd>Disk image &middot; Not available yet</dd></div>
-          <div><dt>Linux</dt><dd>AppImage &middot; Not available yet</dd></div>
-          <div><dt>Android</dt><dd>App &middot; Not available yet</dd></div>
-        </dl>
-        <p class="pending-note">Signed release downloads will appear here when they are ready.</p>
+        <div class="downloads">
+          <section class="platform" aria-labelledby="store">
+            <p class="eyebrow">Windows</p>
+            <h3 id="store">Windows app</h3>
+            <p class="compat">64-bit Windows 10 (version 2004) or Windows 11</p>
+            <ol class="instructions">
+              <li>Open the Store listing and choose Get.</li>
+              <li>Windows installs DoubleSlash and keeps it updated.</li>
+            </ol>
+            <a class="download" href="https://apps.microsoft.com/detail/9N09Q23FW92M?hl=en-us&amp;gl=US">Get it from Microsoft Store</a>
+            <p class="download-note">Free &middot; Signed and updated by Microsoft.</p>
+          </section>
+        </div>
+        <p class="pending-note">macOS, Linux, and Android releases will appear here when they are ready.</p>
         <a href="#nightly">Try a development nightly &rarr;</a>
       </section>
       <section class="channel channel-nightly" aria-labelledby="nightly">
@@ -159,7 +163,7 @@
           <li>Follow the setup prompts, then launch DoubleSlash.</li>
         </ol>
         <a class="download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/doubleslash-installer-nightly.exe">Download Windows nightly</a>
-        <p class="download-note">Unsigned installer &middot; For testing.</p>
+        <p class="download-note">Unsigned installer &middot; For testing. The <a href="#store">Windows release</a> is on the Microsoft Store.</p>
       </section>
       <section class="platform" aria-labelledby="macos">
         <p class="eyebrow">macOS</p>
@@ -198,6 +202,10 @@
       </section>
     </div>
     <div class="more">
+      <details>
+        <summary>Installing Windows from the Microsoft Store?</summary>
+        <p>Open the <a href="https://apps.microsoft.com/detail/9N09Q23FW92M?hl=en-us&amp;gl=US">Store listing</a> and choose Get. Windows installs DoubleSlash and delivers later updates. The app uses the same profile folder as the other desktop builds. Uninstalling the Store app leaves that profile in place. Export a backup from the app before you delete a profile on purpose.</p>
+      </details>
       <details>
         <summary>Prefer a portable Windows nightly?</summary>
         <p><a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/DoubleSlash-nightly-win64.7z">Download the unsigned Windows portable nightly</a>, extract the whole archive with a 7z-compatible tool, then run <code>DoubleSlash.exe</code> from the extracted folder.</p>
