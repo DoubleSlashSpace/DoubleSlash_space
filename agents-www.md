@@ -101,6 +101,7 @@ Every feature has an authentication tier and quota policy. Third-party `x.<vendo
 
 ### Updates and releases
 
+- The Windows release is published on the Microsoft Store: `https://apps.microsoft.com/detail/9N09Q23FW92M`. Microsoft signs that MSIX and delivers its updates. It uses the same desktop profile folder, and uninstalling the package leaves the profile in place. macOS, Linux, and Android still have no signed stable download; nightlies remain their download. Do not describe the Store package as the GitHub signed-manifest channel.
 - Releases are distributed through GitHub Releases; do not describe peer-pushed source updates as the current update model.
 - Tagged releases require the installer to verify an Ed25519-signed release manifest and the downloaded archive hash before applying an update.
 - The rolling nightly channel uses SHA-256 sidecars and an intentionally unsigned development manifest; do not describe nightlies as release-signed.
