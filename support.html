@@ -115,6 +115,7 @@
     .after h2 { margin-bottom: 12px; }
     .after li + li { margin-top: 8px; }
     .after ol, .after ul { color: var(--soft); padding-left: 22px; }
+    .after pre { overflow-x: auto; padding: 16px; border: 1px solid var(--line); background: var(--surface); font-size: 14px; }
     footer { border-top: 1px solid var(--line); padding: 24px 0; color: var(--muted); font-size: 13px; }
     .footer-inner { display: flex; flex-wrap: wrap; gap: 12px 24px; }
     @media (max-width: 680px) {
@@ -180,6 +181,28 @@
         <li>A second server later, if you add one, keeps its cluster port closed to the public and open only between those servers. The usual cluster port is UDP 4478.</li>
       </ul>
       <p>The desktop path is Settings, then Network, then Your servers. Its firewall and automatic security-update steps are written for Debian 11 and Ubuntu 20.04 or newer. You can also install a published Linux package yourself. Nightly supernode builds are pre-release and can change.</p>
+    </section>
+
+    <section class="after" id="hostnames" aria-labelledby="hostnames-title">
+      <h2 id="hostnames-title">A stable hostname for your supernode</h2>
+      <p>A hostname gives your group a connection anchor when your server&rsquo;s IP address changes. Clients try the IP they saved first. If it fails, they look up the hostname for the current signaling address. It travels inside the signed invite&rsquo;s Base64-encoded payload and is saved by clients; a connected node can also supply it. People normally see the node&rsquo;s local name or operator title in Rooms, not this hostname. Base64 is encoding, not encryption.</p>
+      <p>You can choose any of these approaches, or use no hostname at all:</p>
+      <ul>
+        <li><strong>Your own domain and ordinary DNS.</strong> Use a name such as <code>relay.example.com</code>, select DNS lookup, and point its A and/or AAAA records at your main node. Update those records when its IP changes. DNS supplies the address; clients keep the signaling port they already know.</li>
+        <li><strong>A JSON file on a website you control.</strong> Select DDDNS lookup and serve a compatible record directly at <code>https://relay.example.com/.well-known/doubleslash</code>. Use valid HTTPS, with no login or redirect. The name&rsquo;s DNS points to your website; its JSON points to your supernode and includes the signaling port. This needs no DoubleSlash-operated service.</li>
+        <li><strong>DoubleSlash&rsquo;s DDDNS service.</strong> A name under <code>*.doubleslash.space</code> uses that same HTTPS protocol. Using the service supports the project, but it is <strong>100% optional</strong>. Your own DNS, your own compatible JSON endpoint, and IP-only connections remain valid choices.</li>
+      </ul>
+      <p>A self-hosted record for <code>relay.example.com</code> looks like this. Replace the example IP with your server&rsquo;s public address, add <code>ipv6</code> if available, and use your WebSocket signaling TCP port, not the relay UDP port:</p>
+      <pre><code>{
+  "v": 1,
+  "name": "relay",
+  "status": "active",
+  "ipv4": "198.51.100.20",
+  "port": 34935
+}</code></pre>
+      <p>Keep DNS or the JSON record current when the server moves. The desktop offers DNS and DDDNS under <strong>Settings &gt; Network &gt; Your servers &gt; Set hostname</strong>. A static JSON file can be updated on your own website without an update-token service. The <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/docs/DDDNS.md">DDDNS protocol</a> details the record and lookup requirements.</p>
+      <p>Point the hostname at your main node. When clients connect, its verified cluster roster supplies the other servers for failover, so the hostname does not need to list every member. That helps invited people find the same group&rsquo;s Space through another server <strong>in that cluster</strong>, while preserving node identities and cluster configuration.</p>
+      <p>A hostname is an address hint, not a Space identity or permission to join. It cannot automatically move people to an unrelated supernode: a recovered connection must still prove the expected node&rsquo;s identity. If someone loses all saved paths and cannot recover through the hostname or cluster, send a fresh invite. An IP-only setup may also need fresh invites after an IP change. A lookup outage never prevents a connection to a saved IP that still works.</p>
     </section>
 
     <section class="after" aria-labelledby="after">
