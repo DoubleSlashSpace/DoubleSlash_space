@@ -83,262 +83,56 @@
       --shadow-lg: 0 28px 80px rgba(20, 24, 38, 0.15);
     }
 
-    *, *::before, *::after {
-      box-sizing: border-box;
-    }
 
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 90px;
-      background: var(--paper);
-    }
-
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    button,
-    input {
-      font: inherit;
-    }
-
-    img,
-    svg {
-      display: block;
-      max-width: 100%;
-    }
-
-    .skip-link {
-      position: fixed;
-      top: 10px;
-      left: 10px;
-      z-index: 1000;
-      padding: 0.7rem 1rem;
-      border-radius: 9px;
-      background: var(--skip-bg);
-      color: var(--skip-fg);
-      transform: translateY(-150%);
-      transition: transform 0.2s ease;
-    }
-
-    .skip-link:focus {
-      transform: translateY(0);
-    }
-
-    .shell {
-      width: min(calc(100% - 40px), var(--max));
-      margin-inline: auto;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid var(--header-line);
-      background: var(--header-bg);
-      backdrop-filter: blur(18px);
-    }
-
-    .nav {
-      min-height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      text-decoration: none;
-    }
-
-    /* logo-full.svg is the entire lockup - the red D:// mark and the DoubleSlash
-       wordmark - so the brand link carries no text of its own. 2.25rem is the
-       display size of the 90-tall viewBox; the D itself occupies 56 of those
-       units, so the letter sits at about 1.4rem in the 72px header. The wordmark
-       gradient starts at #ffffff for the dark app window; light theme adds a
-       drop-shadow so the glyphs stay visible on --paper. */
-    .brand img {
-      height: 2.25rem;
-      width: auto;
-      object-fit: contain;
-      filter: var(--logo-filter);
-    }
-
-    .nav-links,
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 1.45rem;
-    }
-
-    .nav-links a {
-      color: var(--ink-soft);
-      font-size: 0.9rem;
-      font-weight: 580;
-      text-decoration: none;
-    }
-
-    .nav-links a:hover,
-    .nav-links a:focus-visible {
-      color: var(--brand);
-    }
-
-    .nav-drawer {
-      display: none;
-    }
-
-    .nav-drawer summary {
-      list-style: none;
-    }
-
-    .nav-drawer summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .button {
-      display: inline-flex;
-      min-height: 48px;
-      align-items: center;
-      justify-content: center;
-      gap: 0.55rem;
-      padding: 0.78rem 1.2rem;
-      border: 1px solid transparent;
-      border-radius: 12px;
-      font-size: 0.92rem;
-      font-weight: 720;
-      line-height: 1;
-      text-decoration: none;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-2px);
-    }
-
-    .button:focus-visible,
-    summary:focus-visible,
-    a:focus-visible {
-      outline: 3px solid var(--focus-ring);
-      outline-offset: 3px;
-    }
-
-
-
-
-
-
-
-    .button-primary {
-      background: var(--brand);
-      color: #fff;
-      box-shadow: 0 12px 28px rgba(91, 97, 230, 0.25);
-    }
-
-    .button-primary:hover {
-      background: var(--brand-dark);
-      box-shadow: 0 16px 34px rgba(91, 97, 230, 0.3);
-    }
-
-    .button-secondary {
-      border-color: var(--line);
-      background: var(--surface);
-      color: var(--ink);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .button-small {
-      min-height: 40px;
-      padding: 0.62rem 0.94rem;
-      border-radius: 10px;
-      font-size: 0.84rem;
-    }
-
-    .hero {
-      position: relative;
-      overflow: hidden;
-      padding: 5.1rem 0 4.2rem;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: -240px;
-      right: -160px;
-      width: 660px;
-      height: 660px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 35% 35%, rgba(91, 97, 230, 0.18), transparent 55%),
-        radial-gradient(circle at 65% 65%, rgba(255, 43, 64, 0.08), transparent 48%);
-      pointer-events: none;
-    }
-
-    .hero-grid {
-      position: relative;
-      display: grid;
-      grid-template-columns: minmax(0, 1.12fr) minmax(260px, 0.88fr);
-      gap: clamp(1.5rem, 4vw, 3.5rem);
-      align-items: center;
-    }
-
-    .hero-content {
-      max-width: none;
-      min-width: 0;
-    }
-
-    .hero-panel {
-      min-width: 0;
-      margin: 0;
-      padding: 1.05rem;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      background:
-        radial-gradient(circle at 100% 0%, rgba(127, 133, 255, 0.18), transparent 46%),
-        var(--surface);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .hero-panel-bar {
-      display: flex;
-      align-items: center;
-    }
-
-    .hero-panel-bar {
-      justify-content: space-between;
-      margin-bottom: 0.9rem;
-      color: var(--muted);
-      font-size: 0.7rem;
-      font-weight: 750;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-    }
-
-    .hero-panel-bar span {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-    }
-
-    .live-dot {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 0 5px var(--green-soft);
-    }
-
+    *, *::before, *::after { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { background: var(--paper); scroll-padding-top: 80px; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+    body.compact-home { min-height: 100svh; display: flex; flex-direction: column; }
+    a { color: inherit; text-underline-offset: 3px; }
+    button, select { font: inherit; }
+    img, svg { display: block; max-width: 100%; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2 { text-wrap: balance; }
+    h1 { margin-bottom: 20px; font-size: clamp(2.25rem, 4.2vw, 3.5rem); line-height: 1.06; letter-spacing: -0.045em; }
+    h2 { margin-bottom: 8px; font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 1.15; letter-spacing: -0.035em; }
+    h3 { margin-bottom: 8px; font-size: 1.05rem; line-height: 1.35; }
+    .shell { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
+    .skip-link { position: fixed; z-index: 1000; top: 8px; left: 8px; padding: 10px 16px; background: var(--skip-bg); color: var(--skip-fg); transform: translateY(-150%); }
+    .skip-link:focus { transform: none; }
+    a:focus-visible, summary:focus-visible, select:focus-visible { outline: 3px solid var(--brand); outline-offset: 4px; }
+    [tabindex="-1"]:focus { outline: none; }
+    .site-header { position: sticky; top: 0; z-index: 50; flex-shrink: 0; border-bottom: 1px solid var(--line); background: var(--header-bg); backdrop-filter: blur(16px); }
+    .nav { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 20px; min-height: 68px; }
+    .brand { display: inline-flex; align-items: center; text-decoration: none; }
+    .brand img { width: 170px; height: 34px; object-fit: contain; filter: var(--logo-filter); }
+    .nav-links { display: flex; align-items: center; justify-content: center; gap: 2px; }
+    .nav-links a { padding: 9px 10px; border-bottom: 2px solid transparent; color: var(--ink-soft); font-size: 13px; font-weight: 650; text-decoration: none; white-space: nowrap; }
+    .nav-links a:hover { color: var(--ink); background: var(--surface-soft); }
+    .nav-links a[aria-current="page"] { border-color: var(--brand); color: var(--brand); background: var(--brand-soft); }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 10px 16px; border: 1px solid var(--line-strong); border-radius: 9px; font-size: 13px; font-weight: 700; line-height: 1.2; text-decoration: none; }
+    .button-primary { border-color: var(--brand); background: var(--brand); color: #fff; }
+    .button-primary:hover { background: var(--brand-dark); }
+    .button-secondary { background: var(--surface); color: var(--ink); }
+    .button-secondary:hover { background: var(--surface-soft); }
+    .button-small { min-height: 36px; padding: 8px 12px; font-size: 12px; }
+    .workspace { flex: 1; display: grid; align-content: center; gap: 28px; padding-block: 22px; }
+    .page-view { min-width: 0; }
+    .page-view:not(:first-child) { padding-block: 20px; }
+    .view-mode .page-view { padding-block: 0; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); align-items: center; gap: clamp(28px, 4vw, 64px); }
+    .hero-content { min-width: 0; max-width: 560px; }
+    .eyebrow { margin-bottom: 14px; color: var(--brand); font-size: 11px; font-weight: 750; letter-spacing: 0.1em; text-transform: uppercase; }
+    .hero-copy { max-width: 470px; margin-bottom: 22px; color: var(--ink-soft); font-size: 16px; line-height: 1.65; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .hero-note { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 18px; color: var(--muted); font-size: 12px; }
+    .hero-points { display: flex; flex-wrap: wrap; gap: 8px 16px; margin: 22px 0 0; padding: 16px 0 0; border-top: 1px solid var(--line); list-style: none; color: var(--ink-soft); font-size: 12px; }
+    .hero-points li::before { content: "\2713"; margin-right: 7px; color: var(--green); }
+    .hero-panel { min-width: 0; margin: 0; padding: 16px; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow-sm); }
+    .hero-panel-bar { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 10px; font-weight: 750; letter-spacing: 0.06em; text-transform: uppercase; }
+    .hero-panel-bar span { display: inline-flex; align-items: center; gap: 7px; }
+    .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
     /* Keep labels in HTML so they remain readable as the routes resize. */
     .flow {
       --flow-direct: var(--brand);
@@ -490,844 +284,143 @@
       .flow .pkt { display: none; }
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin: 0 0 1.25rem;
-      color: var(--brand-dark);
-      font-size: 0.78rem;
-      font-weight: 780;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--red);
-      box-shadow: 0 0 0 5px rgba(255, 43, 64, 0.1);
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
-
-    h1 {
-      max-width: 14em;
-      margin-bottom: 1.45rem;
-      font-size: clamp(2.9rem, 4.6vw, 4.35rem);
-      line-height: 0.98;
-      letter-spacing: -0.055em;
-      overflow-wrap: break-word;
-      text-wrap: balance;
-    }
-
-    h2 {
-      text-wrap: balance;
-    }
-
-    code {
-      padding: 0.08em 0.38em;
-      border-radius: 6px;
-      background: var(--surface-soft);
-      font-family: Consolas, ui-monospace, monospace;
-      font-size: 0.92em;
-    }
-
-    .hero-copy {
-      max-width: 630px;
-      margin-bottom: 2rem;
-      color: var(--ink-soft);
-      font-size: clamp(1.05rem, 1.7vw, 1.24rem);
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-    }
-
-    .hero-note {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.55rem 1rem;
-      margin-top: 1.25rem;
-      color: var(--muted);
-      font-size: 0.79rem;
-    }
-
-    .hero-note span {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.36rem;
-    }
-
-    .hero-note span::before {
-      content: "✓";
-      color: var(--green);
-      font-weight: 800;
-    }
-
-    .section {
-      padding: 5.25rem 0;
-    }
-
-    .section-white {
-      border-block: 1px solid var(--line);
-      background: var(--surface);
-    }
-
-    .section-heading {
-      max-width: 720px;
-      margin-bottom: 3rem;
-    }
-
-    .section-heading.center {
-      margin-inline: auto;
-      text-align: center;
-    }
-
-    h2 {
-      margin-bottom: 1rem;
-      font-size: clamp(2.15rem, 3.6vw, 3.15rem);
-      line-height: 1.06;
-      letter-spacing: -0.048em;
-    }
-
-    .section-lede {
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 1.06rem;
-    }
-
-    .privacy-panel {
-      position: relative;
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
-      gap: clamp(2.5rem, 7vw, 6rem);
-      align-items: center;
-      padding: clamp(2.2rem, 5vw, 4.5rem);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      background:
-        radial-gradient(circle at 85% 20%, rgba(91, 97, 230, 0.25), transparent 35%),
-        var(--dark);
-      color: #fff;
-    }
-
-    .privacy-panel .eyebrow {
-      color: #aeb2ff;
-    }
-
-    .privacy-panel h2 {
-      max-width: 540px;
-    }
-
-    .privacy-panel .section-lede {
-      color: #afb5c4;
-    }
-
-    .privacy-list {
-      display: grid;
-      gap: 0.8rem;
-    }
-
-    .privacy-item {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 0.85rem;
-      padding: 1rem;
-      border: 1px solid #303440;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.045);
-    }
-
-    .privacy-check {
-      width: 28px;
-      height: 28px;
-      display: grid;
-      place-items: center;
-      border-radius: 8px;
-      background: rgba(79, 201, 150, 0.14);
-      color: #78d8ae;
-      font-size: 0.78rem;
-      font-weight: 850;
-    }
-
-    .privacy-item strong {
-      display: block;
-      margin-bottom: 0.18rem;
-      font-size: 0.9rem;
-    }
-
-    .privacy-item p {
-      margin: 0;
-      color: #9ba2b3;
-      font-size: 0.78rem;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      counter-reset: steps;
-    }
-
-    .step {
-      position: relative;
-      padding: 0 2rem;
-      counter-increment: steps;
-    }
-
-    .step:first-child {
-      padding-left: 0;
-    }
-
-    .step:last-child {
-      padding-right: 0;
-    }
-
-    .step:not(:last-child)::after {
-      content: "";
-      position: absolute;
-      top: 23px;
-      right: -8px;
-      width: 16px;
-      height: 16px;
-      border-top: 1.5px solid var(--step-arrow);
-      border-right: 1.5px solid var(--step-arrow);
-      transform: rotate(45deg);
-    }
-
-    .step::before {
-      content: "0" counter(steps);
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 1.35rem;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: var(--surface);
-      color: var(--brand);
-      box-shadow: var(--shadow-sm);
-      font-size: 0.75rem;
-      font-weight: 820;
-    }
-
-    .step h3 {
-      margin-bottom: 0.55rem;
-      font-size: 1.13rem;
-    }
-
-    .step p {
-      max-width: 300px;
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 0.88rem;
-    }
-
-    .invite-explainer {
-      margin-top: 2rem;
-      padding: 1.5rem;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      background: var(--surface);
-    }
-
-    .invite-explainer h3 { margin: 0 0 0.75rem; }
-    .invite-explainer p { max-width: 78ch; color: var(--ink-soft); }
-    .invite-explainer p:last-child { margin-bottom: 0; }
-    .invite-explainer code { overflow-wrap: anywhere; }
-
-    .bento {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 1rem;
-    }
-
-    .bento-card {
-      min-height: 220px;
-      padding: 1.6rem;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--card-sheen), var(--surface);
-    }
-
-    .bento-card h3 {
-      margin-bottom: 0.6rem;
-      font-size: 1.22rem;
-      letter-spacing: -0.025em;
-    }
-
-    .bento-card p {
-      max-width: 460px;
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 0.87rem;
-    }
-
-    .bento-card.large {
-      grid-column: span 7;
-    }
-
-    .bento-card.medium {
-      grid-column: span 5;
-    }
-
-    .bento-card.third {
-      grid-column: span 4;
-    }
-
-    .bento-card.wide {
-      grid-column: span 12;
-    }
-
-    .bento-card.wide p {
-      max-width: 830px;
-    }
-
-    .bento-card .card-flag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      max-width: none;
-      margin-bottom: 0.85rem;
-      padding: 0.32rem 0.62rem;
-      border-radius: 999px;
-      background: var(--brand-soft);
-      color: var(--brand-dark);
-      font-size: 0.68rem;
-      font-weight: 780;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .card-flag::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: currentColor;
-    }
-
-    .portal-window {
-      margin-top: 1.5rem;
-      padding: 0.75rem;
-      border-radius: 13px;
-      background: #1a1d26;
-      box-shadow: inset 0 0 0 1px #2d313d;
-    }
-
-    .portal-bar {
-      margin-bottom: 0.65rem;
-      padding: 0.36rem 0.55rem;
-      border-radius: 7px;
-      background: #252936;
-      color: #8f96a6;
-      font-family: "SFMono-Regular", Consolas, monospace;
-      font-size: 0.58rem;
-    }
-
-    .portal-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
-      gap: 0.5rem;
-    }
-
-    .portal-tile {
-      min-height: 66px;
-      display: grid;
-      place-items: center;
-      border-radius: 9px;
-      background: linear-gradient(145deg, #34394b, #262a37);
-      color: #bec4d4;
-      font-size: 0.62rem;
-      font-weight: 680;
-      text-align: center;
-    }
-
-    .operator {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 2rem;
-      padding: 2.2rem;
-      border: 1px solid var(--operator-border);
-      border-radius: var(--radius);
-      background: var(--operator-bg);
-    }
-
-    .operator h3 {
-      margin-bottom: 0.5rem;
-      font-size: 1.45rem;
-      letter-spacing: -0.03em;
-    }
-
-    .operator p {
-      max-width: 750px;
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .operator p a {
-      color: var(--brand);
-    }
-
-    .operator-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      justify-content: flex-end;
-    }
-
-    .status-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.1rem;
-    }
-
-    .status-card {
-      display: flex;
-      flex-direction: column;
-      padding: 1.55rem;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--card-sheen), var(--surface);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .status-tag {
-      display: inline-flex;
-      align-items: center;
-      align-self: flex-start;
-      gap: 0.42rem;
-      margin-bottom: 1.15rem;
-      padding: 0.4rem 0.72rem;
-      border-radius: 999px;
-      font-size: 0.7rem;
-      font-weight: 780;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .status-tag::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: currentColor;
-    }
-
-    .status-tag.shipped {
-      background: var(--green-soft);
-      color: var(--green);
-    }
-
-    .status-tag.building {
-      background: var(--brand-soft);
-      color: var(--brand-dark);
-    }
-
-    .status-tag.out {
-      background: var(--surface-soft);
-      color: var(--muted);
-    }
-
-    .status-card h3 {
-      margin-bottom: 1rem;
-      font-size: 1.18rem;
-      letter-spacing: -0.025em;
-    }
-
-    .status-list {
-      display: grid;
-      gap: 0.65rem;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .status-list li {
-      position: relative;
-      padding-left: 1.15rem;
-      color: var(--muted);
-      font-size: 0.87rem;
-    }
-
-    .status-list li::before {
-      content: "";
-      position: absolute;
-      top: 0.6em;
-      left: 0;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green);
-    }
-
-    .status-card.building .status-list li::before {
-      background: var(--brand);
-    }
-
-    .status-card.out .status-list li::before {
-      background: var(--out-dot);
-    }
-
-    .status-note {
-      margin: 1.4rem 0 0;
-      padding: 1rem 1.15rem;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      background: var(--surface-soft);
-      color: var(--ink-soft);
-      font-size: 0.84rem;
-    }
-
-    .faq {
-      max-width: 820px;
-      margin-inline: auto;
-    }
-
-    .faq details {
-      border-bottom: 1px solid var(--line);
-    }
-
-    .faq summary {
-      position: relative;
-      padding: 1.35rem 2.5rem 1.35rem 0;
-      cursor: pointer;
-      font-weight: 720;
-      list-style: none;
-    }
-
-    .faq summary:hover {
-      color: var(--brand);
-    }
-
-    .faq summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .faq summary::after {
-      content: "+";
-      position: absolute;
-      top: 1.15rem;
-      right: 0;
-      width: 28px;
-      height: 28px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: var(--surface-soft);
-      color: var(--brand);
-      font-size: 1.1rem;
-    }
-
-    .faq details[open] summary::after {
-      content: "−";
-    }
-
-    .faq details p {
-      max-width: 720px;
-      padding: 0 2.5rem 1.35rem 0;
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.91rem;
-    }
-
-    .site-footer {
-      padding: 2.2rem 0;
-      border-top: 1px solid var(--line);
-      background: var(--surface);
-    }
-
-    .footer-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-    }
-
-    .footer-copy {
-      color: var(--muted);
-      font-size: 0.76rem;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.1rem;
-    }
-
-    .footer-links a {
-      color: var(--ink-soft);
-      font-size: 0.78rem;
-      font-weight: 650;
-      text-decoration: none;
-    }
-
-    .footer-links a:hover {
-      color: var(--brand);
-    }
-
-    @media (max-width: 980px) {
-      .nav-links {
-        display: none;
-      }
-
-      .nav-drawer {
-        display: block;
-        position: relative;
-      }
-
-      .nav-drawer summary {
-        min-height: 38px;
-        display: inline-flex;
-        align-items: center;
-        padding: 0 0.85rem;
-        border: 1px solid var(--line);
-        border-radius: 10px;
-        background: var(--surface);
-        color: var(--ink);
-        font-size: 0.84rem;
-        font-weight: 720;
-        cursor: pointer;
-      }
-
-      .nav-drawer summary:focus-visible {
-        outline: 3px solid var(--focus-ring);
-        outline-offset: 3px;
-      }
-
-      .nav-drawer nav {
-        position: absolute;
-        top: calc(100% + 8px);
-        right: 0;
-        z-index: 30;
-        display: grid;
-        min-width: 220px;
-        padding: 0.4rem;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        background: var(--surface);
-        box-shadow: var(--shadow-lg);
-      }
-
-      .nav-drawer a {
-        padding: 0.72rem 0.8rem;
-        border-radius: 9px;
-        color: var(--ink-soft);
-        font-size: 0.92rem;
-        font-weight: 650;
-        text-decoration: none;
-      }
-
-      .nav-drawer a:hover,
-      .nav-drawer a:focus-visible {
-        background: var(--surface-soft);
-        color: var(--ink);
-      }
-
-      .hero {
-        padding-top: 4.8rem;
-      }
-
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-content {
-        max-width: 760px;
-      }
 
-      .privacy-panel {
-        grid-template-columns: 1fr;
-      }
-
-      .bento-card.large,
-      .bento-card.medium {
-        grid-column: span 12;
-      }
-
-      .bento-card.third {
-        grid-column: span 6;
-      }
-
-      .status-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .shell {
-        width: min(calc(100% - 28px), var(--max));
-      }
-
-      .nav {
-        min-height: 64px;
-        gap: 0.75rem;
-      }
-
-      .nav-actions .button-secondary {
-        display: none;
-      }
-
-
-      .nav-actions .button-primary {
-        min-height: 38px;
-        padding-inline: 0.72rem;
-        font-size: 0.75rem;
-      }
-
-      .hero {
-        padding: 4.2rem 0 3.5rem;
-      }
-
-      h1 {
-        font-size: clamp(2.65rem, 12vw, 3.6rem);
-        line-height: 1.01;
-      }
-
-      .hero-actions .button {
-        width: 100%;
-      }
-
-      .hero-note {
-        gap: 0.45rem 0.8rem;
-        font-size: 0.72rem;
-      }
-
-      .brand img {
-        height: 1.75rem;
-      }
-
-      .nav-actions {
-        gap: 0.45rem;
-      }
-
-      .section {
-        padding: 4.5rem 0;
-      }
-
-      .steps {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-      }
-
-      .step,
-      .step:first-child,
-      .step:last-child {
-        padding: 0;
-      }
-
-      .step:not(:last-child)::after {
-        display: none;
-      }
-
-      .bento-card.third {
-        grid-column: span 12;
-      }
-
-      .portal-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .operator {
-        grid-template-columns: 1fr;
-      }
-
-      .operator-actions {
-        width: 100%;
-      }
-
-      .operator-actions .button {
-        flex: 1 1 12rem;
-      }
-
-      .footer-row {
-        align-items: flex-start;
-        flex-direction: column;
-      }
+    /* A smaller diagram leaves room for the whole overview in one viewport. */
+    .compact-home .flow-stage { height: 260px; margin-block: 12px; }
+    .compact-home .flow-node { height: 112px; }
+    .compact-home .flow-icon { width: 32px; height: 32px; }
+    .compact-home .flow-super { height: 96px; }
+    .compact-home .flow-super .flow-icon { width: 30px; height: 24px; }
+    .compact-home .flow-relay-label { top: 140px; }
+    .compact-home .flow .hero-panel-bar { padding-bottom: 12px; gap: 8px; }
+    .compact-home .hero-panel-caption { padding-top: 12px; font-size: 12px; line-height: 1.55; }
+    .view-heading { margin-bottom: 22px; max-width: 680px; }
+    .view-heading .eyebrow { margin-bottom: 8px; }
+    .section-lede { margin-bottom: 0; color: var(--ink-soft); font-size: 15px; }
+    .card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .bento-card, .privacy-panel, .operator, .faq { min-width: 0; padding: 20px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); }
+    .bento-card p, .operator p, .privacy-panel p, .faq p { margin-bottom: 0; color: var(--ink-soft); font-size: 13px; line-height: 1.6; }
+    .card-no { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; margin-bottom: 18px; border: 1px solid var(--line-strong); background: var(--brand-soft); color: var(--brand); font: 700 12px/1 ui-monospace, monospace; }
+    .view-footnote { margin: 16px 0 0; color: var(--muted); font-size: 12px; }
+    .view-footnote a { color: var(--ink-soft); }
+    .feature-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
+    .feature-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .feature-list .bento-card { padding: 16px; }
+    .feature-list h3 { font-size: 14px; }
+    .feature-list p { font-size: 12px; }
+    .demo-card .demo-note { margin-top: 10px; color: var(--muted); font-size: 12px; }
+    .portal-window { margin-top: 16px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+    .portal-bar { margin-bottom: 8px; color: var(--muted); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; }
+    .portal-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+    .portal-tile { display: flex; align-items: center; min-height: 29px; padding: 5px 9px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface-soft); color: var(--ink-soft); font-size: 11px; }
+    .privacy-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .privacy-panel h3 { margin-top: 14px; }
+    .privacy-check { color: var(--green); font-size: 22px; }
+    .privacy-disclosure { margin-top: 18px; padding-left: 14px; border-left: 2px solid var(--brand); color: var(--ink-soft); font-size: 13px; }
+    .hosting-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .hosting-grid .operator { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+    .hosting-grid .operator h3 { margin-bottom: 8px; }
+    .hosting-grid .operator .button { margin-top: auto; }
+    .hosting-grid .operator .hosting-note { font-size: 12px; color: var(--muted); }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 32px; }
+    .faq-grid h3 { font-size: 14px; }
+    .site-status { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 20px; padding-block: 10px; border-top: 1px solid var(--line); color: var(--muted); font-size: 11px; }
+    .site-status p { margin: 0; }
+    .site-status strong { color: var(--ink-soft); }
+    .site-footer { flex-shrink: 0; border-top: 1px solid var(--line); background: var(--surface); }
+    .footer-row { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; min-height: 48px; padding-block: 10px; }
+    .footer-copy { margin: 0; color: var(--muted); font-size: 11px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+    .footer-links a { color: var(--ink-soft); font-size: 11px; text-decoration: none; }
+    .footer-links a:hover { text-decoration: underline; }
+    html[data-theme="amp"] .compact-home h1 { font-size: clamp(2rem, 3.5vw, 2.8rem); }
+    html[data-theme="amp"] .compact-home .nav-links a { padding: 9px 8px; font-size: 11px; letter-spacing: 0; }
+    html[data-theme="amp"] .compact-home .nav-links a[aria-current="page"] { background: #001400; border-color: var(--amp-gold); color: var(--amp-gold); }
+    html[data-theme="amp"] .compact-home .footer-links a { font-size: 10px; letter-spacing: 0; }
+    html[data-theme="amp"] .compact-home .portal-tile { min-height: 29px; padding: 5px 8px; }
+    html[data-theme="amp"] .compact-home .faq { padding: 20px; }
+    html[data-theme="amp"] .compact-home .privacy-panel::after { content: "PRIVACY"; }
+    html[data-theme="amp"] .compact-home .operator::after { content: "HOSTING"; }
+    html[data-theme="amp"] .compact-home .demo-card::after { content: "TECH DEMOS"; }
+    @media (min-width: 1000px) and (max-height: 740px) {
+      .workspace { padding-block: 14px; }
+      .nav { min-height: 60px; }
+      .hero-copy { font-size: 15px; margin-bottom: 16px; }
+      .hero-points { margin-top: 16px; padding-top: 12px; }
+      .hero-note { margin-top: 14px; }
+    }
+    @media (max-width: 1060px) {
+      .nav { grid-template-columns: 1fr auto; gap: 0 16px; padding-top: 12px; }
+      .nav-links { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; padding-block: 6px; }
+      .nav-actions { grid-column: 2; grid-row: 1; }
+      .hero-grid { gap: 24px; }
+      .footer-row { flex-wrap: wrap; }
+    }
+    @media (max-width: 760px) {
+      .shell { width: calc(100% - 32px); }
+      .workspace { align-content: start; padding-block: 28px; }
+      .hero-grid, .feature-layout, .hosting-grid { grid-template-columns: 1fr; gap: 28px; }
+      .hero-content { max-width: 580px; }
+      h1 { max-width: 14em; font-size: clamp(2.15rem, 7vw, 3rem); }
+      .hero-copy { font-size: 15px; }
+      .card-grid, .privacy-list { grid-template-columns: 1fr; }
+      .bento-card, .privacy-panel, .operator { padding: 18px; }
+      .card-no { margin-bottom: 10px; }
+      .nav-links { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); width: 100%; gap: 0; }
+      .nav-links a { padding: 9px 3px; text-align: center; font-size: 11px; }
+      .brand img { width: 145px; height: 30px; }
+      .nav-actions { gap: 8px; }
+      .nav-actions .button { min-height: 34px; padding: 8px 10px; }
+      .nav-actions .skin-picker select { width: 62px; height: 32px; padding-left: 7px; padding-right: 18px; font-size: 11px; }
+      .nav-actions .skin-picker::after { right: 8px; }
+      html[data-theme="amp"] .compact-home .nav-links a { padding: 9px 2px; font-size: 10px; }
+      .site-status { margin-top: auto; }
+      .footer-links { gap: 8px 14px; }
+    }
+    @media (max-width: 440px) {
+      .feature-list, .faq-grid { grid-template-columns: 1fr; }
+      .nav-links { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .nav-actions > .button { font-size: 10px; padding-inline: 7px; }
+      .brand img { width: 125px; }
+      .nav { column-gap: 8px; }
+      .hero-actions .button { flex: 1 1 auto; }
     }
-
     @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-      }
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
     }
   </style>
   <link rel="stylesheet" href="themes.css" />
 </head>
-<body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
+<body class="compact-home">
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="shell nav">
-      <a class="brand" href="#top" aria-label="DoubleSlash home">
-        <img src="logo-full.svg" alt="DoubleSlash" />
-      </a>
+      <a class="brand" href="#top" aria-label="DoubleSlash home"><img src="logo-full.svg" alt="DoubleSlash" /></a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#privacy">Privacy</a>
-        <a href="#how-it-works">Get started</a>
-        <a href="#features">Features</a>
-        <a href="#ddns">DDNS</a>
-        <a href="#faq">FAQ</a>
+        <a href="#top" data-view-link>Overview</a>
+        <a href="#how-it-works" data-view-link>Get started</a>
+        <a href="#features" data-view-link>Features</a>
+        <a href="#privacy" data-view-link>Privacy</a>
+        <a href="#ddns" data-view-link>Hosting</a>
+        <a href="#faq" data-view-link>FAQ</a>
       </nav>
-      <div class="nav-actions">
-        <details class="nav-drawer">
-          <summary>Menu</summary>
-          <nav aria-label="Primary navigation">
-            <a href="#privacy">Privacy</a>
-            <a href="#how-it-works">Get started</a>
-            <a href="#features">Features</a>
-            <a href="#ddns">DDNS</a>
-            <a href="#faq">FAQ</a>
-            <a href="support.html">Run a supernode</a>
-            <a href="downloads.html">Downloads</a>
-            <label class="skin-picker" hidden><span class="skin-label">Skin</span><select data-theme-select><option value="amp">Amp</option><option value="dark">Dark</option><option value="light">Light</option></select></label>
-          </nav>
-        </details>
-        <label class="skin-picker" hidden><span class="skin-label">Skin</span><select data-theme-select><option value="amp">Amp</option><option value="dark">Dark</option><option value="light">Light</option></select></label>
-        <a class="button button-primary button-small" href="downloads.html">Downloads</a>
-      </div>
+      <div class="nav-actions"><label class="skin-picker" hidden><span class="skin-label">Skin</span><select data-theme-select><option value="amp">Amp</option><option value="dark">Dark</option><option value="light">Light</option></select></label><a class="button button-primary button-small" href="downloads.html">Downloads</a></div>
     </div>
   </header>
-
-  <main id="main">
-    <section class="hero" id="top">
+  <main class="workspace" id="main" tabindex="-1">
+    <section class="page-view hero" id="top" data-page-view aria-labelledby="overview-title">
       <div class="shell hero-grid">
         <div class="hero-content">
           <p class="eyebrow">By invitation. On your terms.</p>
-          <h1>Private conversations with your people.</h1>
-          <p class="hero-copy">
-            Chat, call, share files, and spend time together in private rooms.
-            Connect by invite, with no DoubleSlash account or subscription required.
-          </p>
+          <h1 id="overview-title" tabindex="-1">Private conversations with your people.</h1>
+          <p class="hero-copy">Chat, call, share files, and meet in private rooms. Connect by invite, with no DoubleSlash account or subscription required.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="downloads.html">Download DoubleSlash <span aria-hidden="true">&rarr;</span></a>
-            <a class="button button-secondary" href="#how-it-works">See how it works</a>
+            <a class="button button-secondary" href="#how-it-works">Get started <span aria-hidden="true">&rarr;</span></a>
           </div>
-          <div class="hero-note" aria-label="Availability and licensing">
-            <span>Windows, macOS, Linux, and Android</span>
-            <span>Open source</span>
-          </div>
+          <div class="hero-note"><span>Windows, macOS, Linux, and Android</span><span>Open source &middot; MIT licensed</span></div>
+          <ul class="hero-points" aria-label="Privacy essentials"><li>Invite-only</li><li>Identity stays on your device</li><li>No analytics</li></ul>
         </div>
         <figure class="hero-panel flow">
           <div class="hero-panel-bar">
@@ -1374,171 +467,125 @@
         </figure>
       </div>
     </section>
-
-    <section class="section" id="privacy">
-      <div class="shell privacy-panel">
-        <div>
-          <p class="eyebrow">Your conversations belong to you</p>
-          <h2>Private by design.</h2>
-          <p class="section-lede">Your identity and history live on your device. You decide who you connect to.</p>
+    <section class="page-view" id="how-it-works" data-page-view aria-labelledby="start-title">
+      <div class="shell">
+        <div class="view-heading"><p class="eyebrow">Getting started</p><h2 id="start-title" tabindex="-1">Get connected in three steps.</h2><p class="section-lede">Create a local profile, share an invite, and connect.</p></div>
+        <div class="card-grid">
+          <article class="bento-card"><span class="card-no" aria-hidden="true">01</span><h3>Get the app</h3><p>Download DoubleSlash, create your profile on your device, and protect it with a passphrase.</p></article>
+          <article class="bento-card"><span class="card-no" aria-hidden="true">02</span><h3 id="invite-links">Invite someone</h3><p>Share your invite link or show its QR code to someone you want to connect with.</p></article>
+          <article class="bento-card"><span class="card-no" aria-hidden="true">03</span><h3>Talk and share</h3><p>Start a chat or call. Join a room on a supernode for time together as a group.</p></article>
         </div>
+        <p class="view-footnote">Keep an encrypted backup of your profile. There is no central account recovery service.</p>
+      </div>
+    </section>
+    <section class="page-view" id="features" data-page-view aria-labelledby="features-title">
+      <div class="shell">
+        <div class="view-heading"><p class="eyebrow">Time together</p><h2 id="features-title" tabindex="-1">The essentials, in one place.</h2></div>
+        <div class="feature-layout">
+          <div class="feature-list">
+            <article class="bento-card"><h3>Chat, call, and share</h3><p>Messages, voice calls, and files in one private conversation.</p></article>
+            <article class="bento-card"><h3>Private rooms</h3><p>Bring your group together. Enable room alerts when you want them.</p></article>
+            <article class="bento-card"><h3>Video and screen sharing</h3><p>Works on Windows. Cameras on macOS, Linux, and Android are still being tested. <a href="architecture.html#media">Device support</a></p></article>
+            <article class="bento-card"><h3>Your profile, backed up</h3><p>Use an encrypted backup to restore your profile or move to another device.</p></article>
+          </div>
+          <article class="bento-card demo-card">
+            <h3>Play and create together</h3><p>Demo games and shared pages, hosted by your supernode and opened inside the app.</p>
+            <p class="demo-note">These are technology demos, built to showcase and test the DoubleSlash framework.</p>
+            <div class="portal-window" aria-label="Example activities inside DoubleSlash">
+              <div class="portal-bar">Inside DoubleSlash &middot; tech demos</div>
+              <div class="portal-grid"><span class="portal-tile">Presence Playground</span><span class="portal-tile">Brick Breaker</span><span class="portal-tile">Shared Canvas</span><span class="portal-tile">Task Board</span><span class="portal-tile">Focus Timer</span><span class="portal-tile">Four in a Row</span><span class="portal-tile">Memory Match</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="page-view" id="privacy" data-page-view aria-labelledby="privacy-title">
+      <div class="shell">
+        <div class="view-heading"><p class="eyebrow">Your conversations belong to you</p><h2 id="privacy-title" tabindex="-1">Private by design.</h2><p class="section-lede">Your identity and history live on your device. You decide who connects.</p></div>
         <div class="privacy-list">
-          <div class="privacy-item">
-            <span class="privacy-check" aria-hidden="true">&#10003;</span>
-            <div><strong>No account needed</strong><p>Set up your profile on your device and meet people through invites.</p></div>
-          </div>
-          <div class="privacy-item">
-            <span class="privacy-check" aria-hidden="true">&#10003;</span>
-            <div><strong>Encrypted conversations</strong><p>Chat, calls, and files are encrypted. A supernode relays them without being able to read them.</p></div>
-          </div>
-          <div class="privacy-item">
-            <span class="privacy-check" aria-hidden="true">&#10003;</span>
-            <div>
-              <strong>No analytics</strong>
-              <p>A supernode can still see who connects and when. <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/PRIVACY.md">Read the privacy details.</a></p>
-            </div>
-          </div>
+          <article class="privacy-panel"><span class="privacy-check" aria-hidden="true">&#10003;</span><h3>No account needed</h3><p>Create a local profile and meet through signed invites. There is no first-party identity service.</p></article>
+          <article class="privacy-panel"><span class="privacy-check" aria-hidden="true">&#10003;</span><h3>Encrypted conversations</h3><p>Chat, calls, and files are encrypted. Supernodes forward sealed content without reading it.</p></article>
+          <article class="privacy-panel"><span class="privacy-check" aria-hidden="true">&#10003;</span><h3>No analytics</h3><p>The site and app have no analytics or tracking pixels.</p></article>
         </div>
+        <p class="privacy-disclosure">Supernodes can see routing metadata, including who connects and when, and room and file names. <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/PRIVACY.md">Read the privacy details.</a></p>
       </div>
     </section>
-
-    <section class="section section-white" id="how-it-works">
+    <section class="page-view" id="ddns" data-page-view aria-labelledby="hosting-title">
       <div class="shell">
-        <div class="section-heading">
-          <p class="eyebrow">Getting started</p>
-          <h2>A few steps to your first conversation.</h2>
-        </div>
-        <div class="steps">
-          <article class="step"><h3>Get the app</h3><p>Download DoubleSlash for your device. Set up your profile and protect it with a passphrase.</p></article>
-          <article class="step"><h3 id="invite-links">Invite someone</h3><p>Share an invite link or show its QR code to someone you want to connect with.</p></article>
-          <article class="step"><h3>Talk and share</h3><p>Start a conversation, make a call, or join your group in a room.</p></article>
+        <div class="view-heading"><p class="eyebrow">Infrastructure you choose</p><h2 id="hosting-title" tabindex="-1">A place for your group.</h2><p class="section-lede">Use someone else&rsquo;s supernode or run your own. Rooms always use one.</p></div>
+        <div class="hosting-grid">
+          <article class="operator" id="operators"><div><h3>Run a supernode</h3><p>Host your rooms on a Linux server you operate. The desktop app can set one up over SSH.</p></div><a class="button button-secondary" href="support.html">Run a supernode <span aria-hidden="true">&rarr;</span></a></article>
+          <article class="operator"><div><h3 id="ddns-title">DoubleSlash DDNS</h3><p>An optional stable name for your supernode when its IP address changes. $10 a year for up to 10 names, helping fund development.</p></div><p class="hosting-note"><strong>Sign-ups are in test mode; no payments are taken yet.</strong> Your own DNS or a JSON file on your website works too.</p><a class="button button-secondary" href="support.html#hostnames">How it works <span aria-hidden="true">&rarr;</span></a></article>
         </div>
       </div>
     </section>
-
-    <section class="section" id="features">
+    <section class="page-view" id="faq" data-page-view aria-labelledby="faq-title">
       <div class="shell">
-        <div class="section-heading center">
-          <p class="eyebrow">Time together</p>
-          <h2>The essentials, together in one app.</h2>
-        </div>
-        <div class="bento">
-          <article class="bento-card large">
-            <h3>Chat, call, and share</h3>
-            <p>Keep messages, voice calls, and file sharing together in one conversation.</p>
-          </article>
-          <article class="bento-card medium">
-            <h3>Bring your group together</h3>
-            <p>Create private rooms for group conversations and calls. Turn on room alerts when you want them.</p>
-          </article>
-          <article class="bento-card large">
-            <h3>Play and create together</h3>
-            <p>Early demo games and shared pages, hosted by your supernode and opened inside the app.</p>
-            <p>These are technology demos, built to showcase and test the DoubleSlash framework.</p>
-            <div class="portal-window" aria-label="Illustrative shared activities inside DoubleSlash">
-              <div class="portal-bar">Inside DoubleSlash</div>
-              <div class="portal-grid">
-                <div class="portal-tile">Presence<br />Playground</div>
-                <div class="portal-tile">Brick<br />Breaker</div>
-                <div class="portal-tile">Shared<br />Canvas</div>
-                <div class="portal-tile">Task<br />Board</div>
-                <div class="portal-tile">Focus<br />Timer</div>
-                <div class="portal-tile">Four in<br />a Row</div>
-                <div class="portal-tile">Memory<br />Match</div>
-              </div>
-            </div>
-          </article>
-          <article class="bento-card medium">
-            <h3>Back up your profile</h3>
-            <p>There is no central recovery service. An encrypted backup file is how you restore a profile or move it to another device.</p>
-          </article>
-          <article class="bento-card wide">
-            <h3>Video and screen sharing</h3>
-            <p>Video calls and screen sharing work on Windows. Cameras on macOS, Linux, and Android are still being tested. <a href="architecture.html#media">Device support</a></p>
-          </article>
-        </div>
-        <div class="operator" id="operators" style="margin-top: 1rem;">
-          <div><h3>Host a place for your group.</h3><p>Run a supernode on a Linux server for your rooms. The desktop app can set one up over SSH.</p></div>
-          <div class="operator-actions"><a class="button button-secondary" href="support.html">Run a supernode</a></div>
+        <div class="view-heading"><p class="eyebrow">A few common questions</p><h2 id="faq-title" tabindex="-1">Good to know.</h2></div>
+        <div class="faq faq-grid">
+          <article><h3>Can a supernode read my conversations?</h3><p>No. It sees routing metadata, room names, and file names, but cannot read your messages or file contents.</p></article>
+          <article><h3>Do I have to run a supernode?</h3><p>No. Use someone else&rsquo;s if you prefer. One-to-one conversations can connect directly; rooms need a supernode.</p></article>
+          <article><h3>Does it work when someone is offline?</h3><p>Both sides must be online. Messages are not stored on a server for later delivery.</p></article>
+          <article><h3>Was AI used in development?</h3><p>Yes. Tools including Claude, Cursor, Codex, and Grok have been used during development.</p></article>
         </div>
       </div>
     </section>
-
-    <section class="section" id="ddns" aria-labelledby="ddns-title">
-      <div class="shell">
-        <div class="operator">
-          <div>
-            <h3 id="ddns-title">DoubleSlash DDNS</h3>
-            <p>An optional stable name for your supernode, so saved connections and new invites still find it after its IP address changes. $10 a year for up to 10 names, which helps fund development. <strong>Sign-ups are in test mode</strong>; no payments are taken yet. Your own DNS or a JSON file on your own website works too.</p>
-          </div>
-          <div class="operator-actions">
-            <a class="button button-secondary" href="support.html#hostnames">How it works</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-white" id="status">
-      <div class="shell">
-        <div class="section-heading center">
-          <p class="eyebrow">Status</p>
-          <h2>Pre-release software.</h2>
-          <p class="section-lede">Expect rough edges. <a href="architecture.html#status">What works and what is still open.</a></p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="shell">
-        <div class="section-heading center"><p class="eyebrow">A few common questions</p><h2>Good to know.</h2></div>
-        <div class="faq">
-          <details>
-            <summary>Can a supernode read my conversations?</summary>
-            <p>No. It can see who is connected and when, and the names of rooms and of files shared in them, but not what is said or sent.</p>
-          </details>
-          <details>
-            <summary>Do I have to run a supernode?</summary>
-            <p>No. You can use someone else&rsquo;s. One-to-one conversations can connect directly when your network allows; rooms need a supernode.</p>
-          </details>
-          <details>
-            <summary>Does it work when someone is offline?</summary>
-            <p>No. Messages are delivered only while both sides are online; nothing is stored for later delivery.</p>
-          </details>
-          <details>
-            <summary>Was AI used in development?</summary>
-            <p>Yes. Tools including Claude, Cursor, Codex, and Grok have been used during development.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
   </main>
-
+  <aside class="shell site-status" id="status" aria-label="Release status">
+    <p><strong>Pre-release software.</strong> Expect rough edges. <a href="architecture.html#status">Status and known limits</a></p>
+    <p>Direct peer connections &middot; Rooms through your chosen supernode</p>
+  </aside>
   <footer class="site-footer">
     <div class="shell footer-row">
-      <div>
-        <a class="brand" href="#top" aria-label="DoubleSlash home"><img src="logo-full.svg" alt="DoubleSlash" /></a>
-        <p class="footer-copy">Open-source communication. By invitation. MIT licensed.</p>
-      </div>
-      <nav class="footer-links" aria-label="Footer navigation">
-        <a href="architecture.html">Technical details</a>
-        <a href="support.html">Run a supernode</a>
-        <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/PRIVACY.md">Privacy policy</a>
-        <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/TERMS.md">Terms</a>
-        <a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases">Releases</a>
-        <a href="https://github.com/DoubleSlashSpace/DoubleSlash">GitHub</a>
-      </nav>
+      <p class="footer-copy">DoubleSlash &middot; Open source &middot; MIT licensed</p>
+      <nav class="footer-links" aria-label="Footer navigation"><a href="architecture.html">Technical details</a><a href="support.html">Run a supernode</a><a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/PRIVACY.md">Privacy policy</a><a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/TERMS.md">Terms</a><a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases">Releases</a><a href="https://github.com/DoubleSlashSpace/DoubleSlash">GitHub</a></nav>
     </div>
   </footer>
   <script>
-    // Reduced motion: the hero diagram's packets hold still. SMIL does not
-    // follow the CSS media query, so pause it here.
+    // Progressive enhancement: without JS every section remains readable.
     (function () {
-      var map = document.querySelector(".flow-map");
-      if (map && map.pauseAnimations && window.matchMedia &&
-          matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        map.pauseAnimations();
+      "use strict";
+      var views = Array.prototype.slice.call(document.querySelectorAll("[data-page-view]"));
+      var links = Array.prototype.slice.call(document.querySelectorAll("[data-view-link]"));
+      function targetFor(hash) {
+        var id;
+        try { id = decodeURIComponent(hash.slice(1)); } catch (e) { return null; }
+        var target = document.getElementById(id);
+        return target && target.closest("[data-page-view]");
       }
+      function show(hash, focus) {
+        var active = targetFor(hash) || views[0];
+        views.forEach(function (view) { view.hidden = view !== active; });
+        links.forEach(function (link) {
+          if (link.getAttribute("href") === "#" + active.id) link.setAttribute("aria-current", "page");
+          else link.removeAttribute("aria-current");
+        });
+        if (focus) {
+          var heading = active.querySelector("h1, h2");
+          if (heading) heading.focus({ preventScroll: true });
+        }
+      }
+      document.body.classList.add("view-mode");
+      show(location.hash, false);
+      document.addEventListener("click", function (event) {
+        if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        var link = event.target.closest("a[href^='#']");
+        if (!link || !targetFor(link.hash)) return;
+        event.preventDefault();
+        if (location.hash !== link.hash) history.pushState(null, "", link.hash);
+        show(link.hash, true);
+      });
+      window.addEventListener("popstate", function () { show(location.hash, false); });
+      window.addEventListener("hashchange", function () { show(location.hash, false); });
+      var map = document.querySelector(".flow-map");
+      var motion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
+      function syncMotion() {
+        if (!map || !map.pauseAnimations) return;
+        if (motion && motion.matches) map.pauseAnimations();
+        else map.unpauseAnimations();
+      }
+      syncMotion();
+      if (motion && motion.addEventListener) motion.addEventListener("change", syncMotion);
     })();
   </script>
 </body>
