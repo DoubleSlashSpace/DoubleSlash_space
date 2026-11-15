@@ -11,6 +11,7 @@
 | `downloads.html` | Release-channel downloads |
 | `support.html` | How to run a supernode on a Linux server you operate. The page stays provider-neutral except for two affiliate cards: Vultr (`https://www.vultr.com/?ref=6956347`) and DigitalOcean (`https://www.awin1.com/cread.php?awinmid=123996&awinaffid=3125578&ued=https%3A%2F%2Fwww.digitalocean.com%2Fproducts%2Fdroplets`). Keep the Advertising disclosure above the cards, with the wording: "Each company below was hand selected by us as a partner, and through this relationship we earn a referral fee at no additional cost to you." Do not add a second commission paragraph inside a card. Do not add a provider here until its affiliate link exists. |
 | `styles.css` | Site layout, typography, responsive behavior, and visual styling |
+| `themes.js`, `themes.css` | Site skins: the Skin picker on every page, the pre-paint skin script, and every skin other than each page's own dark and light |
 | `logo.svg`, `logo-full.svg`, `logo.png`, `logo_padding.png`, `favicon.ico` | Brand assets (the D:// mark) |
 | `CNAME` | Custom-domain configuration |
 | `README.md` | Legacy website notes; not an architecture or product source of truth |
@@ -144,6 +145,15 @@ The local website `README.md` describes the retired Python application, eight-pa
 - Check internal anchors, local assets, external links, mobile layout, keyboard behavior, and JavaScript-disabled readability.
 - Search for retired architecture terms and stale quantitative claims.
 - Review the final diff for unintended edits outside `ConquerD_www/`.
+
+## Skins
+
+- Every page loads `themes.js` in `<head>` (it sets `html[data-theme]` before first paint) and links `themes.css` after its own `<style>`. The choice is saved under `doubleslash-theme`, and `?skin=<id>` selects and saves one. Amp is the default: each page's `<html>` carries `data-theme="amp"` so it also applies without JavaScript, and `DEFAULT_SKIN` in `themes.js` must match. Dark is each page's base styling and sets no attribute.
+- Each page keeps its own dark and light tokens. A skin in `themes.css` overrides those tokens and the shared shapes, scoped under `html[data-theme="<id>"]`. Adding a skin means adding its id to `SKINS` in `themes.js` and an `<option>` to every picker, including the one in the home page's narrow-screen menu.
+- `amp` is the late-90s media-player skin. Keep media-player trademarks out of visible labels.
+- A skin changes presentation only. Check it at a true 390px width (headless Chrome lays out at no less than 512px; render pages in 390px iframes instead).
+- The invite landing pages (`i/`, `r/`) still read only dark and light.
+- The DDDNS customer site (users.doubleslash.space, `Z:\Current Projects\DoubleSlash\DDDNS\crates\dddns-webssetsrand.css`) carries its own copy of the Amp skin, also the default there. Change both together.
 
 ## Website Guardrails
 

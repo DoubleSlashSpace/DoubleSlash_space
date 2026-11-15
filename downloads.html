@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="amp">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,13 +7,7 @@
   <meta name="description" content="Get DoubleSlash for Windows from the Microsoft Store. Development nightlies are available for Windows, macOS, Linux, and Android." />
   <link rel="canonical" href="https://doubleslash.space/downloads.html" />
   <link rel="icon" href="favicon.ico" />
-  <script>
-    try {
-      if (localStorage.getItem("doubleslash-theme") === "light") {
-        document.documentElement.setAttribute("data-theme", "light");
-      }
-    } catch (e) {}
-  </script>
+  <script src="themes.js"></script>
   <style>
     :root {
       color-scheme: dark;
@@ -43,12 +37,6 @@
     .topbar { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .brand { display: inline-flex; text-decoration: none; }
     .brand img { display: block; height: 2.25rem; width: auto; filter: var(--logo-filter); }
-    .theme-toggle { width: 40px; height: 40px; display: grid; place-items: center; padding: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); cursor: pointer; }
-    .theme-toggle:hover { border-color: var(--brand); color: var(--brand); }
-    .theme-toggle svg { width: 18px; height: 18px; }
-    .theme-toggle .icon-sun { display: none; }
-    html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
-    html[data-theme="light"] .theme-toggle .icon-moon { display: none; }
     .topbar nav { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; font-size: 14px; }
     .topbar nav a { color: var(--soft); text-decoration: none; }
     .topbar nav [aria-current] { color: var(--brand); border-bottom: 2px solid; }
@@ -58,7 +46,6 @@
     h2 { font-size: 26px; line-height: 1.25; margin: 0 0 8px; }
     p { margin: 0 0 16px; }
     .intro > p:not(.eyebrow) { color: var(--soft); font-size: 18px; }
-    .release-note { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
     .channels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; align-items: start; }
     .channel { min-width: 0; padding: 28px; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); box-shadow: var(--shadow); }
     .channel-stable { position: sticky; top: 104px; border-top: 3px solid var(--brand); }
@@ -70,7 +57,6 @@
     .channel-nightly .channel-status { color: var(--nightly); }
     .channel h2 { font-size: 30px; }
     .channel h3 { margin: 0 0 8px; font-size: 22px; line-height: 1.3; }
-    .pending-note { margin-top: 22px; color: var(--soft); font-size: 14px; }
     .downloads { display: grid; grid-template-columns: 1fr; }
     .platform { display: flex; flex-direction: column; padding: 26px 0; border-bottom: 1px solid var(--line); }
     .platform:last-child { padding-bottom: 0; border-bottom: 0; }
@@ -102,6 +88,7 @@
       .intro { padding-top: 36px; }
     }
   </style>
+  <link rel="stylesheet" href="themes.css" />
 </head>
 <body>
   <a class="skip" href="#main">Skip to downloads</a>
@@ -113,7 +100,7 @@
         <a href="architecture.html">Architecture</a>
         <a href="support.html">Run a node</a>
         <a href="downloads.html" aria-current="page">Downloads</a>
-        <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="true" aria-label="Use light appearance"><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v1.5M12 19.5V21M4.9 4.9l1.1 1.1M18 18l1.1 1.1M3 12h1.5M19.5 12H21M4.9 19.1 6 18M18 6l1.1-1.1"/></svg></button>
+        <label class="skin-picker" hidden><span class="skin-label">Skin</span><select data-theme-select><option value="amp">Amp</option><option value="dark">Dark</option><option value="light">Light</option></select></label>
       </nav>
     </div>
   </header>
@@ -121,37 +108,30 @@
     <div class="intro">
       <p class="eyebrow">Get DoubleSlash</p>
       <h1>Choose your release.</h1>
-      <p>The official Windows release is on the <a href="https://apps.microsoft.com/detail/9N09Q23FW92M?hl=en-us&amp;gl=US">Microsoft Store</a>. For macOS, Linux, Android, or the latest changes, <a href="#nightly">choose a nightly download</a>.</p>
+      <p>Windows has a release on the Microsoft Store. macOS, Linux, and Android have <a href="#nightly">nightly builds</a> only.</p>
     </div>
-    <p class="release-note"><a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases">Nightly builds and notes &rarr;</a></p>
     <div class="channels">
       <section class="channel channel-stable" aria-labelledby="stable">
         <div class="channel-header">
           <span class="channel-status">Official release</span>
           <h2 id="stable">Microsoft Store</h2>
-          <p>This is the official Windows release. It is free. Microsoft signs the package and delivers updates.</p>
+          <p>Free. Microsoft signs the package and delivers updates.</p>
         </div>
         <div class="downloads">
           <section class="platform" aria-labelledby="store">
             <p class="eyebrow">Windows</p>
             <h3 id="store">Windows app</h3>
             <p class="compat">64-bit Windows 10 (version 2004) or Windows 11</p>
-            <ol class="instructions">
-              <li>Open the Store listing and choose Get.</li>
-              <li>Windows installs DoubleSlash and keeps it updated.</li>
-            </ol>
             <a class="download" href="https://apps.microsoft.com/detail/9N09Q23FW92M?hl=en-us&amp;gl=US">Get it from Microsoft Store</a>
-            <p class="download-note">Free &middot; Signed and updated by Microsoft.</p>
+            <p class="download-note">Uses the same profile folder as the other desktop builds. Uninstalling the app leaves that profile in place.</p>
           </section>
         </div>
-        <p class="pending-note">macOS, Linux, and Android releases will appear here when they are ready.</p>
-        <a href="#nightly">Try a development nightly &rarr;</a>
       </section>
       <section class="channel channel-nightly" aria-labelledby="nightly">
         <div class="channel-header">
           <span class="channel-status">Available now &middot; Development builds</span>
           <h2 id="nightly">Nightly downloads</h2>
-          <p>Current builds for testing the latest changes. Desktop nightlies are unsigned. Android APKs use development signing.</p>
+          <p>Built from the latest changes, for testing. Desktop nightlies are unsigned; Android APKs use development signing.</p>
         </div>
         <div class="downloads">
       <section class="platform" aria-labelledby="windows">
@@ -163,7 +143,7 @@
           <li>Follow the setup prompts, then launch DoubleSlash.</li>
         </ol>
         <a class="download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/doubleslash-installer-nightly.exe">Download Windows nightly</a>
-        <p class="download-note">Unsigned installer &middot; For testing. The <a href="#store">Windows release</a> is on the Microsoft Store.</p>
+        <p class="download-note">Unsigned. Most Windows users should use the <a href="#store">Store release</a>.</p>
       </section>
       <section class="platform" aria-labelledby="macos">
         <p class="eyebrow">macOS</p>
@@ -174,7 +154,7 @@
           <li>Drag DoubleSlash to Applications, then open it.</li>
         </ol>
         <a class="download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/DoubleSlash-nightly-macos-arm64.dmg">Download macOS nightly</a>
-        <p class="download-note">Unsigned disk image &middot; Apple Silicon only.</p>
+        <p class="download-note">Unsigned.</p>
       </section>
       <section class="platform" aria-labelledby="linux">
         <p class="eyebrow">Linux</p>
@@ -185,7 +165,7 @@
           <li>In its file properties, allow execution as a program, then open it.</li>
         </ol>
         <a class="download" href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/DoubleSlash-nightly-x86_64.AppImage">Download Linux nightly</a>
-        <p class="download-note">Unsigned AppImage &middot; No separate installer needed.</p>
+        <p class="download-note">Unsigned.</p>
       </section>
       <section class="platform" aria-labelledby="android">
         <p class="eyebrow">Android</p>
@@ -202,10 +182,6 @@
       </section>
     </div>
     <div class="more">
-      <details>
-        <summary>Installing Windows from the Microsoft Store?</summary>
-        <p>Open the <a href="https://apps.microsoft.com/detail/9N09Q23FW92M?hl=en-us&amp;gl=US">Store listing</a> and choose Get. Windows installs DoubleSlash and delivers later updates. The app uses the same profile folder as the other desktop builds. Uninstalling the Store app leaves that profile in place. Export a backup from the app before you delete a profile on purpose.</p>
-      </details>
       <details>
         <summary>Prefer a portable Windows nightly?</summary>
         <p><a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases/download/nightly/DoubleSlash-nightly-win64.7z">Download the unsigned Windows portable nightly</a>, extract the whole archive with a 7z-compatible tool, then run <code>DoubleSlash.exe</code> from the extracted folder.</p>
@@ -228,32 +204,6 @@
       <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/TERMS.md">Terms</a>
     </div>
   </footer>
-  <script>
-    (function () {
-      var KEY = "doubleslash-theme";
-      function current() {
-        try { return localStorage.getItem(KEY) === "light" ? "light" : "dark"; }
-        catch (e) { return "dark"; }
-      }
-      function apply(theme) {
-        var dark = theme !== "light";
-        if (dark) document.documentElement.removeAttribute("data-theme");
-        else document.documentElement.setAttribute("data-theme", "light");
-        document.querySelectorAll("[data-theme-toggle]").forEach(function (btn) {
-          btn.setAttribute("aria-pressed", dark ? "true" : "false");
-          btn.setAttribute("aria-label", dark ? "Use light appearance" : "Use dark appearance");
-        });
-      }
-      apply(current());
-      document.addEventListener("click", function (event) {
-        var btn = event.target.closest("[data-theme-toggle]");
-        if (!btn) return;
-        var next = current() === "light" ? "dark" : "light";
-        try { localStorage.setItem(KEY, next); } catch (e) {}
-        apply(next);
-      });
-    })();
-  </script>
   <script>
     (function () {
       // APK names include the build number. Keep the verified link above usable

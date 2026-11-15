@@ -1,0 +1,679 @@
+/* Site skins, shared by every page.
+
+   Amp is the default: each page's <html> carries data-theme="amp", and
+   themes.js swaps in the saved skin before first paint. Dark has no
+   attribute; each page defines its own dark and light tokens.
+   A skin below overrides those tokens and the shapes the pages share, and
+   is scoped entirely under its html[data-theme] value.
+
+   Link this file after the page's own <style> so equal-specificity rules
+   here win. */
+
+/* ── Skin picker (all skins) ─────────────────────────────────────────── */
+
+.skin-picker {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.skin-picker[hidden] {
+  display: none;
+}
+
+.skin-picker .skin-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skin-picker select {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 36px;
+  margin: 0;
+  padding: 0 28px 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.skin-picker select:hover {
+  border-color: var(--brand);
+}
+
+.skin-picker select:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 3px;
+}
+
+/* Where a page has a narrow-screen menu, the picker moves into it. */
+.nav-drawer .skin-picker {
+  display: flex;
+  margin: 0.4rem 0.4rem 0.2rem;
+}
+
+.nav-drawer .skin-picker select {
+  width: 100%;
+}
+
+@media (max-width: 720px) {
+  .nav-actions > .skin-picker {
+    display: none;
+  }
+}
+
+.skin-picker::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 11px;
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  opacity: 0.6;
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+
+/* ── Amp: a late-90s media player ────────────────────────────────────────
+   Beveled gunmetal windows with gold striped title bars, black screens
+   with green display text, a blue selection bar, and gray 3D buttons. */
+
+html[data-theme="amp"] {
+  color-scheme: dark;
+
+  --amp-desk: #1b1b2a;
+  --amp-groove: #22223a;
+  --amp-frame: #3d3d58;
+  --amp-frame-hi: #66668a;
+  --amp-frame-lo: #15151f;
+  --amp-green: #00e000;
+  --amp-green-dim: #00a400;
+  --amp-sel: #0000c6;
+  --amp-gold: #e3c35a;
+  --amp-gold-lo: #7d6a28;
+  --amp-glow: 0 0 7px rgba(0, 255, 0, 0.45);
+  --amp-sans: Tahoma, Verdana, "Segoe UI", sans-serif;
+  --amp-body: Arial, Helvetica, sans-serif;
+  --amp-lcd: "Lucida Console", "Courier New", monospace;
+
+  /* Page tokens. Not every page defines every one. */
+  --ink: var(--amp-green);
+  --ink-soft: var(--amp-green);
+  --soft: var(--amp-green);
+  --muted: var(--amp-green-dim);
+  --paper: #000;
+  --surface: #000;
+  --surface-soft: #001400;
+  --line: #124a12;
+  --line-strong: #1d6b1d;
+  --brand: var(--amp-gold);
+  --brand-dark: var(--amp-gold);
+  --brand-soft: #1e1a08;
+  --green: #00ff00;
+  --green-soft: #002a00;
+  --red: #ff4848;
+  --warn: var(--amp-gold);
+  --header-bg: var(--amp-frame);
+  --header: var(--amp-frame);
+  --header-line: #000;
+  --endpoint-bg: #000;
+  --endpoint-border: var(--line-strong);
+  --shadow: none;
+  --shadow-sm: none;
+  --shadow-lg: none;
+  --card-sheen: none;
+  --note: #000;
+  --note-line: var(--line-strong);
+  --button: #c4c4d2;
+  --button-hover: #d4d4e2;
+  --pending: var(--amp-green-dim);
+  --nightly: var(--amp-gold);
+  --focus-ring: var(--amp-gold);
+  --logo-filter: none;
+
+  background: var(--amp-desk);
+  scrollbar-color: var(--amp-frame-hi) var(--amp-frame-lo);
+}
+
+html[data-theme="amp"] body {
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 2px, var(--amp-groove) 2px 3px),
+    var(--amp-desk);
+  color: var(--ink);
+  font-family: var(--amp-body);
+  -webkit-font-smoothing: auto;
+}
+
+html[data-theme="amp"] *,
+html[data-theme="amp"] *::before,
+html[data-theme="amp"] *::after {
+  border-radius: 0 !important;
+}
+
+html[data-theme="amp"] ::selection {
+  background: var(--amp-sel);
+  color: #fff;
+}
+
+/* Zero specificity: a page's own heading colours (such as the trust
+   boundaries' green and red) still win. */
+:where(html[data-theme="amp"]) :where(h2, h3, strong, summary, th) {
+  color: #fff;
+}
+
+html[data-theme="amp"] :is(h1, h2, h3) {
+  font-family: var(--amp-sans);
+  letter-spacing: 0;
+}
+
+html[data-theme="amp"] h1 {
+  font-family: var(--amp-lcd);
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  font-weight: normal;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--amp-green);
+  text-shadow: var(--amp-glow);
+}
+
+html[data-theme="amp"] a {
+  color: #fff;
+  text-decoration-color: var(--amp-green-dim);
+}
+
+/* Like the current track in a playlist. */
+html[data-theme="amp"] main a:not([class]):hover {
+  background: var(--amp-sel);
+  color: #fff;
+  text-decoration: none;
+}
+
+html[data-theme="amp"] code {
+  border: 1px solid #0b3d0b;
+  background: #001a00;
+  color: #9dff9d;
+  font-family: var(--amp-lcd);
+}
+
+/* Display text: labels, counters and readouts. */
+html[data-theme="amp"] :is(.eyebrow, .kicker, .section-no, .channel-status, .flag, .status, .meta, .compat, .hero-panel-bar, .portal-bar, caption, thead th) {
+  font-family: var(--amp-lcd);
+  font-weight: normal;
+  letter-spacing: 0.08em;
+}
+
+html[data-theme="amp"] :is(.eyebrow, .kicker, .section-no) {
+  color: var(--amp-gold);
+}
+
+/* ── Chrome: header, footer, buttons ─────────────────────────────────── */
+
+html[data-theme="amp"] :is(.site-header, body > header) {
+  border-bottom: 1px solid #000;
+  background: var(--amp-frame);
+  box-shadow: inset 0 1px 0 var(--amp-frame-hi), inset 0 -1px 0 var(--amp-frame-lo);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+html[data-theme="amp"] :is(.site-footer, body > footer) {
+  border-top: 1px solid #000;
+  background: var(--amp-frame);
+  box-shadow: inset 0 1px 0 var(--amp-frame-hi);
+  color: #b4b4c8;
+  font-family: var(--amp-sans);
+  font-size: 12px;
+}
+
+html[data-theme="amp"] .footer-copy {
+  color: #b4b4c8;
+}
+
+html[data-theme="amp"] :is(.nav-links a, .topbar nav a, .footer-links a, body > footer a) {
+  color: #d6d6e6;
+  font-family: var(--amp-sans);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+html[data-theme="amp"] :is(.nav-links a, .topbar nav a, .footer-links a, body > footer a):hover {
+  color: var(--amp-gold);
+}
+
+html[data-theme="amp"] .topbar nav [aria-current] {
+  border-bottom: 2px solid #00ff00;
+  color: #00ff00;
+  text-shadow: var(--amp-glow);
+}
+
+html[data-theme="amp"] :is(.button, .go, .download, .nav-drawer summary, .portal-tile, .skin-picker select) {
+  border: 1px solid #000;
+  background: linear-gradient(to bottom, #ececf4 0%, #c4c4d2 45%, #a2a2b6 100%);
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #66667c;
+  color: #14141c;
+  font-family: var(--amp-sans);
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-shadow: none;
+  transform: none;
+  transition: none;
+}
+
+html[data-theme="amp"] :is(.button, .go, .download, .nav-drawer summary, .skin-picker select):hover {
+  background: linear-gradient(to bottom, #fafaff 0%, #d4d4e2 45%, #b0b0c4 100%);
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #66667c;
+  color: #000;
+  transform: none;
+}
+
+html[data-theme="amp"] :is(.button, .go, .download, .nav-drawer summary, .skin-picker select):active {
+  background: #a4a4b8;
+  box-shadow: inset 1px 1px 0 #66667c, inset -1px -1px 0 #fff;
+}
+
+/* A play glyph on the primary actions. */
+html[data-theme="amp"] :is(.button-primary, .go, .download)::before {
+  content: "\25B6";
+  margin-right: 0.45em;
+  color: #0a7a0a;
+  font-size: 0.85em;
+}
+
+html[data-theme="amp"] .button-primary::before {
+  margin-right: 0;
+}
+
+html[data-theme="amp"] .skin-picker::after {
+  border-color: #14141c;
+  opacity: 1;
+}
+
+html[data-theme="amp"] .skin-picker option {
+  background: #000;
+  color: var(--amp-green);
+  text-transform: none;
+}
+
+/* ── Windows ─────────────────────────────────────────────────────────────
+   A gunmetal frame around a black screen. The title bar lives in the
+   thick top border: gold stripes and two window buttons in ::before, the
+   window's name in ::after. */
+
+html[data-theme="amp"] :is(.hero-panel, .privacy-panel, .bento-card, .operator, .faq, .layout > aside, article > section, .disclosure, .card, .after, .channel, .more) {
+  overflow: visible;
+  border: solid var(--amp-frame);
+  border-width: 20px 6px 6px;
+  background: #000;
+  box-shadow: 0 0 0 1px #000, inset 0 0 0 1px #000, 0 0 0 2px var(--amp-frame-lo);
+  color: var(--ink);
+}
+
+/* The sticky download channel and the architecture contents keep their
+   own positioning; both are positioned, so the title bar still anchors. */
+html[data-theme="amp"] :is(.hero-panel, .privacy-panel, .bento-card, .operator, .faq, article > section, .disclosure, .card, .after, .channel-nightly, .more) {
+  position: relative;
+}
+
+@media (max-width: 900px) {
+  html[data-theme="amp"] .layout > aside {
+    position: relative;
+  }
+}
+
+@media (max-width: 860px) {
+  html[data-theme="amp"] .channel-stable {
+    position: relative;
+  }
+}
+
+html[data-theme="amp"] :is(.hero-panel, .privacy-panel, .bento-card, .operator, .faq, .layout > aside, article > section, .disclosure, .card, .after, .channel, .more)::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: -15px;
+  left: 0;
+  right: 0;
+  height: 9px;
+  background:
+    linear-gradient(to bottom, #d8d8e4, #8a8aa2) right 0 top 0 / 9px 9px no-repeat,
+    linear-gradient(to bottom, #d8d8e4, #8a8aa2) right 12px top 0 / 9px 9px no-repeat,
+    repeating-linear-gradient(to bottom, var(--amp-gold) 0 1px, var(--amp-gold-lo) 1px 2px, transparent 2px 3px) left top / calc(100% - 27px) 100% no-repeat;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+html[data-theme="amp"] :is(.hero-panel, .privacy-panel, .bento-card, .operator, .faq, .layout > aside, article > section, .disclosure, .card, .after, .channel, .more)::after {
+  content: "DOUBLESLASH";
+  position: absolute;
+  z-index: 2;
+  top: -18px;
+  left: 50%;
+  padding: 0 7px;
+  background: var(--amp-frame);
+  color: var(--amp-gold);
+  font: bold 9px/15px var(--amp-sans);
+  letter-spacing: 0.25em;
+  text-shadow: 1px 1px 0 #000;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+html[data-theme="amp"] .layout > aside::after { content: "PLAYLIST"; }
+html[data-theme="amp"] .faq::after { content: "FAQ"; }
+html[data-theme="amp"] .disclosure::after { content: "NOTICE"; }
+html[data-theme="amp"] .channel-stable::after { content: "RELEASE"; }
+html[data-theme="amp"] .channel-nightly::after { content: "NIGHTLY"; }
+html[data-theme="amp"] .more::after { content: "MORE"; }
+
+/* ── Home page ───────────────────────────────────────────────────────── */
+
+html[data-theme="amp"] .hero::before {
+  display: none;
+}
+
+html[data-theme="amp"] .section-white {
+  border: 0;
+  background: transparent;
+}
+
+html[data-theme="amp"] .privacy-panel .eyebrow {
+  color: var(--amp-gold);
+}
+
+html[data-theme="amp"] .privacy-panel .section-lede,
+html[data-theme="amp"] .privacy-item p {
+  color: var(--amp-green-dim);
+}
+
+html[data-theme="amp"] .privacy-item {
+  border: 1px solid var(--line-strong);
+  background: #000;
+}
+
+html[data-theme="amp"] .privacy-check {
+  border: 1px solid var(--amp-green-dim);
+  background: #002a00;
+  color: #00ff00;
+}
+
+html[data-theme="amp"] .hero-panel-bar {
+  color: var(--amp-green);
+  text-shadow: var(--amp-glow);
+}
+
+html[data-theme="amp"] .live-dot {
+  background: #00ff00;
+  box-shadow: none;
+  animation: amp-blink 1.2s steps(2, jump-none) infinite;
+}
+
+/* A small spectrum analyser beside the display text. */
+html[data-theme="amp"] .hero-panel-bar::after {
+  content: "";
+  flex: none;
+  width: 47px;
+  height: 16px;
+  background: linear-gradient(to top, #00b000 0%, #00e000 45%, #e8e800 75%, #ff3000 100%);
+  -webkit-mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: 0 100%, 4px 100%, 8px 100%, 12px 100%, 16px 100%, 20px 100%, 24px 100%, 28px 100%, 32px 100%, 36px 100%, 40px 100%, 44px 100%;
+  mask-position: 0 100%, 4px 100%, 8px 100%, 12px 100%, 16px 100%, 20px 100%, 24px 100%, 28px 100%, 32px 100%, 36px 100%, 40px 100%, 44px 100%;
+  -webkit-mask-size: 3px 45%, 3px 80%, 3px 100%, 3px 70%, 3px 55%, 3px 85%, 3px 40%, 3px 60%, 3px 30%, 3px 50%, 3px 25%, 3px 15%;
+  mask-size: 3px 45%, 3px 80%, 3px 100%, 3px 70%, 3px 55%, 3px 85%, 3px 40%, 3px 60%, 3px 30%, 3px 50%, 3px 25%, 3px 15%;
+  animation: amp-spectrum 1.6s steps(1, end) infinite;
+}
+
+html[data-theme="amp"] .session-peer {
+  border-color: var(--line-strong);
+  border-top-color: var(--amp-gold);
+}
+
+html[data-theme="amp"] .session-link {
+  color: var(--amp-gold);
+}
+
+html[data-theme="amp"] .session-link i {
+  background: linear-gradient(90deg, transparent, var(--amp-green), transparent);
+}
+
+html[data-theme="amp"] .relay-tag {
+  border: 1px solid var(--amp-green-dim);
+}
+
+html[data-theme="amp"] .step::before {
+  border: 1px solid var(--line-strong);
+  background: #000;
+  box-shadow: inset 0 0 0 1px #000;
+  color: var(--amp-green);
+  font-family: var(--amp-lcd);
+  font-size: 1.05rem;
+  font-weight: normal;
+  text-shadow: var(--amp-glow);
+}
+
+html[data-theme="amp"] .step:not(:last-child)::after {
+  border-color: var(--amp-gold);
+}
+
+html[data-theme="amp"] .bento-card p,
+html[data-theme="amp"] .operator p {
+  color: var(--amp-green);
+}
+
+html[data-theme="amp"] .portal-window {
+  background: #000;
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+
+html[data-theme="amp"] .portal-bar {
+  background: #001400;
+  color: var(--amp-green);
+}
+
+html[data-theme="amp"] .portal-tile {
+  min-height: 52px;
+  padding: 0 4px;
+  font-size: 10px;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+/* The FAQ as a playlist: numbered rows, the open one selected. */
+html[data-theme="amp"] .faq {
+  padding: 6px 0;
+  counter-reset: amp-track;
+}
+
+html[data-theme="amp"] .faq details {
+  border-bottom: 0;
+}
+
+html[data-theme="amp"] .faq summary {
+  padding: 5px 44px 5px 12px;
+  color: var(--amp-green);
+  font: 14px/1.5 var(--amp-body);
+  counter-increment: amp-track;
+}
+
+html[data-theme="amp"] .faq summary::before {
+  content: counter(amp-track) ". ";
+}
+
+html[data-theme="amp"] .faq summary:hover {
+  color: #fff;
+}
+
+html[data-theme="amp"] .faq details[open] summary {
+  background: var(--amp-sel);
+  color: #fff;
+}
+
+html[data-theme="amp"] .faq summary::after {
+  top: 5px;
+  right: 12px;
+  width: auto;
+  height: auto;
+  display: block;
+  background: none;
+  color: inherit;
+  font: 14px/1.5 var(--amp-lcd);
+}
+
+html[data-theme="amp"] .faq details p {
+  padding: 8px 16px 14px 32px;
+  color: var(--amp-green);
+}
+
+html[data-theme="amp"] .nav-drawer nav {
+  border: 6px solid var(--amp-frame);
+  background: #000;
+  box-shadow: 0 0 0 1px #000;
+}
+
+html[data-theme="amp"] .nav-drawer a {
+  color: var(--amp-green);
+  font-family: var(--amp-body);
+  font-weight: normal;
+}
+
+html[data-theme="amp"] .nav-drawer a:is(:hover, :focus-visible) {
+  background: var(--amp-sel);
+  color: #fff;
+}
+
+/* ── Architecture ────────────────────────────────────────────────────── */
+
+html[data-theme="amp"] .intro {
+  border-bottom: 0;
+  background: none;
+}
+
+html[data-theme="amp"] .meta span {
+  padding: 1px 8px;
+  border: 1px solid #0b3d0b;
+  background: #000;
+  color: var(--amp-green);
+}
+
+html[data-theme="amp"] .layout > aside {
+  padding: 6px 0;
+}
+
+html[data-theme="amp"] .layout > aside p {
+  display: none;
+}
+
+html[data-theme="amp"] .layout > aside nav {
+  gap: 0;
+}
+
+html[data-theme="amp"] .layout > aside a {
+  padding: 4px 12px;
+  border-left: 0;
+  color: var(--amp-green);
+  font-family: var(--amp-body);
+}
+
+html[data-theme="amp"] article > section {
+  margin: 0 0 30px;
+  padding: 20px 24px 24px;
+}
+
+html[data-theme="amp"] .layout {
+  padding-top: 30px;
+}
+
+html[data-theme="amp"] .system-map {
+  border-color: var(--line-strong);
+  background: #000;
+}
+
+html[data-theme="amp"] .endpoint {
+  border-top-color: var(--amp-green);
+}
+
+html[data-theme="amp"] .relay {
+  border-top-color: var(--amp-gold);
+}
+
+html[data-theme="amp"] .wire {
+  color: var(--amp-gold);
+}
+
+html[data-theme="amp"] :is(.steps strong, .steps h3) {
+  color: #fff;
+}
+
+html[data-theme="amp"] thead th {
+  color: var(--amp-gold);
+}
+
+/* ── Run a node and downloads ────────────────────────────────────────── */
+
+html[data-theme="amp"] .after {
+  margin-top: 30px;
+  padding: 18px 24px 22px;
+}
+
+html[data-theme="amp"] .more {
+  margin: 30px 0 48px;
+  padding: 4px 20px 14px;
+}
+
+html[data-theme="amp"] .grid {
+  margin-top: 40px;
+}
+
+/* ── Motion ──────────────────────────────────────────────────────────── */
+
+@keyframes amp-blink {
+  50% { opacity: 0.25; }
+}
+
+@keyframes amp-spectrum {
+  0% {
+    -webkit-mask-size: 3px 45%, 3px 80%, 3px 100%, 3px 70%, 3px 55%, 3px 85%, 3px 40%, 3px 60%, 3px 30%, 3px 50%, 3px 25%, 3px 15%;
+    mask-size: 3px 45%, 3px 80%, 3px 100%, 3px 70%, 3px 55%, 3px 85%, 3px 40%, 3px 60%, 3px 30%, 3px 50%, 3px 25%, 3px 15%;
+  }
+  33% {
+    -webkit-mask-size: 3px 70%, 3px 95%, 3px 65%, 3px 90%, 3px 35%, 3px 60%, 3px 75%, 3px 35%, 3px 55%, 3px 20%, 3px 40%, 3px 25%;
+    mask-size: 3px 70%, 3px 95%, 3px 65%, 3px 90%, 3px 35%, 3px 60%, 3px 75%, 3px 35%, 3px 55%, 3px 20%, 3px 40%, 3px 25%;
+  }
+  66% {
+    -webkit-mask-size: 3px 55%, 3px 60%, 3px 90%, 3px 45%, 3px 80%, 3px 40%, 3px 55%, 3px 70%, 3px 20%, 3px 45%, 3px 15%, 3px 30%;
+    mask-size: 3px 55%, 3px 60%, 3px 90%, 3px 45%, 3px 80%, 3px 40%, 3px 55%, 3px 70%, 3px 20%, 3px 45%, 3px 15%, 3px 30%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme="amp"] .live-dot,
+  html[data-theme="amp"] .hero-panel-bar::after {
+    animation: none;
+  }
+}

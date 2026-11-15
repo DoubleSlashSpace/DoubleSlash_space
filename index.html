@@ -1,22 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="amp">
 <head>
-  <script>
-    (function () {
-      try {
-        if (localStorage.getItem("doubleslash-theme") === "light") {
-          document.documentElement.setAttribute("data-theme", "light");
-        }
-      } catch (e) {}
-    })();
-  </script>
+  <script src="themes.js"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>DoubleSlash &ndash; Private Communication, Without the Platform</title>
+  <title>DoubleSlash &ndash; Private Conversations, By Invitation</title>
   <meta
     name="description"
-    content="DoubleSlash is an invite-only peer-connectivity app for desktop and Android: chat, voice, files, rooms, video, and in-app portal pages, with identity that stays on your device."
+    content="Chat, call, share files, and spend time together in private rooms. DoubleSlash connects people by invite, with no account or subscription required."
   />
   <link rel="icon" href="favicon.ico" />
   <style>
@@ -235,49 +227,17 @@
     }
 
     .button:focus-visible,
-    .theme-toggle:focus-visible,
     summary:focus-visible,
     a:focus-visible {
       outline: 3px solid var(--focus-ring);
       outline-offset: 3px;
     }
 
-    .theme-toggle {
-      width: 40px;
-      height: 40px;
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
-      padding: 0;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: var(--surface);
-      color: var(--ink);
-      box-shadow: var(--shadow-sm);
-      cursor: pointer;
-    }
 
-    .theme-toggle:hover {
-      border-color: var(--brand);
-      color: var(--brand);
-    }
 
-    .theme-toggle svg {
-      width: 18px;
-      height: 18px;
-    }
 
-    .theme-toggle .icon-sun {
-      display: none;
-    }
 
-    html[data-theme="light"] .theme-toggle .icon-sun {
-      display: block;
-    }
 
-    html[data-theme="light"] .theme-toggle .icon-moon {
-      display: none;
-    }
 
     .button-primary {
       background: var(--brand);
@@ -1017,51 +977,6 @@
       font-size: 0.91rem;
     }
 
-    .final-cta {
-      padding: 1rem 0 6.5rem;
-    }
-
-    .cta-panel {
-      position: relative;
-      overflow: hidden;
-      padding: clamp(3rem, 7vw, 5.5rem) 2rem;
-      border-radius: var(--radius-lg);
-      background:
-        radial-gradient(circle at 20% 20%, rgba(126, 132, 255, 0.34), transparent 32%),
-        radial-gradient(circle at 85% 75%, rgba(255, 43, 64, 0.19), transparent 27%),
-        var(--dark);
-      color: #fff;
-      text-align: center;
-    }
-
-    .cta-panel h2 {
-      max-width: 800px;
-      margin-inline: auto;
-    }
-
-    .cta-panel p {
-      max-width: 650px;
-      margin: 0 auto 1.8rem;
-      color: #abb1c0;
-    }
-
-    .cta-panel .hero-actions {
-      justify-content: center;
-    }
-
-    .cta-panel .button-secondary {
-      border-color: #363b48;
-      background: #222630;
-      color: #fff;
-      box-shadow: none;
-    }
-
-    .cta-note {
-      margin-top: 1rem !important;
-      margin-bottom: 0 !important;
-      font-size: 0.72rem;
-    }
-
     .site-footer {
       padding: 2.2rem 0;
       border-top: 1px solid var(--line);
@@ -1199,10 +1114,6 @@
         display: none;
       }
 
-      .nav-actions .theme-toggle {
-        width: 38px;
-        height: 38px;
-      }
 
       .nav-actions .button-primary {
         min-height: 38px;
@@ -1309,6 +1220,7 @@
       }
     }
   </style>
+  <link rel="stylesheet" href="themes.css" />
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -1318,56 +1230,29 @@
       <a class="brand" href="#top" aria-label="DoubleSlash home">
         <img src="logo-full.svg" alt="DoubleSlash" />
       </a>
-
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#privacy">Privacy</a>
-        <a href="#how-it-works">How it works</a>
+        <a href="#how-it-works">Get started</a>
         <a href="#features">Features</a>
-        <a href="#status">Status</a>
+        <a href="#ddns">DDNS</a>
         <a href="#faq">FAQ</a>
-        <a href="architecture.html">Architecture</a>
-        <a href="support.html">Run a node</a>
       </nav>
-
       <div class="nav-actions">
         <details class="nav-drawer">
           <summary>Menu</summary>
           <nav aria-label="Primary navigation">
             <a href="#privacy">Privacy</a>
-            <a href="#how-it-works">How it works</a>
+            <a href="#how-it-works">Get started</a>
             <a href="#features">Features</a>
-            <a href="#status">Status</a>
+            <a href="#ddns">DDNS</a>
             <a href="#faq">FAQ</a>
-            <a href="architecture.html">Architecture</a>
-            <a href="support.html">Run a node</a>
+            <a href="support.html">Run a supernode</a>
             <a href="downloads.html">Downloads</a>
+            <label class="skin-picker" hidden><span class="skin-label">Skin</span><select data-theme-select><option value="amp">Amp</option><option value="dark">Dark</option><option value="light">Light</option></select></label>
           </nav>
         </details>
-        <button
-          type="button"
-          class="theme-toggle"
-          data-theme-toggle
-          aria-pressed="true"
-          aria-label="Use light appearance"
-        >
-          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/>
-          </svg>
-          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="4"/>
-            <path d="M12 3v1.5M12 19.5V21M4.9 4.9l1.1 1.1M18 18l1.1 1.1M3 12h1.5M19.5 12H21M4.9 19.1 6 18M18 6l1.1-1.1"/>
-          </svg>
-        </button>
-        <a
-          class="button button-secondary button-small"
-          href="https://github.com/DoubleSlashSpace/DoubleSlash"
-          target="_blank"
-          rel="noopener noreferrer"
-        >View source</a>
-        <a
-          class="button button-primary button-small"
-          href="downloads.html"
-        >Downloads</a>
+        <label class="skin-picker" hidden><span class="skin-label">Skin</span><select data-theme-select><option value="amp">Amp</option><option value="dark">Dark</option><option value="light">Light</option></select></label>
+        <a class="button button-primary button-small" href="downloads.html">Downloads</a>
       </div>
     </div>
   </header>
@@ -1376,55 +1261,35 @@
     <section class="hero" id="top">
       <div class="shell hero-grid">
         <div class="hero-content">
-          <p class="eyebrow">Invite-only by design</p>
-          <h1>Private communication, without the platform.</h1>
+          <p class="eyebrow">By invitation. On your terms.</p>
+          <h1>Private conversations with your people.</h1>
           <p class="hero-copy">
-            Chat, voice, files, rooms, video, and in-app games for people you invite.
-            Your identity stays on your device, and direct connections stay direct.
+            Chat, call, share files, and spend time together in private rooms.
+            Connect by invite, with no DoubleSlash account or subscription required.
           </p>
-
           <div class="hero-actions">
-            <a
-              class="button button-primary"
-              href="downloads.html"
-            >
-              Download DoubleSlash
-              <span aria-hidden="true">&rarr;</span>
-            </a>
+            <a class="button button-primary" href="downloads.html">Download DoubleSlash <span aria-hidden="true">&rarr;</span></a>
             <a class="button button-secondary" href="#how-it-works">See how it works</a>
           </div>
-
           <div class="hero-note" aria-label="Availability and licensing">
             <span>Windows, macOS, Linux, and Android</span>
-            <span>No account required</span>
             <span>Open source</span>
           </div>
         </div>
-
         <figure class="hero-panel">
           <div class="hero-panel-bar">
-            <span><i class="live-dot" aria-hidden="true"></i> Direct session</span>
-            <span>Invite only</span>
+            <span><i class="live-dot" aria-hidden="true"></i> Your conversation</span>
           </div>
           <div class="session-row">
-            <div class="session-peer">
-              <strong>You</strong>
-              <span>Identity on this device</span>
-            </div>
-            <div class="session-link" aria-hidden="true"><i></i>QUIC</div>
-            <div class="session-peer">
-              <strong>A person</strong>
-              <span>Someone you invited</span>
-            </div>
+            <div class="session-peer"><strong>You</strong><span>Your own profile</span></div>
+            <div class="session-link" aria-hidden="true"><i></i>Private</div>
+            <div class="session-peer"><strong>A friend</strong><span>Someone you invited</span></div>
           </div>
           <div class="session-relay">
-            <div>
-              <strong>Optional supernode</strong>
-              <span>Rooms and relay. Content stays sealed.</span>
-            </div>
-            <span class="relay-tag">When you choose one</span>
+            <div><strong>Optional group server</strong><span>A supernode helps host rooms and connections.</span></div>
+            <span class="relay-tag">Your choice</span>
           </div>
-          <figcaption class="hero-panel-caption">Direct when the path is open. A supernode you trust when you want a room or a relay.</figcaption>
+          <figcaption class="hero-panel-caption">Direct when your network allows. A supernode you choose hosts rooms and relays when it does not.</figcaption>
         </figure>
       </div>
     </section>
@@ -1432,49 +1297,24 @@
     <section class="section" id="privacy">
       <div class="shell privacy-panel">
         <div>
-          <p class="eyebrow">A smaller trust surface</p>
-          <h2>Less infrastructure to trust.</h2>
-          <p class="section-lede">
-            There is no account system and no directory. Optional supernodes help
-            when your network needs them &mdash; they never hold your identity or
-            the keys that seal room chat, files, and media.
-          </p>
+          <p class="eyebrow">Your conversations belong to you</p>
+          <h2>Private by design.</h2>
+          <p class="section-lede">Your identity and history live on your device. You decide who you connect to.</p>
         </div>
-
         <div class="privacy-list">
           <div class="privacy-item">
             <span class="privacy-check" aria-hidden="true">&#10003;</span>
-            <div>
-              <strong>No accounts, no directory</strong>
-              <p>Your identity is created on your device. You meet people through signed, expiring invites &mdash; not searchable profiles.</p>
-            </div>
+            <div><strong>No account needed</strong><p>Set up your profile on your device and meet people through invites.</p></div>
+          </div>
+          <div class="privacy-item">
+            <span class="privacy-check" aria-hidden="true">&#10003;</span>
+            <div><strong>Encrypted conversations</strong><p>Chat, calls, and files are encrypted. A supernode relays them without being able to read them.</p></div>
           </div>
           <div class="privacy-item">
             <span class="privacy-check" aria-hidden="true">&#10003;</span>
             <div>
-              <strong>Conversations stay sealed</strong>
-              <p>Chat, voice, files, and video are encrypted between the people in them. A relay moves bytes it cannot read.</p>
-            </div>
-          </div>
-          <div class="privacy-item">
-            <span class="privacy-check" aria-hidden="true">&#10003;</span>
-            <div>
-              <strong>Metadata, described honestly</strong>
-              <p>A relay still sees peer and room IDs, who is connected, timing, and how much data moves.</p>
-            </div>
-          </div>
-          <div class="privacy-item">
-            <span class="privacy-check" aria-hidden="true">&#10003;</span>
-            <div>
-              <strong>Nothing turns on quietly</strong>
-              <p>Features are agreed per connection, and anything outside the core set asks for your consent first.</p>
-            </div>
-          </div>
-          <div class="privacy-item">
-            <span class="privacy-check" aria-hidden="true">&#10003;</span>
-            <div>
-              <strong>Other network use, named</strong>
-              <p>Desktop chat can show link-preview cards. Playing one contacts that video host from your machine, and you can turn the cards off. An optional assistant, off until you enable it, talks only to the Ollama address you configure.</p>
+              <strong>No analytics</strong>
+              <p>A supernode can still see who connects and when. <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/PRIVACY.md">Read the privacy details.</a></p>
             </div>
           </div>
         </div>
@@ -1484,44 +1324,13 @@
     <section class="section section-white" id="how-it-works">
       <div class="shell">
         <div class="section-heading">
-          <p class="eyebrow">From zero to connected</p>
-          <h2>Trust starts with an invite.</h2>
-          <p class="section-lede">
-            No sign-up, no profile, no discovery service.
-          </p>
+          <p class="eyebrow">Getting started</p>
+          <h2>A few steps to your first conversation.</h2>
         </div>
-
         <div class="steps">
-          <article class="step">
-            <h3>Create your identity</h3>
-            <p>DoubleSlash generates an Ed25519 identity on your device and locks it with a local passphrase.</p>
-          </article>
-          <article class="step">
-            <h3>Share a signed invite</h3>
-            <p>Send an <code>https://doubleslash.space/i#&hellip;</code> link, or show that same link as a QR code. The code does not create another invite. Everything after <code>#</code> carries the invite and stays out of the request to the website. A personal invite works once, for 15 minutes, and only on the device that created it.</p>
-          </article>
-          <article class="step">
-            <h3>Connect</h3>
-            <p>You connect directly when the network allows, or through a supernode you chose when it does not. Rooms always use a supernode.</p>
-          </article>
-        </div>
-
-        <div class="invite-explainer" aria-labelledby="invite-links">
-          <h3 id="invite-links">What does the # in an invite link do?</h3>
-          <p>
-            The <code>#</code> is a <strong>fragment separator</strong>. Everything
-            after it is the <strong>fragment identifier</strong>, often used as a
-            page anchor. DoubleSlash uses it to carry the invite instead.
-            Your browser requests <code>https://doubleslash.space/i</code> without
-            sending the <code>#</code> or anything after it to the web server.
-          </p>
-          <p>
-            The landing page reads the invite locally in your browser and passes
-            it to the installed DoubleSlash app, which validates it. Room invites
-            use <code>/r#&hellip;</code> the same way. Keep the whole link, including
-            everything after <code>#</code>, when you share or copy it.
-            <a href="architecture.html#invite-links">See how the handoff works &rarr;</a>
-          </p>
+          <article class="step"><h3>Get the app</h3><p>Download DoubleSlash for your device. Set up your profile and protect it with a passphrase.</p></article>
+          <article class="step"><h3 id="invite-links">Invite someone</h3><p>Share an invite link or show its QR code to someone you want to connect with.</p></article>
+          <article class="step"><h3>Talk and share</h3><p>Start a conversation, make a call, or join your group in a room.</p></article>
         </div>
       </div>
     </section>
@@ -1529,47 +1338,23 @@
     <section class="section" id="features">
       <div class="shell">
         <div class="section-heading center">
-          <p class="eyebrow">Built for real groups</p>
-          <h2>More than a private messenger.</h2>
-          <p class="section-lede">
-            Native desktop and Android clients, with optional infrastructure you can run yourself.
-            Desktop can use a local Ollama assistant, off until you enable it.
-            <a href="architecture.html">See the full architecture &rarr;</a>
-          </p>
+          <p class="eyebrow">Time together</p>
+          <h2>The essentials, together in one app.</h2>
         </div>
-
         <div class="bento">
           <article class="bento-card large">
-            <h3>Everything in one conversation</h3>
-            <p>
-              Voice, chat, files, and video share the same negotiated connection.
-              If a direct call cannot connect within five seconds, it can fall back
-              to a temporary private room on a supernode you already trust.
-              Message myself is a separate text chat with your other devices of
-              this identity. It keeps history on each device, and it does not
-              place calls, send files, or reach a device that is offline.
-            </p>
+            <h3>Chat, call, and share</h3>
+            <p>Keep messages, voice calls, and file sharing together in one conversation.</p>
           </article>
-
           <article class="bento-card medium">
-            <h3>Rooms belong to the people in them</h3>
-            <p>
-              Up to 32 people per room. Definitions live on participant devices
-              and come back when you reconnect. Public user-created rooms are off
-              unless the operator turns them on. Message alerts for a room stay
-              off until you enable them there.
-            </p>
+            <h3>Bring your group together</h3>
+            <p>Create private rooms for group conversations and calls. Turn on room alerts when you want them.</p>
           </article>
-
           <article class="bento-card large">
-            <h3>Games and shared pages, inside the app</h3>
-            <p>
-              Hosted pages and seven demo apps open through <code>d://</code>
-              inside the native client &mdash; never on a public web server.
-              Shared state lives in open pages only.
-            </p>
-            <div class="portal-window" aria-label="Illustrative in-app portal">
-              <div class="portal-bar">d://supernode-id/games/</div>
+            <h3>Play and create together</h3>
+            <p>Early demo games and shared pages, hosted by your supernode and opened inside the app.</p>
+            <div class="portal-window" aria-label="Illustrative shared activities inside DoubleSlash">
+              <div class="portal-bar">Inside DoubleSlash</div>
               <div class="portal-grid">
                 <div class="portal-tile">Presence<br />Playground</div>
                 <div class="portal-tile">Brick<br />Breaker</div>
@@ -1581,60 +1366,31 @@
               </div>
             </div>
           </article>
-
           <article class="bento-card medium">
-            <h3>Your history stays yours</h3>
-            <p>
-              Conversation history, room definitions, and encrypted backups live on
-              your device, not in someone else&rsquo;s archive. There is no account
-              recovery service.
-            </p>
+            <h3>Back up your profile</h3>
+            <p>There is no central recovery service. An encrypted backup file is how you restore a profile or move it to another device.</p>
           </article>
-
           <article class="bento-card wide">
-            <p class="card-flag">Platform coverage</p>
-            <h3>Video is implemented, with different capture on each OS</h3>
-            <p>
-              Every client can send and receive VP9 and VP8. Rooms default to VP9,
-              and a sender that falls behind on VP9 encoding switches to VP8 for
-              that session. Windows also offers H.264, screen or window sharing,
-              and system or app audio. On the desktop, a person&rsquo;s video can open
-              in its own window or fill the screen. Linux and macOS camera paths
-              still need a hardware check. On Android, incoming video is opt-in
-              per person and has not been checked on a device yet. Shared-audio
-              playback on Android remains open work.
-              <a href="architecture.html#media">See platform coverage &rarr;</a>
-            </p>
+            <h3>Video and screen sharing</h3>
+            <p>Video calls and screen sharing work on Windows. Cameras on macOS, Linux, and Android are still being tested. <a href="architecture.html#media">Device support</a></p>
           </article>
         </div>
-
         <div class="operator" id="operators" style="margin-top: 1rem;">
+          <div><h3>Host a place for your group.</h3><p>Run a supernode on a Linux server for your rooms. The desktop app can set one up over SSH.</p></div>
+          <div class="operator-actions"><a class="button button-secondary" href="support.html">Run a supernode</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ddns" aria-labelledby="ddns-title">
+      <div class="shell">
+        <div class="operator">
           <div>
-            <h3>Want to run the infrastructure?</h3>
-            <p>
-              Host a supernode to give your group connectivity, shared rooms, and
-              in-app pages &mdash; without becoming its identity authority or being
-              able to read anything it carries.
-              <a href="support.html">Run a node</a>
-              on a Linux server you operate.
-              If you need a machine, the Vultr and DigitalOcean buttons on that page are affiliate links and may pay DoubleSlash a commission.
-            </p>
-            <p>
-              Give your supernode a stable connection anchor with an optional hostname:
-              use DNS on your own domain, a compatible JSON file on your own website,
-              or DoubleSlash&rsquo;s DDDNS service. DDDNS supports the project but is
-              100% optional.
-              <a href="support.html#hostnames">How hostnames help when an IP changes &rarr;</a>
-            </p>
+            <h3 id="ddns-title">DoubleSlash DDNS</h3>
+            <p>An optional stable name for your supernode, so saved connections and new invites still find it after its IP address changes. $10 a year for up to 10 names, which helps fund development. <strong>Sign-ups are in test mode</strong>; no payments are taken yet. Your own DNS or a JSON file on your own website works too.</p>
           </div>
           <div class="operator-actions">
-            <a class="button button-secondary" href="support.html">Run a node</a>
-            <a
-              class="button button-secondary"
-              href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/docs/SUPERNODE.md"
-              target="_blank"
-              rel="noopener noreferrer"
-            >View operator docs</a>
+            <a class="button button-secondary" href="support.html#hostnames">How it works</a>
           </div>
         </div>
       </div>
@@ -1643,186 +1399,48 @@
     <section class="section section-white" id="status">
       <div class="shell">
         <div class="section-heading center">
-          <p class="eyebrow">Where the project stands</p>
-          <h2>Honest status, not a launch page.</h2>
-          <p class="section-lede">
-            DoubleSlash is pre-release software built in public.
-            <a href="architecture.html#status">See the full breakdown &rarr;</a>
-          </p>
+          <p class="eyebrow">Status</p>
+          <h2>Pre-release software.</h2>
+          <p class="section-lede">Expect rough edges. <a href="architecture.html#status">What works and what is still open.</a></p>
         </div>
-
-        <div class="status-grid">
-          <article class="status-card">
-            <p class="status-tag shipped">Working today</p>
-            <h3>Shipped in the client</h3>
-            <ul class="status-list">
-              <li>HTTPS invites, including a QR code of the same link, and device-held identity</li>
-              <li>Direct and room chat, voice, and files up to 4&nbsp;GiB that can resume after an interruption</li>
-              <li>Message myself: live text between your own devices, kept on each device</li>
-              <li>Rooms for up to 32 people, sealed end to end, with alerts off until you enable them</li>
-              <li>In-app portal and seven demo apps</li>
-              <li>VP9 and VP8 video, desktop pop-out and full screen, plus Windows screen share and shared audio</li>
-            </ul>
-          </article>
-
-          <article class="status-card building">
-            <p class="status-tag building">In progress</p>
-            <h3>Still open</h3>
-            <ul class="status-list">
-              <li>Shared-audio playback on Android</li>
-              <li>Screen and shared-audio capture outside Windows</li>
-              <li>Linux and macOS camera checks, plus two-client and room media acceptance</li>
-              <li>Device pairing and simultaneous-use acceptance</li>
-              <li>WASM plugin sandbox</li>
-            </ul>
-          </article>
-
-          <article class="status-card out">
-            <p class="status-tag out">Not planned</p>
-            <h3>Out of scope by design</h3>
-            <ul class="status-list">
-              <li>Accounts, a user directory, or discovery</li>
-              <li>A supernode that can read your content</li>
-              <li>A public web version</li>
-              <li>Telemetry or analytics of any kind</li>
-            </ul>
-          </article>
-        </div>
-
-        <p class="status-note">
-          The official Windows release is on the <a href="https://apps.microsoft.com/detail/9N09Q23FW92M?hl=en-us&amp;gl=US">Microsoft Store</a>.
-          Desktop nightlies cover Windows, macOS, and Linux. Android APKs have their own
-          <a href="downloads.html#android">download</a>. A nightly install requires a development
-          manifest and checks its archive hash; that manifest is accepted unsigned.
-          A stable install proceeds when no manifest is supplied. When one is supplied,
-          the installer requires a valid project signature and a matching archive hash.
-          Published SHA-256 sidecars are checked when present. Android updates are separate APK installs.
-        </p>
       </div>
     </section>
 
     <section class="section" id="faq">
       <div class="shell">
-        <div class="section-heading center">
-          <p class="eyebrow">The short answers</p>
-          <h2>Frequently asked questions.</h2>
-          <p class="section-lede">Deeper detail lives on the <a href="architecture.html">architecture page</a>.</p>
-        </div>
-
+        <div class="section-heading center"><p class="eyebrow">A few common questions</p><h2>Good to know.</h2></div>
         <div class="faq">
           <details>
             <summary>Can a supernode read my conversations?</summary>
-            <p>
-              No. Chat, voice, files, and video are sealed before they reach a
-              supernode, and nodes never receive room keys. They do see routing
-              metadata: peer and room IDs, membership, timing, byte volumes, room
-              names, and file-offer details such as filename and size.
-            </p>
+            <p>No. It can see who is connected and when, and the names of rooms and of files shared in them, but not what is said or sent.</p>
           </details>
           <details>
-            <summary>Do I need a supernode at all?</summary>
-            <p>
-              Direct one-to-one chat and calls do not, if the two peers can reach
-              each other. A mutually trusted supernode can coordinate UDP hole
-              punching, relay traffic, and host rooms. Rooms always need a supernode.
-            </p>
+            <summary>Do I have to run a supernode?</summary>
+            <p>No. You can use someone else&rsquo;s. One-to-one conversations can connect directly when your network allows; rooms need a supernode.</p>
           </details>
           <details>
-            <summary>Can I make video calls yet?</summary>
-            <p>
-              Yes, with limits that depend on the device. Every client can send and
-              receive VP9 and VP8. Rooms use VP9 unless the sender falls behind,
-              in which case that session switches to VP8. Windows can also use
-              H.264, share a screen or window, and share system or app audio.
-              On the desktop, a person&rsquo;s video can open in its own window or
-              fill the screen. Linux and macOS camera capture still needs a
-              hardware check, and screen or shared-audio capture is a Windows
-              feature. On Android,
-              incoming video is opt-in per person and has not been validated on a
-              device. Shared-audio playback on Android remains open work. Voice,
-              chat, rooms, and files work across the clients.
-            </p>
+            <summary>Does it work when someone is offline?</summary>
+            <p>No. Messages are delivered only while both sides are online; nothing is stored for later delivery.</p>
           </details>
           <details>
-            <summary>Is there an Android app?</summary>
-            <p>
-              Yes. Android uses the same Rust core through JNI, with Kotlin/Compose
-              for chat, voice, files, rooms, portal access, backups, and camera
-              video. Incoming video is opt-in per person and has not been checked
-              on a device. Shared-audio playback remains open work.
-              <a href="downloads.html#android">Download the Android APK</a> or build it
-              from the repository.
-            </p>
-          </details>
-          <details>
-            <summary>Can I message my other devices?</summary>
-            <p>
-              Yes. Message myself sits above your contacts on desktop and Android.
-              It is live text with the other devices of this identity, and each
-              device keeps its own history. It does not place calls, send files,
-              or deliver a message to a device that is offline. Pairing and
-              continuous history sync are still open.
-            </p>
-          </details>
-          <details>
-            <summary>Is there an AI assistant?</summary>
-            <p>
-              On desktop, if you turn it on. It sends prompts to an Ollama server
-              you configure, which defaults to your own machine. Tools that send
-              chat, join calls, or share files stay off until you enable them.
-              The assistant is a desktop setting.
-            </p>
-          </details>
-          <details>
-            <summary>Was AI used to develop DoubleSlash?</summary>
-            <p>
-              Yes. All of them... Claude, Cursor, Codex, and Grok have been used throughout
-              development.
-            </p>
-          </details>
-          <details>
-            <summary>Why are games in the supernode portal page?</summary>
-            <p>
-              Mainly for testing purposes for now, and the desire to create a controlled environment for games. This ensures that gameplay is contained and secure.
-              They run inside the native client through <code>d://</code>, and are
-              intentionally not exposed to the open web.
-            </p>
+            <summary>Was AI used in development?</summary>
+            <p>Yes. Tools including Claude, Cursor, Codex, and Grok have been used during development.</p>
           </details>
         </div>
       </div>
     </section>
 
-    <section class="final-cta">
-      <div class="shell cta-panel">
-        <h2>Your group. Your identity. Your path.</h2>
-        <div class="hero-actions">
-          <a
-            class="button button-primary"
-            href="downloads.html"
-          >Download DoubleSlash <span aria-hidden="true">&rarr;</span></a>
-          <a
-            class="button button-secondary"
-            href="https://github.com/DoubleSlashSpace/DoubleSlash"
-            target="_blank"
-            rel="noopener noreferrer"
-          >Explore the source</a>
-        </div>
-        <p class="cta-note">The official Windows release is on the Microsoft Store. Nightlies cover macOS, Linux, Android, and Windows.</p>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
     <div class="shell footer-row">
       <div>
-        <a class="brand" href="#top" aria-label="DoubleSlash home">
-          <img src="logo-full.svg" alt="DoubleSlash" />
-        </a>
-        <p class="footer-copy">Open-source, invite-only peer connectivity. MIT licensed.</p>
+        <a class="brand" href="#top" aria-label="DoubleSlash home"><img src="logo-full.svg" alt="DoubleSlash" /></a>
+        <p class="footer-copy">Open-source communication. By invitation. MIT licensed.</p>
       </div>
       <nav class="footer-links" aria-label="Footer navigation">
-        <a href="architecture.html">Architecture</a>
-        <a href="support.html">Run a node</a>
+        <a href="architecture.html">Technical details</a>
+        <a href="support.html">Run a supernode</a>
         <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/PRIVACY.md">Privacy policy</a>
         <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/TERMS.md">Terms</a>
         <a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases">Releases</a>
@@ -1830,34 +1448,5 @@
       </nav>
     </div>
   </footer>
-  <script>
-    (function () {
-      var KEY = "doubleslash-theme";
-      function current() {
-        try {
-          return localStorage.getItem(KEY) === "light" ? "light" : "dark";
-        } catch (e) {
-          return "dark";
-        }
-      }
-      function apply(theme) {
-        var dark = theme !== "light";
-        if (dark) document.documentElement.removeAttribute("data-theme");
-        else document.documentElement.setAttribute("data-theme", "light");
-        document.querySelectorAll("[data-theme-toggle]").forEach(function (btn) {
-          btn.setAttribute("aria-pressed", dark ? "true" : "false");
-          btn.setAttribute("aria-label", dark ? "Use light appearance" : "Use dark appearance");
-        });
-      }
-      apply(current());
-      document.addEventListener("click", function (event) {
-        var btn = event.target.closest("[data-theme-toggle]");
-        if (!btn) return;
-        var next = current() === "light" ? "dark" : "light";
-        try { localStorage.setItem(KEY, next); } catch (e) {}
-        apply(next);
-      });
-    })();
-  </script>
 </body>
 </html>

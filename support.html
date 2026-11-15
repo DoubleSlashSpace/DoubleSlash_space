@@ -1,19 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="amp">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Run your own DoubleSlash supernode</title>
-  <meta name="description" content="Run a Linux server as your own DoubleSlash supernode. It can relay connections and host rooms. The signup buttons are affiliate links, and DoubleSlash may earn a commission." />
+  <meta name="description" content="Run your own DoubleSlash supernode and keep its invites connected with optional DoubleSlash DDNS, your own DNS, or a self-hosted lookup. Includes setup steps and hosting options." />
   <link rel="canonical" href="https://doubleslash.space/support.html" />
   <link rel="icon" href="favicon.ico" />
-  <script>
-    try {
-      if (localStorage.getItem("doubleslash-theme") === "light") {
-        document.documentElement.setAttribute("data-theme", "light");
-      }
-    } catch (e) {}
-  </script>
+  <script src="themes.js"></script>
   <style>
     :root {
       color-scheme: dark;
@@ -46,12 +40,6 @@
     .topbar { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
     .brand { display: inline-flex; text-decoration: none; }
     .brand img { display: block; height: 2.25rem; width: auto; filter: var(--logo-filter); }
-    .theme-toggle { width: 40px; height: 40px; display: grid; place-items: center; padding: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); cursor: pointer; }
-    .theme-toggle:hover { border-color: var(--brand); color: var(--brand); }
-    .theme-toggle svg { width: 18px; height: 18px; }
-    .theme-toggle .icon-sun { display: none; }
-    html[data-theme="light"] .theme-toggle .icon-sun { display: block; }
-    html[data-theme="light"] .theme-toggle .icon-moon { display: none; }
     .topbar nav { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; font-size: 14px; }
     .topbar nav a { color: var(--soft); text-decoration: none; }
     .topbar nav [aria-current] { color: var(--brand); border-bottom: 2px solid; }
@@ -111,14 +99,18 @@
     }
     .go:hover { background: var(--button-hover); }
     .go-note { margin: 10px 0 0; font-size: 13px; color: var(--muted); }
-    .after { max-width: 760px; padding-top: 48px; }
+    .after { max-width: 760px; padding-top: 48px; overflow-wrap: anywhere; }
     .after h2 { margin-bottom: 12px; }
     .after li + li { margin-top: 8px; }
+    .after details { margin-block: 20px; }
+    .after summary { cursor: pointer; font-weight: 700; }
+    .after details[open] summary { margin-bottom: 12px; }
     .after ol, .after ul { color: var(--soft); padding-left: 22px; }
     .after pre { overflow-x: auto; padding: 16px; border: 1px solid var(--line); background: var(--surface); font-size: 14px; }
     footer { border-top: 1px solid var(--line); padding: 24px 0; color: var(--muted); font-size: 13px; }
     .footer-inner { display: flex; flex-wrap: wrap; gap: 12px 24px; }
     @media (max-width: 680px) {
+      html { scroll-padding-top: 190px; }
       .topbar { align-items: flex-start; flex-direction: column; gap: 12px; padding-block: 16px; }
       .topbar nav { gap: 14px; }
       .intro { padding-top: 36px; }
@@ -127,6 +119,7 @@
     }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   </style>
+  <link rel="stylesheet" href="themes.css" />
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -138,7 +131,7 @@
         <a href="architecture.html">Architecture</a>
         <a href="support.html" aria-current="page">Run a node</a>
         <a href="downloads.html">Downloads</a>
-        <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="true" aria-label="Use light appearance"><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"/></svg><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v1.5M12 19.5V21M4.9 4.9l1.1 1.1M18 18l1.1 1.1M3 12h1.5M19.5 12H21M4.9 19.1 6 18M18 6l1.1-1.1"/></svg></button>
+        <label class="skin-picker" hidden><span class="skin-label">Skin</span><select data-theme-select><option value="amp">Amp</option><option value="dark">Dark</option><option value="light">Light</option></select></label>
       </nav>
     </div>
   </header>
@@ -146,7 +139,7 @@
     <div class="intro">
       <p class="eyebrow">Run a node</p>
       <h1>Run your own supernode.</h1>
-      <p>A supernode is a Linux machine you operate. It can relay connections and host rooms for the people you invite. It is not an account system, and it cannot read sealed chat, voice, or files. Use a server you already have, or rent one from any provider. You keep the machine. DoubleSlash does not operate it.</p>
+      <p>A supernode hosts your group&rsquo;s rooms and relays connections. Run it on a Linux server you own or rent. You manage the server; it cannot read conversations.</p>
     </div>
 
     <aside class="disclosure" aria-label="Advertising disclosure">
@@ -158,61 +151,61 @@
       <section class="card card-affiliate" id="vultr" aria-labelledby="vultr-title">
         <span class="flag">Affiliate link</span>
         <h2 id="vultr-title">Vultr</h2>
-        <p>Vultr rents Linux virtual machines with a public address. Create the server in your own Vultr account, then install the supernode yourself or from the DoubleSlash desktop app.</p>
+        <p>Rent a Linux server in your own Vultr account.</p>
         <a class="go" href="https://www.vultr.com/?ref=6956347" rel="sponsored noopener noreferrer" target="_blank">Create a Vultr server</a>
         <p class="go-note">Affiliate link. Opens vultr.com in a new tab.</p>
       </section>
       <section class="card card-affiliate" id="digitalocean" aria-labelledby="digitalocean-title">
         <span class="flag">Affiliate link</span>
         <h2 id="digitalocean-title">DigitalOcean</h2>
-        <p>DigitalOcean rents Linux virtual machines with a public address. Create the server in your own DigitalOcean account, then install the supernode yourself or from the DoubleSlash desktop app.</p>
+        <p>Rent a Linux server in your own DigitalOcean account.</p>
         <a class="go" href="https://www.awin1.com/cread.php?awinmid=123996&amp;awinaffid=3125578&amp;ued=https%3A%2F%2Fwww.digitalocean.com%2Fproducts%2Fdroplets" rel="sponsored noopener noreferrer" target="_blank">Create a DigitalOcean server</a>
         <p class="go-note">Affiliate link. Opens digitalocean.com in a new tab.</p>
       </section>
     </div>
 
     <section class="after" aria-labelledby="need">
-      <h2 id="need">What the server needs</h2>
-      <ul>
-        <li>A Linux machine with a public IPv4 or IPv6 address. Published supernode packages cover 64-bit Intel or AMD, and ARM64.</li>
-        <li>SSH from the computer you will install from. The desktop setup can turn password login off after a key login works. The password is used once and is not stored. This website never asks for it.</li>
-        <li>The relay UDP port and the signaling TCP port open to the people who will use the node. The usual defaults are UDP 3478 and TCP 34935. The setup shows the ports it will use.</li>
-        <li>No public web port. Portal pages open inside the DoubleSlash app, not in a browser pointed at the server.</li>
-        <li>A second server later, if you add one, keeps its cluster port closed to the public and open only between those servers. The usual cluster port is UDP 4478.</li>
-      </ul>
-      <p>The desktop path is Settings, then Network, then Your servers. Its firewall and automatic security-update steps are written for Debian 11 and Ubuntu 20.04 or newer. You can also install a published Linux package yourself. Nightly supernode builds are pre-release and can change.</p>
+      <h2 id="need">Set up your server</h2>
+      <ol>
+        <li><strong>Choose a Linux server</strong> with a public IP address and SSH access. The desktop setup is designed for Debian 11 and Ubuntu 20.04 or newer.</li>
+        <li><strong>Open Settings &gt; Network &gt; Your servers</strong> in the desktop app and follow the setup steps. It installs the nightly supernode build, which is pre-release.</li>
+        <li><strong>Accept the node&rsquo;s invite</strong>, then share it with your group.</li>
+      </ol>
+      <p>Server costs, security, updates, backups, and legal responsibilities remain yours.</p>
+      <details>
+        <summary>Server and network requirements</summary>
+        <ul>
+          <li>Use a public IPv4 or IPv6 address. Linux packages support 64-bit Intel/AMD and ARM64.</li>
+          <li>Setup shows the required ports, usually UDP 3478 for relay and TCP 34935 for signaling. No public web port is needed.</li>
+          <li>For a cluster, keep its private connection port restricted to members, usually UDP 4478.</li>
+        </ul>
+      </details>
     </section>
 
     <section class="after" id="hostnames" aria-labelledby="hostnames-title">
-      <h2 id="hostnames-title">A stable hostname for your supernode</h2>
-      <p>A hostname gives your group a connection anchor when your server&rsquo;s IP address changes. Clients try the IP they saved first. If it fails, they look up the hostname for the current signaling address. It travels inside the signed invite&rsquo;s Base64-encoded payload and is saved by clients; a connected node can also supply it. People normally see the node&rsquo;s local name or operator title in Rooms, not this hostname. Base64 is encoding, not encryption.</p>
-      <p>You can choose any of these approaches, or use no hostname at all:</p>
+      <h2 id="hostnames-title">Keep connections working after an IP change</h2>
+      <p>Give the supernode a hostname in <strong>Your servers &gt; Set hostname</strong>. Clients that have connected since, and invites shared after it is set, look the name up when the IP address stops answering. Older invites do not gain the name. The node still has to prove its identity, so a name cannot hand trust to a different server. A name is optional; IP-only invites keep working while the address stays the same.</p>
       <ul>
-        <li><strong>Your own domain and ordinary DNS.</strong> Use a name such as <code>relay.example.com</code>, select DNS lookup, and point its A and/or AAAA records at your main node. Update those records when its IP changes. DNS supplies the address; clients keep the signaling port they already know.</li>
-        <li><strong>A JSON file on a website you control.</strong> Select DDDNS lookup and serve a compatible record directly at <code>https://relay.example.com/.well-known/doubleslash</code>. Use valid HTTPS, with no login or redirect. The name&rsquo;s DNS points to your website; its JSON points to your supernode and includes the signaling port. This needs no DoubleSlash-operated service.</li>
-        <li><strong>DoubleSlash&rsquo;s DDDNS service.</strong> A name under <code>*.doubleslash.space</code> uses that same HTTPS protocol. Using the service supports the project, but it is <strong>100% optional</strong>. Your own DNS, your own compatible JSON endpoint, and IP-only connections remain valid choices.</li>
+        <li><strong>Your domain:</strong> choose <strong>DNS</strong> and point an A or AAAA record at the server. Clients keep the signaling port they already know.</li>
+        <li><strong>Your website:</strong> choose <strong>DDDNS</strong> and serve a JSON record at <code>https://your-name.example/.well-known/doubleslash</code> over HTTPS, with no login or redirect. See the <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/docs/DDDNS.md">record format</a>.</li>
+        <li><strong>DoubleSlash DDNS:</strong> a name under <code>doubleslash.space</code>, described below.</li>
       </ul>
-      <p>A self-hosted record for <code>relay.example.com</code> looks like this. Replace the example IP with your server&rsquo;s public address, add <code>ipv6</code> if available, and use your WebSocket signaling TCP port, not the relay UDP port:</p>
-      <pre><code>{
-  "v": 1,
-  "name": "relay",
-  "status": "active",
-  "ipv4": "198.51.100.20",
-  "port": 34935
-}</code></pre>
-      <p>Keep DNS or the JSON record current when the server moves. The desktop offers DNS and DDDNS under <strong>Settings &gt; Network &gt; Your servers &gt; Set hostname</strong>. A static JSON file can be updated on your own website without an update-token service. The <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/docs/DDDNS.md">DDDNS protocol</a> details the record and lookup requirements.</p>
-      <p>Point the hostname at your main node. When clients connect, its verified cluster roster supplies the other servers for failover, so the hostname does not need to list every member. That helps invited people find the same group&rsquo;s Space through another server <strong>in that cluster</strong>, while preserving node identities and cluster configuration.</p>
-      <p>A hostname is an address hint, not a Space identity or permission to join. It cannot automatically move people to an unrelated supernode: a recovered connection must still prove the expected node&rsquo;s identity. If someone loses all saved paths and cannot recover through the hostname or cluster, send a fresh invite. An IP-only setup may also need fresh invites after an IP change. A lookup outage never prevents a connection to a saved IP that still works.</p>
+      <p>You keep the DNS record or JSON file current yourself.</p>
+
+      <h3 id="dddns">DoubleSlash DDNS</h3>
+      <p>$10 a year for up to 10 names, which helps fund development. <strong>Sign-ups are in test mode:</strong> payments use Stripe test cards and names claimed now are for testing.</p>
+      <ol>
+        <li><strong>Claim a name</strong> at <a href="https://users.doubleslash.space/">users.doubleslash.space</a>. Save your account key: it is your sign-in, and there is no email reset.</li>
+        <li><strong>Create an update token</strong> under <strong>Your names &gt; New update token</strong>.</li>
+        <li><strong>In Your servers &gt; Set hostname,</strong> enter the name, choose <strong>DDDNS</strong>, paste the token, and choose <strong>Apply and update DDDNS</strong>. This publishes the address and restarts that server, briefly interrupting connections. The token is used once and not saved.</li>
+        <li><strong>Share the node&rsquo;s invite again</strong> so it carries the name.</li>
+      </ol>
+      <p>When the IP changes, update the address under <strong>Your names</strong> or apply the hostname again with a token. Nothing on the server tracks address changes for you.</p>
     </section>
 
     <section class="after" aria-labelledby="after">
-      <h2 id="after">After the machine exists</h2>
-      <ol>
-        <li>Note the public address and an admin login.</li>
-        <li>Install the supernode from the desktop app, or follow the <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/docs/SUPERNODE.md">operator guide</a>. Packages are on the <a href="https://github.com/DoubleSlashSpace/DoubleSlash/releases">releases page</a>.</li>
-        <li>Read the responsibility notice before the first install. You remain responsible for the server: its cost, security, updates, backups, and the law where you live and where it runs. DoubleSlash does not operate it.</li>
-        <li>Connect with the node’s own invite. A new server does not join you to anyone else’s network. The server is not a DoubleSlash identity, and neither is the company that rents it to you.</li>
-      </ol>
+      <h2 id="after">More help</h2>
+      <p>See the <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/docs/SUPERNODE.md">operator guide</a> for installation and clusters, or <a href="downloads.html">downloads</a> for available builds.</p>
     </section>
   </main>
   <footer>
@@ -225,31 +218,5 @@
       <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/TERMS.md">Terms</a>
     </div>
   </footer>
-  <script>
-    (function () {
-      var KEY = "doubleslash-theme";
-      function current() {
-        try { return localStorage.getItem(KEY) === "light" ? "light" : "dark"; }
-        catch (e) { return "dark"; }
-      }
-      function apply(theme) {
-        var dark = theme !== "light";
-        if (dark) document.documentElement.removeAttribute("data-theme");
-        else document.documentElement.setAttribute("data-theme", "light");
-        document.querySelectorAll("[data-theme-toggle]").forEach(function (btn) {
-          btn.setAttribute("aria-pressed", dark ? "true" : "false");
-          btn.setAttribute("aria-label", dark ? "Use light appearance" : "Use dark appearance");
-        });
-      }
-      apply(current());
-      document.addEventListener("click", function (event) {
-        var btn = event.target.closest("[data-theme-toggle]");
-        if (!btn) return;
-        var next = current() === "light" ? "dark" : "light";
-        try { localStorage.setItem(KEY, next); } catch (e) {}
-        apply(next);
-      });
-    })();
-  </script>
 </body>
 </html>
