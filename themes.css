@@ -431,39 +431,43 @@ html[data-theme="amp"] .live-dot {
   animation: amp-blink 1.2s steps(2, jump-none) infinite;
 }
 
-/* A small spectrum analyser beside the display text. */
-html[data-theme="amp"] .hero-panel-bar::after {
-  content: "";
-  flex: none;
-  width: 47px;
-  height: 16px;
-  background: linear-gradient(to top, #00b000 0%, #00e000 45%, #e8e800 75%, #ff3000 100%);
-  -webkit-mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0);
-  mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0), linear-gradient(#000 0 0);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: 0 100%, 4px 100%, 8px 100%, 12px 100%, 16px 100%, 20px 100%, 24px 100%, 28px 100%, 32px 100%, 36px 100%, 40px 100%, 44px 100%;
-  mask-position: 0 100%, 4px 100%, 8px 100%, 12px 100%, 16px 100%, 20px 100%, 24px 100%, 28px 100%, 32px 100%, 36px 100%, 40px 100%, 44px 100%;
-  -webkit-mask-size: 3px 45%, 3px 80%, 3px 100%, 3px 70%, 3px 55%, 3px 85%, 3px 40%, 3px 60%, 3px 30%, 3px 50%, 3px 25%, 3px 15%;
-  mask-size: 3px 45%, 3px 80%, 3px 100%, 3px 70%, 3px 55%, 3px 85%, 3px 40%, 3px 60%, 3px 30%, 3px 50%, 3px 25%, 3px 15%;
-  animation: amp-spectrum 1.6s steps(1, end) infinite;
+/* ── Hero diagram ────────────────────────────────────────────────────── */
+
+html[data-theme="amp"] .flow {
+  --flow-direct: var(--amp-green);
+  --flow-relay: var(--amp-gold);
 }
 
-html[data-theme="amp"] .session-peer {
+html[data-theme="amp"] .flow-node {
   border-color: var(--line-strong);
-  border-top-color: var(--amp-gold);
+  background: #000;
+  box-shadow: inset 0 0 0 2px #0a160a;
 }
 
-html[data-theme="amp"] .session-link {
+html[data-theme="amp"] .flow-name {
+  color: #fff;
+  font-family: var(--amp-sans);
+}
+
+html[data-theme="amp"] .flow-label {
+  font-family: var(--amp-sans);
+}
+
+html[data-theme="amp"] .flow-sub {
+  color: var(--amp-green);
+  font-family: var(--amp-sans);
+}
+
+html[data-theme="amp"] .flow-icon {
+  background: #001400;
+}
+
+html[data-theme="amp"] .flow-super {
+  border-color: var(--amp-gold);
+}
+
+html[data-theme="amp"] .flow-super :is(.flow-icon, .flow-name) {
   color: var(--amp-gold);
-}
-
-html[data-theme="amp"] .session-link i {
-  background: linear-gradient(90deg, transparent, var(--amp-green), transparent);
-}
-
-html[data-theme="amp"] .relay-tag {
-  border: 1px solid var(--amp-green-dim);
 }
 
 html[data-theme="amp"] .step::before {
@@ -656,24 +660,8 @@ html[data-theme="amp"] .grid {
   50% { opacity: 0.25; }
 }
 
-@keyframes amp-spectrum {
-  0% {
-    -webkit-mask-size: 3px 45%, 3px 80%, 3px 100%, 3px 70%, 3px 55%, 3px 85%, 3px 40%, 3px 60%, 3px 30%, 3px 50%, 3px 25%, 3px 15%;
-    mask-size: 3px 45%, 3px 80%, 3px 100%, 3px 70%, 3px 55%, 3px 85%, 3px 40%, 3px 60%, 3px 30%, 3px 50%, 3px 25%, 3px 15%;
-  }
-  33% {
-    -webkit-mask-size: 3px 70%, 3px 95%, 3px 65%, 3px 90%, 3px 35%, 3px 60%, 3px 75%, 3px 35%, 3px 55%, 3px 20%, 3px 40%, 3px 25%;
-    mask-size: 3px 70%, 3px 95%, 3px 65%, 3px 90%, 3px 35%, 3px 60%, 3px 75%, 3px 35%, 3px 55%, 3px 20%, 3px 40%, 3px 25%;
-  }
-  66% {
-    -webkit-mask-size: 3px 55%, 3px 60%, 3px 90%, 3px 45%, 3px 80%, 3px 40%, 3px 55%, 3px 70%, 3px 20%, 3px 45%, 3px 15%, 3px 30%;
-    mask-size: 3px 55%, 3px 60%, 3px 90%, 3px 45%, 3px 80%, 3px 40%, 3px 55%, 3px 70%, 3px 20%, 3px 45%, 3px 15%, 3px 30%;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  html[data-theme="amp"] .live-dot,
-  html[data-theme="amp"] .hero-panel-bar::after {
+  html[data-theme="amp"] .live-dot {
     animation: none;
   }
 }
