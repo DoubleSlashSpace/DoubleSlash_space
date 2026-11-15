@@ -665,3 +665,8 @@ html[data-theme="amp"] .grid {
     animation: none;
   }
 }
+
+/* Compact homepage: its single picker stays beside Downloads on mobile. */
+@media (max-width: 720px) {
+  .compact-home .nav-actions > .skin-picker:not([hidden]) { display: inline-flex; }
+}
