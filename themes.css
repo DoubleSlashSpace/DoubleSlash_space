@@ -365,7 +365,7 @@ html[data-theme="amp"] :is(.hero-panel, .privacy-panel, .bento-card, .operator, 
   pointer-events: none;
 }
 
-html[data-theme="amp"] :is(.hero-panel, .privacy-panel, .bento-card, .operator, .faq, .layout > aside, article > section, .disclosure, .card, .after, .channel, .more)::after {
+html[data-theme="amp"] :is(.privacy-panel, .bento-card, .operator, .faq, .layout > aside, article > section, .disclosure, .card, .after, .channel, .more)::after {
   content: "DOUBLESLASH";
   position: absolute;
   z-index: 2;
@@ -438,35 +438,20 @@ html[data-theme="amp"] .flow {
   --flow-relay: var(--amp-gold);
 }
 
-html[data-theme="amp"] .flow-node {
-  border-color: var(--line-strong);
-  background: #000;
-  box-shadow: inset 0 0 0 2px #0a160a;
-}
-
 html[data-theme="amp"] .flow-name {
   color: #fff;
   font-family: var(--amp-sans);
 }
 
-html[data-theme="amp"] .flow-label {
+html[data-theme="amp"] :is(.flow-label, .flow-sub, .flow-metadata) {
   font-family: var(--amp-sans);
 }
 
 html[data-theme="amp"] .flow-sub {
   color: var(--amp-green);
-  font-family: var(--amp-sans);
 }
 
-html[data-theme="amp"] .flow-icon {
-  background: #001400;
-}
-
-html[data-theme="amp"] .flow-super {
-  border-color: var(--amp-gold);
-}
-
-html[data-theme="amp"] .flow-super :is(.flow-icon, .flow-name) {
+html[data-theme="amp"] .flow-super .flow-name {
   color: var(--amp-gold);
 }
 
