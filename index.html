@@ -109,7 +109,6 @@
     .nav-links { display: flex; align-items: center; justify-content: center; gap: 2px; }
     .nav-links a { padding: 9px 10px; border-bottom: 2px solid transparent; color: var(--ink-soft); font-size: 13px; font-weight: 650; text-decoration: none; white-space: nowrap; }
     .nav-links a:hover { color: var(--ink); background: var(--surface-soft); }
-    .nav-links a[aria-current="page"] { border-color: var(--brand); color: var(--brand); background: var(--brand-soft); }
     .nav-actions { display: flex; align-items: center; gap: 10px; }
     .button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 10px 16px; border: 1px solid var(--line-strong); border-radius: 9px; font-size: 13px; font-weight: 700; line-height: 1.2; text-decoration: none; }
     .button-primary { border-color: var(--brand); background: var(--brand); color: #fff; }
@@ -117,25 +116,12 @@
     .button-secondary { background: var(--surface); color: var(--ink); }
     .button-secondary:hover { background: var(--surface-soft); }
     .button-small { min-height: 36px; padding: 8px 12px; font-size: 12px; }
-    .workspace { flex: 1; display: grid; align-content: center; gap: 28px; padding-block: 22px; }
-    .page-view { min-width: 0; }
-    .page-view:not(:first-child) { padding-block: 20px; }
-    .view-mode .page-view { padding-block: 0; }
-    .hero-grid { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr) minmax(0, 1.1fr); align-items: center; gap: 24px; }
+    .workspace { flex: 1; display: grid; align-content: start; gap: 28px; padding-block: 22px; }
+    .site-section { min-width: 0; }
+    .site-section:not(:first-child) { padding-block: 20px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); align-items: center; gap: 24px; }
     .hero-grid > .hero-content { grid-column: 1; grid-row: 1; }
-    .hero-grid > .hero-panel { grid-column: 3; grid-row: 1; }
-    .overview-features { grid-column: 2; grid-row: 1; min-width: 0; padding-left: 20px; border-left: 1px solid var(--line); }
-    .overview-features > h2 { margin-bottom: 16px; font-size: 16px; letter-spacing: 0; }
-    .overview-feature-list { margin: 0; }
-    .overview-feature-list dt { margin-top: 12px; color: var(--ink); font-size: 13px; font-weight: 700; }
-    .overview-feature-list dt:first-child { margin-top: 0; }
-    .overview-feature-list dd { margin: 3px 0 0; color: var(--ink-soft); font-size: 12px; line-height: 1.5; }
-    .overview-features .demo-card { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
-    .overview-features .demo-card h3 { font-size: 13px; }
-    .overview-features .demo-card p { margin-bottom: 0; color: var(--ink-soft); font-size: 12px; line-height: 1.5; }
-    .overview-features .demo-card .demo-note { margin-top: 8px; color: var(--muted); font-size: 11px; }
-    .overview-features .portal-window { margin-top: 12px; padding: 0; border: 0; background: transparent; box-shadow: none; }
-    .overview-features .portal-tile { min-height: 24px; padding: 3px 6px; font-size: 10px; }
+    .hero-grid > .hero-panel { grid-column: 2; grid-row: 1; }
     .hero-content { min-width: 0; max-width: 560px; }
     .eyebrow { margin-bottom: 14px; color: var(--brand); font-size: 11px; font-weight: 750; letter-spacing: 0.1em; text-transform: uppercase; }
     .hero-copy { max-width: 470px; margin-bottom: 22px; color: var(--ink-soft); font-size: 16px; line-height: 1.65; }
@@ -147,167 +133,48 @@
     .hero-panel-bar { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: 10px; font-weight: 750; letter-spacing: 0.06em; text-transform: uppercase; }
     .hero-panel-bar span { display: inline-flex; align-items: center; gap: 7px; }
     .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
-    /* Keep labels in HTML so they remain readable as the routes resize. */
-    .flow {
-      --flow-direct: var(--brand);
-      --flow-relay: var(--green);
-    }
-
-    .flow .hero-panel-bar {
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .flow-privacy {
-      color: var(--ink-soft);
-      font-size: 0.65rem;
-      letter-spacing: 0.03em;
-    }
-
+    /* The routes are SVG; readable HTML labels stay independent of its scale. */
+    .flow { --flow-direct: var(--brand); --flow-relay: var(--green); }
+    .flow .hero-panel-bar { flex-wrap: wrap; gap: 8px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .flow-privacy { color: var(--ink-soft); font-size: 10px; letter-spacing: 0.02em; }
     .flow-privacy svg { width: 13px; height: 13px; }
-
-    .flow-stage {
-      position: relative;
-      height: 300px;
-      max-width: 480px;
-      margin-block: 1.25rem;
-      margin-inline: auto;
-      background: radial-gradient(var(--line) 0.75px, transparent 0.75px) center / 14px 14px;
-    }
-
-    .flow-map {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .flow-line {
-      fill: none;
-      stroke: var(--flow-direct);
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      vector-effect: non-scaling-stroke;
-    }
-
-    .flow-relay .flow-line {
-      stroke: var(--flow-relay);
-      stroke-dasharray: 5 6;
-    }
-
-    .flow-node {
-      position: absolute;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 5px;
-      width: 31%;
-      height: 132px;
-      top: 12px;
-      padding: 12px 6px;
-      border: 1px solid var(--line-strong);
-      border-radius: var(--radius-sm);
-      background: var(--paper);
-      box-shadow: var(--shadow-sm);
-      text-align: center;
-    }
-
+    .flow-stage { position: relative; height: 286px; max-width: 480px; margin: 18px auto 12px; background: radial-gradient(var(--line) 0.7px, transparent 0.7px) center / 16px 16px; }
+    .flow-map { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .flow-line { fill: none; stroke: var(--flow-direct); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+    .flow-relay .flow-line { stroke: var(--flow-relay); stroke-dasharray: 4 6; }
+    .flow-peer { position: absolute; top: 22px; width: 28%; display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
     .flow-you { left: 0; }
     .flow-friend { right: 0; }
-
-    .flow-icon {
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-      width: 38px;
-      height: 38px;
-      margin-bottom: 3px;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      background: var(--brand-soft);
-      color: var(--flow-direct);
-    }
-
-    .flow-icon svg { width: 22px; height: 22px; }
-    .flow-name { color: var(--ink); font-size: 15px; font-weight: 750; line-height: 1.25; }
+    .flow-avatar { width: 72px; height: 72px; margin-bottom: 6px; }
+    .flow-avatar-frame { fill: var(--paper); stroke: var(--flow-direct); stroke-width: 1.5; }
+    .flow-avatar-icon { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .flow-name { color: var(--ink); font-size: 14px; font-weight: 750; line-height: 1.3; }
     .flow-sub { color: var(--ink-soft); font-size: 11px; line-height: 1.4; }
-
-    .flow-label {
-      position: absolute;
-      left: 31%;
-      top: 27px;
-      width: 38%;
-      color: var(--flow-direct);
-      text-align: center;
-      line-height: 1.4;
-    }
-
-    .flow-label strong { display: block; font-size: 13px; font-weight: 750; }
+    .flow-label { position: absolute; left: 28%; width: 44%; top: 13px; color: var(--flow-direct); text-align: center; line-height: 1.3; }
+    .flow-label strong { display: block; font-size: 12px; font-weight: 750; }
     .flow-label span { display: block; margin-top: 3px; font-size: 10px; }
-
-    .flow-relay-label {
-      top: 160px;
-      left: 18%;
-      width: 64%;
-      color: var(--flow-relay);
-      font-size: 11px;
-      font-weight: 650;
-    }
-
-    .flow-super {
-      top: auto;
-      bottom: 0;
-      left: 16%;
-      width: 68%;
-      height: 112px;
-      padding-block: 8px;
-      border-color: var(--flow-relay);
-      background: var(--paper);
-    }
-
-    .flow-super .flow-icon {
-      width: 30px;
-      height: 26px;
-      margin: 0;
-      border: 0;
-      background: transparent;
-      color: var(--flow-relay);
-    }
-
-    .flow-super .flow-name { color: var(--flow-relay); }
+    .flow-seal { position: absolute; top: 44px; left: calc(50% - 14px); display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid var(--flow-direct); border-radius: 8px; background: var(--paper); color: var(--flow-direct); }
+    .flow-seal svg { width: 16px; height: 16px; }
+    .flow-direct-note { position: absolute; top: 92px; left: 28%; width: 44%; color: var(--muted); font-size: 10px; line-height: 1.45; text-align: center; }
+    .flow-relay-label { top: 162px; left: 24%; width: 52%; color: var(--flow-relay); }
+    .flow-super { position: absolute; top: 202px; left: 18%; width: 64%; height: 48px; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 8px 10px; border: 1px solid var(--flow-relay); border-radius: 10px; background: var(--paper); }
+    .flow-super .flow-icon { width: 24px; height: 24px; flex-shrink: 0; color: var(--flow-relay); }
+    .flow-super .flow-name { color: var(--flow-relay); font-size: 13px; }
+    .flow-super .flow-sub { display: block; font-size: 10px; }
+    .flow-metadata { position: absolute; top: 262px; left: 0; width: 100%; color: var(--ink-soft); font-size: 11px; line-height: 1.4; text-align: center; }
     .pkt { color: var(--flow-direct); }
     .flow-packets-relay .pkt { color: var(--flow-relay); }
-
-    .hero-panel-caption {
-      margin: 0;
-      padding: 1rem 0.15rem 0.1rem;
-      border-top: 1px solid var(--line);
-      color: var(--ink-soft);
-      font-size: 0.8rem;
-      line-height: 1.65;
-    }
-
+    .hero-panel-caption { margin: 0; padding: 12px 0 0; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 12px; line-height: 1.6; }
     .hero-panel-caption strong { color: var(--ink); font-weight: 650; }
-
+    @media (max-width: 360px) {
+      .flow-super { gap: 6px; padding-inline: 6px; }
+      .flow-super .flow-name { font-size: 12px; }
+      .flow-super .flow-sub { font-size: 9px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       .flow .pkt { display: none; }
     }
 
-
-    /* A smaller diagram leaves room for the whole overview in one viewport. */
-    .compact-home .flow-stage { height: 260px; margin-block: 12px; }
-    .compact-home .flow-node { height: 112px; }
-    .compact-home .flow-icon { width: 32px; height: 32px; }
-    .compact-home .flow-super { height: 96px; }
-    .compact-home .flow-super .flow-icon { width: 30px; height: 24px; }
-    .compact-home .flow-relay-label { top: 140px; }
-    .compact-home .flow .hero-panel-bar { padding-bottom: 12px; gap: 8px; }
-    .compact-home .hero-panel-caption { padding-top: 12px; font-size: 12px; line-height: 1.55; }
     .view-heading { margin-bottom: 22px; max-width: 680px; }
     .view-heading .eyebrow { margin-bottom: 8px; }
     .section-lede { margin-bottom: 0; color: var(--ink-soft); font-size: 15px; }
@@ -322,10 +189,6 @@
     .card-no { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; margin-bottom: 18px; border: 1px solid var(--line-strong); background: var(--brand-soft); color: var(--brand); font: 700 12px/1 ui-monospace, monospace; }
     .view-footnote { margin: 16px 0 0; color: var(--muted); font-size: 12px; }
     .view-footnote a { color: var(--ink-soft); }
-    .portal-window { margin-top: 16px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
-    .portal-bar { margin-bottom: 8px; color: var(--muted); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; }
-    .portal-grid { display: flex; flex-wrap: wrap; gap: 6px; }
-    .portal-tile { display: flex; align-items: center; min-height: 29px; padding: 5px 9px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface-soft); color: var(--ink-soft); font-size: 11px; }
     .privacy-panel h3 { margin: 0 0 16px; }
     .privacy-facts { margin: 0; }
     .privacy-facts dt { margin-top: 14px; color: var(--ink); font-size: 13px; font-weight: 700; }
@@ -351,9 +214,7 @@
     .hero-content h1 { font-size: clamp(2rem, 2.8vw, 2.5rem); }
     html[data-theme="amp"] .compact-home h1 { font-size: clamp(2rem, 2.8vw, 2.5rem); }
     html[data-theme="amp"] .compact-home .nav-links a { padding: 9px 8px; font-size: 11px; letter-spacing: 0; }
-    html[data-theme="amp"] .compact-home .nav-links a[aria-current="page"] { background: #001400; border-color: var(--amp-gold); color: var(--amp-gold); }
     html[data-theme="amp"] .compact-home .footer-links a { font-size: 10px; letter-spacing: 0; }
-    html[data-theme="amp"] .compact-home .portal-tile { min-height: 29px; padding: 5px 8px; }
     html[data-theme="amp"] .compact-home .faq { padding: 20px; }
     html[data-theme="amp"] .compact-home .privacy-panel::after { content: "PRIVACY"; }
     html[data-theme="amp"] .compact-home .operator::after { content: "HOSTING"; }
@@ -365,15 +226,12 @@
       .hero-note { margin-top: 14px; }
     }
     @media (max-width: 1060px) {
+      html { scroll-padding-top: 120px; }
       .nav { grid-template-columns: 1fr auto; gap: 0 16px; padding-top: 12px; }
       .nav-links { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; padding-block: 6px; }
       .nav-actions { grid-column: 2; grid-row: 1; }
       .hero-grid { grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); }
       .hero-grid > .hero-panel { grid-column: 2; }
-      .overview-features { grid-column: 1 / -1; grid-row: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; padding: 18px 0 0; border-left: 0; border-top: 1px solid var(--line); }
-      .overview-features > h2 { grid-column: 1; }
-      .overview-feature-list { grid-column: 1; grid-row: 2; }
-      .overview-features .demo-card { grid-column: 2; grid-row: 1 / span 2; margin: 0; padding: 0; border: 0; }
       .footer-row { flex-wrap: wrap; }
     }
     @media (max-width: 760px) {
@@ -381,8 +239,6 @@
       .workspace { align-content: start; padding-block: 28px; }
       .hero-grid, .hosting-grid { grid-template-columns: 1fr; gap: 28px; }
       .hero-grid > .hero-panel { grid-column: 1; grid-row: 2; }
-      .overview-features { grid-column: 1; grid-row: 3; display: block; }
-      .overview-features .demo-card { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
       .hero-content { max-width: 580px; }
       h1 { max-width: 14em; font-size: clamp(2.15rem, 7vw, 3rem); }
       .hero-copy { font-size: 15px; }
@@ -420,21 +276,21 @@
     <div class="shell nav">
       <a class="brand" href="#top" aria-label="DoubleSlash home"><img src="logo-full.svg" alt="DoubleSlash" /></a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#top" data-view-link>Overview</a>
-        <a href="#how-it-works" data-view-link>Get started</a>
-        <a href="#ddns" data-view-link>Hosting</a>
-        <a href="#faq" data-view-link>FAQ</a>
+        <a href="#top">Overview</a>
+        <a href="#how-it-works">Get started</a>
+        <a href="#ddns">Hosting</a>
+        <a href="#faq">FAQ</a>
       </nav>
       <div class="nav-actions"><label class="skin-picker" hidden><span class="skin-label">Skin</span><select data-theme-select><option value="amp">Amp</option><option value="dark">Dark</option><option value="light">Light</option></select></label><a class="button button-primary button-small" href="downloads.html">Downloads</a></div>
     </div>
   </header>
   <main class="workspace" id="main" tabindex="-1">
-    <section class="page-view hero" id="top" data-page-view aria-labelledby="overview-title">
+    <section class="site-section hero" id="top" aria-labelledby="overview-title">
       <div class="shell hero-grid">
-        <div class="hero-content">
+        <div class="hero-content" id="features">
           <p class="eyebrow">By invitation. On your terms.</p>
           <h1 id="overview-title" tabindex="-1">Private conversations with your people.</h1>
-          <p class="hero-copy">Connect by invite, with no DoubleSlash account or subscription required.</p>
+          <p class="hero-copy">Chat, call, share files, and meet in private rooms. Connect by invite, with no DoubleSlash account or subscription required.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="downloads.html">Download DoubleSlash <span aria-hidden="true">&rarr;</span></a>
             <a class="button button-secondary" href="#how-it-works">Get started <span aria-hidden="true">&rarr;</span></a>
@@ -443,66 +299,44 @@
           <ul class="hero-points" aria-label="Privacy essentials"><li>Invite-only</li><li>Identity stays on your device</li><li>No analytics</li></ul>
         </div>
         <figure class="hero-panel flow">
-          <div class="hero-panel-bar">
-            <span><i class="live-dot" aria-hidden="true"></i> Your conversation</span>
-            <span class="flow-privacy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10V7a4 4 0 0 1 8 0v3M6 10h12v11H6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" /></svg> Sealed content</span>
-          </div>
+          <div class="hero-panel-bar"><span>Your conversation</span><span class="flow-privacy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 10V7a4 4 0 0 1 8 0v3M6 10h12v11H6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" /></svg> Encrypted content</span></div>
           <div class="flow-stage">
-            <svg class="flow-map" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-              <defs>
-                <g id="flow-pkt"><path d="M-3 -1V-3.6a3 3 0 0 1 6 0V-1" fill="none" stroke="currentColor" stroke-width="1.6" /><rect x="-5" y="-1" width="10" height="7.5" rx="1.5" fill="currentColor" /></g>
-              </defs>
-              <g class="flow-direct"><path id="flow-direct-path" class="flow-line" d="M124 90H276" /></g>
-              <g class="flow-relay"><path id="flow-relay-path" class="flow-line" d="M62 144V232Q62 250 80 250H320Q338 250 338 232V144" /></g>
+            <svg class="flow-map" viewBox="0 0 400 286" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <defs><g id="flow-pkt"><rect x="-5" y="-3" width="10" height="6" rx="2" fill="var(--paper)" stroke="currentColor" stroke-width="1.5" /></g></defs>
+              <g class="flow-direct"><path id="flow-direct-path" class="flow-line" d="M56 58H344" /></g>
+              <g class="flow-relay"><path id="flow-relay-path" class="flow-line" d="M56 148V208Q56 226 74 226H326Q344 226 344 208V148" /></g>
               <g class="flow-packets-direct">
-                <g class="pkt"><use href="#flow-pkt" /><animateMotion dur="3.6s" begin="0s" repeatCount="indefinite"><mpath href="#flow-direct-path" /></animateMotion></g>
-                <g class="pkt"><use href="#flow-pkt" /><animateMotion dur="3.6s" begin="-1.8s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#flow-direct-path" /></animateMotion></g>
+                <g class="pkt"><use href="#flow-pkt" /><animateMotion dur="4s" begin="0s" repeatCount="indefinite"><mpath href="#flow-direct-path" /></animateMotion></g>
+                <g class="pkt"><use href="#flow-pkt" /><animateMotion dur="4s" begin="-2s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#flow-direct-path" /></animateMotion></g>
               </g>
               <g class="flow-packets-relay">
-                <g class="pkt"><use href="#flow-pkt" /><animateMotion dur="6s" begin="0s" repeatCount="indefinite"><mpath href="#flow-relay-path" /></animateMotion></g>
-                <g class="pkt"><use href="#flow-pkt" /><animateMotion dur="6s" begin="-1.5s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#flow-relay-path" /></animateMotion></g>
-                <g class="pkt"><use href="#flow-pkt" /><animateMotion dur="6s" begin="-3s" repeatCount="indefinite"><mpath href="#flow-relay-path" /></animateMotion></g>
-                <g class="pkt"><use href="#flow-pkt" /><animateMotion dur="6s" begin="-4.5s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#flow-relay-path" /></animateMotion></g>
+                <g class="pkt"><use href="#flow-pkt" /><animateMotion dur="7s" begin="0s" repeatCount="indefinite"><mpath href="#flow-relay-path" /></animateMotion></g>
+                <g class="pkt"><use href="#flow-pkt" /><animateMotion dur="7s" begin="-3.5s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#flow-relay-path" /></animateMotion></g>
               </g>
             </svg>
-            <div class="flow-node flow-you">
-              <span class="flow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="12" rx="2" /><path d="M8 21h8m-4-6v6" /></svg></span>
-              <strong class="flow-name">You</strong>
-              <span class="flow-sub">Your device</span>
+            <div class="flow-peer flow-you">
+              <svg class="flow-avatar" viewBox="0 0 72 76" aria-hidden="true"><path class="flow-avatar-frame" d="M36 2 67 20v36L36 74 5 56V20Z" /><g class="flow-avatar-icon"><rect x="23" y="25" width="26" height="18" rx="2" /><path d="M28 51h16m-8-8v8" /></g></svg>
+              <strong class="flow-name">You</strong><span class="flow-sub">Your device</span>
             </div>
             <div class="flow-label"><strong>Direct</strong><span>Encrypted QUIC</span></div>
-            <div class="flow-node flow-friend">
-              <span class="flow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="7" r="4" /><path d="M4 21v-2a8 8 0 0 1 16 0v2" /></svg></span>
-              <strong class="flow-name">A friend</strong>
-              <span class="flow-sub">Invited by you</span>
+            <span class="flow-seal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 10V7a4 4 0 0 1 8 0v3M6 10h12v11H6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" /></svg></span>
+            <span class="flow-direct-note">When your network allows</span>
+            <div class="flow-peer flow-friend">
+              <svg class="flow-avatar" viewBox="0 0 72 76" aria-hidden="true"><path class="flow-avatar-frame" d="M36 2 67 20v36L36 74 5 56V20Z" /><g class="flow-avatar-icon"><circle cx="36" cy="31" r="7" /><path d="M23 52v-2a13 13 0 0 1 26 0v2" /></g></svg>
+              <strong class="flow-name">A friend</strong><span class="flow-sub">Invited by you</span>
             </div>
-            <div class="flow-label flow-relay-label">Or through a supernode</div>
-            <div class="flow-node flow-super">
-              <span class="flow-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="7" rx="1" /><rect x="3" y="14" width="18" height="7" rx="1" /><path d="M7 6.5h.01M7 17.5h.01M12 6.5h5M12 17.5h5" /></svg></span>
-              <strong class="flow-name">Supernode</strong>
-              <span class="flow-sub">Sees who and when, not what</span>
+            <div class="flow-label flow-relay-label"><strong>Relay when needed</strong><span>Always for rooms</span></div>
+            <div class="flow-super">
+              <svg class="flow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="7" rx="1" /><rect x="3" y="14" width="18" height="7" rx="1" /><path d="M7 6.5h.01M7 17.5h.01M12 6.5h5M12 17.5h5" /></svg>
+              <div><strong class="flow-name">Your supernode</strong><span class="flow-sub">Forwards sealed content</span></div>
             </div>
+            <span class="flow-metadata">Sees who and when, not what</span>
           </div>
-          <figcaption class="hero-panel-caption"><strong>Direct when your network allows,</strong> with no server in the path. Otherwise through a supernode you choose, which rooms always use: it forwards the sealed packets without reading them.</figcaption>
+          <figcaption class="hero-panel-caption"><strong>Private on either path.</strong> Connect directly when your network allows; otherwise use a supernode you choose. Rooms always use a supernode, which forwards sealed content without reading it.</figcaption>
         </figure>
-        <aside class="overview-features" id="features" aria-labelledby="features-title">
-          <h2 id="features-title">In the app</h2>
-          <dl class="overview-feature-list">
-            <dt>Chat, call, and share</dt><dd>Messages, voice calls, and files in one private conversation.</dd>
-            <dt>Private rooms</dt><dd>Bring your group together, with optional room alerts.</dd>
-            <dt>Video and screen sharing</dt><dd>Works on Windows. Other platforms&rsquo; cameras are still being tested. <a href="architecture.html#media">Device support</a></dd>
-            <dt>Your profile, backed up</dt><dd>Encrypted backups to restore your profile or move devices.</dd>
-          </dl>
-          <article class="demo-card">
-            <h3>Play and create together</h3>
-            <p>Demo games and shared pages, hosted by your supernode and opened inside the app.</p>
-            <p class="demo-note">These are technology demos, built to showcase and test the DoubleSlash framework.</p>
-            <div class="portal-window" aria-label="Example activities inside DoubleSlash"><div class="portal-grid"><span class="portal-tile">Presence Playground</span><span class="portal-tile">Brick Breaker</span><span class="portal-tile">Shared Canvas</span><span class="portal-tile">Task Board</span><span class="portal-tile">Focus Timer</span><span class="portal-tile">Four in a Row</span><span class="portal-tile">Memory Match</span></div></div>
-          </article>
-        </aside>
       </div>
     </section>
-    <section class="page-view" id="how-it-works" data-page-view aria-labelledby="start-title">
+    <section class="site-section" id="how-it-works" aria-labelledby="start-title">
       <div class="shell">
         <div class="view-heading"><p class="eyebrow">Getting started &middot; Privacy</p><h2 id="start-title" tabindex="-1">Get started, privately.</h2><p class="section-lede">Create a local profile, share an invite, and choose who connects.</p></div>
         <div class="start-layout">
@@ -526,7 +360,7 @@
         </div>
       </div>
     </section>
-    <section class="page-view" id="ddns" data-page-view aria-labelledby="hosting-title">
+    <section class="site-section" id="ddns" aria-labelledby="hosting-title">
       <div class="shell">
         <div class="view-heading"><p class="eyebrow">Infrastructure you choose</p><h2 id="hosting-title" tabindex="-1">A place for your group.</h2><p class="section-lede">Use someone else&rsquo;s supernode or run your own. Rooms always use one.</p></div>
         <div class="hosting-grid">
@@ -535,7 +369,7 @@
         </div>
       </div>
     </section>
-    <section class="page-view" id="faq" data-page-view aria-labelledby="faq-title">
+    <section class="site-section" id="faq" aria-labelledby="faq-title">
       <div class="shell">
         <div class="view-heading"><p class="eyebrow">A few common questions</p><h2 id="faq-title" tabindex="-1">Good to know.</h2></div>
         <div class="faq faq-grid">
@@ -558,41 +392,9 @@
     </div>
   </footer>
   <script>
-    // Progressive enhancement: without JS every section remains readable.
+    // Respect the motion preference for the illustrative packet animations.
     (function () {
       "use strict";
-      var views = Array.prototype.slice.call(document.querySelectorAll("[data-page-view]"));
-      var links = Array.prototype.slice.call(document.querySelectorAll("[data-view-link]"));
-      function targetFor(hash) {
-        var id;
-        try { id = decodeURIComponent(hash.slice(1)); } catch (e) { return null; }
-        var target = document.getElementById(id);
-        return target && target.closest("[data-page-view]");
-      }
-      function show(hash, focus) {
-        var active = targetFor(hash) || views[0];
-        views.forEach(function (view) { view.hidden = view !== active; });
-        links.forEach(function (link) {
-          if (link.getAttribute("href") === "#" + active.id) link.setAttribute("aria-current", "page");
-          else link.removeAttribute("aria-current");
-        });
-        if (focus) {
-          var heading = active.querySelector("h1, h2");
-          if (heading) heading.focus({ preventScroll: true });
-        }
-      }
-      document.body.classList.add("view-mode");
-      show(location.hash, false);
-      document.addEventListener("click", function (event) {
-        if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-        var link = event.target.closest("a[href^='#']");
-        if (!link || !targetFor(link.hash)) return;
-        event.preventDefault();
-        if (location.hash !== link.hash) history.pushState(null, "", link.hash);
-        show(link.hash, true);
-      });
-      window.addEventListener("popstate", function () { show(location.hash, false); });
-      window.addEventListener("hashchange", function () { show(location.hash, false); });
       var map = document.querySelector(".flow-map");
       var motion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)");
       function syncMotion() {
