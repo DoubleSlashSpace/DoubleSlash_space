@@ -155,8 +155,10 @@
     .flow-label span { display: block; margin-top: 3px; font-size: 10px; }
     .flow-seal { position: absolute; top: 44px; left: calc(50% - 14px); display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid var(--flow-direct); border-radius: 8px; background: var(--paper); color: var(--flow-direct); }
     .flow-seal svg { width: 16px; height: 16px; }
+    .flow-seal.flow-relay-seal { top: 173px; left: calc(14% - 12px); width: 24px; height: 24px; border-color: var(--flow-relay); color: var(--flow-relay); }
+    .flow-seal.flow-relay-seal-right { left: calc(86% - 12px); }
     .flow-direct-note { position: absolute; top: 92px; left: 28%; width: 44%; color: var(--muted); font-size: 10px; line-height: 1.45; text-align: center; }
-    .flow-relay-label { top: 162px; left: 24%; width: 52%; color: var(--flow-relay); }
+    .flow-relay-label { top: 150px; left: 24%; width: 52%; color: var(--flow-relay); }
     .flow-super { position: absolute; top: 202px; left: 18%; width: 64%; height: 48px; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 8px 10px; border: 1px solid var(--flow-relay); border-radius: 10px; background: var(--paper); }
     .flow-super .flow-icon { width: 24px; height: 24px; flex-shrink: 0; color: var(--flow-relay); }
     .flow-super .flow-name { color: var(--flow-relay); font-size: 13px; }
@@ -325,14 +327,16 @@
               <svg class="flow-avatar" viewBox="0 0 72 76" aria-hidden="true"><path class="flow-avatar-frame" d="M36 2 67 20v36L36 74 5 56V20Z" /><g class="flow-avatar-icon"><circle cx="36" cy="31" r="7" /><path d="M23 52v-2a13 13 0 0 1 26 0v2" /></g></svg>
               <strong class="flow-name">A friend</strong><span class="flow-sub">Invited by you</span>
             </div>
-            <div class="flow-label flow-relay-label"><strong>Relay when needed</strong><span>Always for rooms</span></div>
+            <span class="flow-seal flow-relay-seal" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 10V7a4 4 0 0 1 8 0v3M6 10h12v11H6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" /></svg></span>
+            <span class="flow-seal flow-relay-seal flow-relay-seal-right" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 10V7a4 4 0 0 1 8 0v3M6 10h12v11H6z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" /></svg></span>
+            <div class="flow-label flow-relay-label"><strong>Encrypted relay</strong><span>End-to-end &middot; Always for rooms</span></div>
             <div class="flow-super">
               <svg class="flow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="7" rx="1" /><rect x="3" y="14" width="18" height="7" rx="1" /><path d="M7 6.5h.01M7 17.5h.01M12 6.5h5M12 17.5h5" /></svg>
-              <div><strong class="flow-name">Your supernode</strong><span class="flow-sub">Forwards sealed content</span></div>
+              <div><strong class="flow-name">Your supernode</strong><span class="flow-sub">Cannot decrypt content</span></div>
             </div>
             <span class="flow-metadata">Sees who and when, not what</span>
           </div>
-          <figcaption class="hero-panel-caption"><strong>Private on either path.</strong> Connect directly when your network allows; otherwise use a supernode you choose. Rooms always use a supernode, which forwards sealed content without reading it.</figcaption>
+          <figcaption class="hero-panel-caption"><strong>Encrypted end to end.</strong> Connect directly when your network allows; otherwise use a supernode you choose. Rooms always use a supernode, which forwards sealed content without reading it.</figcaption>
         </figure>
       </div>
     </section>
