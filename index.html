@@ -121,7 +121,21 @@
     .page-view { min-width: 0; }
     .page-view:not(:first-child) { padding-block: 20px; }
     .view-mode .page-view { padding-block: 0; }
-    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); align-items: center; gap: clamp(28px, 4vw, 64px); }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr) minmax(0, 1.1fr); align-items: center; gap: 24px; }
+    .hero-grid > .hero-content { grid-column: 1; grid-row: 1; }
+    .hero-grid > .hero-panel { grid-column: 3; grid-row: 1; }
+    .overview-features { grid-column: 2; grid-row: 1; min-width: 0; padding-left: 20px; border-left: 1px solid var(--line); }
+    .overview-features > h2 { margin-bottom: 16px; font-size: 16px; letter-spacing: 0; }
+    .overview-feature-list { margin: 0; }
+    .overview-feature-list dt { margin-top: 12px; color: var(--ink); font-size: 13px; font-weight: 700; }
+    .overview-feature-list dt:first-child { margin-top: 0; }
+    .overview-feature-list dd { margin: 3px 0 0; color: var(--ink-soft); font-size: 12px; line-height: 1.5; }
+    .overview-features .demo-card { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+    .overview-features .demo-card h3 { font-size: 13px; }
+    .overview-features .demo-card p { margin-bottom: 0; color: var(--ink-soft); font-size: 12px; line-height: 1.5; }
+    .overview-features .demo-card .demo-note { margin-top: 8px; color: var(--muted); font-size: 11px; }
+    .overview-features .portal-window { margin-top: 12px; padding: 0; border: 0; background: transparent; box-shadow: none; }
+    .overview-features .portal-tile { min-height: 24px; padding: 3px 6px; font-size: 10px; }
     .hero-content { min-width: 0; max-width: 560px; }
     .eyebrow { margin-bottom: 14px; color: var(--brand); font-size: 11px; font-weight: 750; letter-spacing: 0.1em; text-transform: uppercase; }
     .hero-copy { max-width: 470px; margin-bottom: 22px; color: var(--ink-soft); font-size: 16px; line-height: 1.65; }
@@ -297,26 +311,27 @@
     .view-heading { margin-bottom: 22px; max-width: 680px; }
     .view-heading .eyebrow { margin-bottom: 8px; }
     .section-lede { margin-bottom: 0; color: var(--ink-soft); font-size: 15px; }
-    .card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .start-layout { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); align-items: start; gap: 20px; }
+    .start-steps { display: grid; gap: 12px; }
+    .start-steps .start-step { display: grid; grid-template-columns: 30px minmax(0, 1fr); align-items: start; gap: 14px; padding: 16px; }
+    .start-step h3 { margin-bottom: 5px; font-size: 14px; }
+    .start-step .card-no { margin: 0; }
+    .start-layout .view-footnote { margin-top: 12px; }
     .bento-card, .privacy-panel, .operator, .faq { min-width: 0; padding: 20px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); }
     .bento-card p, .operator p, .privacy-panel p, .faq p { margin-bottom: 0; color: var(--ink-soft); font-size: 13px; line-height: 1.6; }
     .card-no { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; margin-bottom: 18px; border: 1px solid var(--line-strong); background: var(--brand-soft); color: var(--brand); font: 700 12px/1 ui-monospace, monospace; }
     .view-footnote { margin: 16px 0 0; color: var(--muted); font-size: 12px; }
     .view-footnote a { color: var(--ink-soft); }
-    .feature-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; }
-    .feature-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-    .feature-list .bento-card { padding: 16px; }
-    .feature-list h3 { font-size: 14px; }
-    .feature-list p { font-size: 12px; }
-    .demo-card .demo-note { margin-top: 10px; color: var(--muted); font-size: 12px; }
     .portal-window { margin-top: 16px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
     .portal-bar { margin-bottom: 8px; color: var(--muted); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; }
     .portal-grid { display: flex; flex-wrap: wrap; gap: 6px; }
     .portal-tile { display: flex; align-items: center; min-height: 29px; padding: 5px 9px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface-soft); color: var(--ink-soft); font-size: 11px; }
-    .privacy-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-    .privacy-panel h3 { margin-top: 14px; }
-    .privacy-check { color: var(--green); font-size: 22px; }
-    .privacy-disclosure { margin-top: 18px; padding-left: 14px; border-left: 2px solid var(--brand); color: var(--ink-soft); font-size: 13px; }
+    .privacy-panel h3 { margin: 0 0 16px; }
+    .privacy-facts { margin: 0; }
+    .privacy-facts dt { margin-top: 14px; color: var(--ink); font-size: 13px; font-weight: 700; }
+    .privacy-facts dt:first-child { margin-top: 0; }
+    .privacy-facts dd { margin: 4px 0 0; color: var(--ink-soft); font-size: 12px; line-height: 1.55; }
+    .privacy-panel .privacy-disclosure { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 11px; line-height: 1.6; }
     .hosting-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .hosting-grid .operator { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
     .hosting-grid .operator h3 { margin-bottom: 8px; }
@@ -333,7 +348,8 @@
     .footer-links { display: flex; flex-wrap: wrap; gap: 6px 18px; }
     .footer-links a { color: var(--ink-soft); font-size: 11px; text-decoration: none; }
     .footer-links a:hover { text-decoration: underline; }
-    html[data-theme="amp"] .compact-home h1 { font-size: clamp(2rem, 3.5vw, 2.8rem); }
+    .hero-content h1 { font-size: clamp(2rem, 2.8vw, 2.5rem); }
+    html[data-theme="amp"] .compact-home h1 { font-size: clamp(2rem, 2.8vw, 2.5rem); }
     html[data-theme="amp"] .compact-home .nav-links a { padding: 9px 8px; font-size: 11px; letter-spacing: 0; }
     html[data-theme="amp"] .compact-home .nav-links a[aria-current="page"] { background: #001400; border-color: var(--amp-gold); color: var(--amp-gold); }
     html[data-theme="amp"] .compact-home .footer-links a { font-size: 10px; letter-spacing: 0; }
@@ -341,7 +357,6 @@
     html[data-theme="amp"] .compact-home .faq { padding: 20px; }
     html[data-theme="amp"] .compact-home .privacy-panel::after { content: "PRIVACY"; }
     html[data-theme="amp"] .compact-home .operator::after { content: "HOSTING"; }
-    html[data-theme="amp"] .compact-home .demo-card::after { content: "TECH DEMOS"; }
     @media (min-width: 1000px) and (max-height: 740px) {
       .workspace { padding-block: 14px; }
       .nav { min-height: 60px; }
@@ -353,20 +368,28 @@
       .nav { grid-template-columns: 1fr auto; gap: 0 16px; padding-top: 12px; }
       .nav-links { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; padding-block: 6px; }
       .nav-actions { grid-column: 2; grid-row: 1; }
-      .hero-grid { gap: 24px; }
+      .hero-grid { grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); }
+      .hero-grid > .hero-panel { grid-column: 2; }
+      .overview-features { grid-column: 1 / -1; grid-row: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; padding: 18px 0 0; border-left: 0; border-top: 1px solid var(--line); }
+      .overview-features > h2 { grid-column: 1; }
+      .overview-feature-list { grid-column: 1; grid-row: 2; }
+      .overview-features .demo-card { grid-column: 2; grid-row: 1 / span 2; margin: 0; padding: 0; border: 0; }
       .footer-row { flex-wrap: wrap; }
     }
     @media (max-width: 760px) {
       .shell { width: calc(100% - 32px); }
       .workspace { align-content: start; padding-block: 28px; }
-      .hero-grid, .feature-layout, .hosting-grid { grid-template-columns: 1fr; gap: 28px; }
+      .hero-grid, .hosting-grid { grid-template-columns: 1fr; gap: 28px; }
+      .hero-grid > .hero-panel { grid-column: 1; grid-row: 2; }
+      .overview-features { grid-column: 1; grid-row: 3; display: block; }
+      .overview-features .demo-card { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
       .hero-content { max-width: 580px; }
       h1 { max-width: 14em; font-size: clamp(2.15rem, 7vw, 3rem); }
       .hero-copy { font-size: 15px; }
-      .card-grid, .privacy-list { grid-template-columns: 1fr; }
+      .start-layout { grid-template-columns: 1fr; gap: 24px; }
       .bento-card, .privacy-panel, .operator { padding: 18px; }
       .card-no { margin-bottom: 10px; }
-      .nav-links { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); width: 100%; gap: 0; }
+      .nav-links { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); width: 100%; gap: 0; }
       .nav-links a { padding: 9px 3px; text-align: center; font-size: 11px; }
       .brand img { width: 145px; height: 30px; }
       .nav-actions { gap: 8px; }
@@ -378,8 +401,7 @@
       .footer-links { gap: 8px 14px; }
     }
     @media (max-width: 440px) {
-      .feature-list, .faq-grid { grid-template-columns: 1fr; }
-      .nav-links { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .faq-grid { grid-template-columns: 1fr; }
       .nav-actions > .button { font-size: 10px; padding-inline: 7px; }
       .brand img { width: 125px; }
       .nav { column-gap: 8px; }
@@ -400,8 +422,6 @@
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="#top" data-view-link>Overview</a>
         <a href="#how-it-works" data-view-link>Get started</a>
-        <a href="#features" data-view-link>Features</a>
-        <a href="#privacy" data-view-link>Privacy</a>
         <a href="#ddns" data-view-link>Hosting</a>
         <a href="#faq" data-view-link>FAQ</a>
       </nav>
@@ -414,7 +434,7 @@
         <div class="hero-content">
           <p class="eyebrow">By invitation. On your terms.</p>
           <h1 id="overview-title" tabindex="-1">Private conversations with your people.</h1>
-          <p class="hero-copy">Chat, call, share files, and meet in private rooms. Connect by invite, with no DoubleSlash account or subscription required.</p>
+          <p class="hero-copy">Connect by invite, with no DoubleSlash account or subscription required.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="downloads.html">Download DoubleSlash <span aria-hidden="true">&rarr;</span></a>
             <a class="button button-secondary" href="#how-it-works">Get started <span aria-hidden="true">&rarr;</span></a>
@@ -465,49 +485,45 @@
           </div>
           <figcaption class="hero-panel-caption"><strong>Direct when your network allows,</strong> with no server in the path. Otherwise through a supernode you choose, which rooms always use: it forwards the sealed packets without reading them.</figcaption>
         </figure>
+        <aside class="overview-features" id="features" aria-labelledby="features-title">
+          <h2 id="features-title">In the app</h2>
+          <dl class="overview-feature-list">
+            <dt>Chat, call, and share</dt><dd>Messages, voice calls, and files in one private conversation.</dd>
+            <dt>Private rooms</dt><dd>Bring your group together, with optional room alerts.</dd>
+            <dt>Video and screen sharing</dt><dd>Works on Windows. Other platforms&rsquo; cameras are still being tested. <a href="architecture.html#media">Device support</a></dd>
+            <dt>Your profile, backed up</dt><dd>Encrypted backups to restore your profile or move devices.</dd>
+          </dl>
+          <article class="demo-card">
+            <h3>Play and create together</h3>
+            <p>Demo games and shared pages, hosted by your supernode and opened inside the app.</p>
+            <p class="demo-note">These are technology demos, built to showcase and test the DoubleSlash framework.</p>
+            <div class="portal-window" aria-label="Example activities inside DoubleSlash"><div class="portal-grid"><span class="portal-tile">Presence Playground</span><span class="portal-tile">Brick Breaker</span><span class="portal-tile">Shared Canvas</span><span class="portal-tile">Task Board</span><span class="portal-tile">Focus Timer</span><span class="portal-tile">Four in a Row</span><span class="portal-tile">Memory Match</span></div></div>
+          </article>
+        </aside>
       </div>
     </section>
     <section class="page-view" id="how-it-works" data-page-view aria-labelledby="start-title">
       <div class="shell">
-        <div class="view-heading"><p class="eyebrow">Getting started</p><h2 id="start-title" tabindex="-1">Get connected in three steps.</h2><p class="section-lede">Create a local profile, share an invite, and connect.</p></div>
-        <div class="card-grid">
-          <article class="bento-card"><span class="card-no" aria-hidden="true">01</span><h3>Get the app</h3><p>Download DoubleSlash, create your profile on your device, and protect it with a passphrase.</p></article>
-          <article class="bento-card"><span class="card-no" aria-hidden="true">02</span><h3 id="invite-links">Invite someone</h3><p>Share your invite link or show its QR code to someone you want to connect with.</p></article>
-          <article class="bento-card"><span class="card-no" aria-hidden="true">03</span><h3>Talk and share</h3><p>Start a chat or call. Join a room on a supernode for time together as a group.</p></article>
-        </div>
-        <p class="view-footnote">Keep an encrypted backup of your profile. There is no central account recovery service.</p>
-      </div>
-    </section>
-    <section class="page-view" id="features" data-page-view aria-labelledby="features-title">
-      <div class="shell">
-        <div class="view-heading"><p class="eyebrow">Time together</p><h2 id="features-title" tabindex="-1">The essentials, in one place.</h2></div>
-        <div class="feature-layout">
-          <div class="feature-list">
-            <article class="bento-card"><h3>Chat, call, and share</h3><p>Messages, voice calls, and files in one private conversation.</p></article>
-            <article class="bento-card"><h3>Private rooms</h3><p>Bring your group together. Enable room alerts when you want them.</p></article>
-            <article class="bento-card"><h3>Video and screen sharing</h3><p>Works on Windows. Cameras on macOS, Linux, and Android are still being tested. <a href="architecture.html#media">Device support</a></p></article>
-            <article class="bento-card"><h3>Your profile, backed up</h3><p>Use an encrypted backup to restore your profile or move to another device.</p></article>
-          </div>
-          <article class="bento-card demo-card">
-            <h3>Play and create together</h3><p>Demo games and shared pages, hosted by your supernode and opened inside the app.</p>
-            <p class="demo-note">These are technology demos, built to showcase and test the DoubleSlash framework.</p>
-            <div class="portal-window" aria-label="Example activities inside DoubleSlash">
-              <div class="portal-bar">Inside DoubleSlash &middot; tech demos</div>
-              <div class="portal-grid"><span class="portal-tile">Presence Playground</span><span class="portal-tile">Brick Breaker</span><span class="portal-tile">Shared Canvas</span><span class="portal-tile">Task Board</span><span class="portal-tile">Focus Timer</span><span class="portal-tile">Four in a Row</span><span class="portal-tile">Memory Match</span></div>
+        <div class="view-heading"><p class="eyebrow">Getting started &middot; Privacy</p><h2 id="start-title" tabindex="-1">Get started, privately.</h2><p class="section-lede">Create a local profile, share an invite, and choose who connects.</p></div>
+        <div class="start-layout">
+          <div>
+            <div class="start-steps">
+              <article class="bento-card start-step"><span class="card-no" aria-hidden="true">01</span><div><h3>Get the app</h3><p>Download DoubleSlash, create your profile on your device, and protect it with a passphrase.</p></div></article>
+              <article class="bento-card start-step"><span class="card-no" aria-hidden="true">02</span><div><h3 id="invite-links">Invite someone</h3><p>Share your invite link or show its QR code to someone you want to connect with.</p></div></article>
+              <article class="bento-card start-step"><span class="card-no" aria-hidden="true">03</span><div><h3>Talk and share</h3><p>Start a chat or call. Join a room on a supernode for time together as a group.</p></div></article>
             </div>
-          </article>
+            <p class="view-footnote">Keep an encrypted backup of your profile. There is no central account recovery service.</p>
+          </div>
+          <aside class="privacy-panel" id="privacy" aria-labelledby="privacy-title">
+            <h3 id="privacy-title">Private by design.</h3>
+            <dl class="privacy-facts">
+              <dt>No account needed</dt><dd>Your identity and history live on your device. There is no first-party identity service.</dd>
+              <dt>Encrypted conversations</dt><dd>Chat, calls, and files are encrypted. Supernodes forward sealed content without reading it.</dd>
+              <dt>No analytics</dt><dd>The site and app have no analytics or tracking pixels.</dd>
+            </dl>
+            <p class="privacy-disclosure">Supernodes can see routing metadata, including who connects and when, and room and file names. <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/PRIVACY.md">Read the privacy details.</a></p>
+          </aside>
         </div>
-      </div>
-    </section>
-    <section class="page-view" id="privacy" data-page-view aria-labelledby="privacy-title">
-      <div class="shell">
-        <div class="view-heading"><p class="eyebrow">Your conversations belong to you</p><h2 id="privacy-title" tabindex="-1">Private by design.</h2><p class="section-lede">Your identity and history live on your device. You decide who connects.</p></div>
-        <div class="privacy-list">
-          <article class="privacy-panel"><span class="privacy-check" aria-hidden="true">&#10003;</span><h3>No account needed</h3><p>Create a local profile and meet through signed invites. There is no first-party identity service.</p></article>
-          <article class="privacy-panel"><span class="privacy-check" aria-hidden="true">&#10003;</span><h3>Encrypted conversations</h3><p>Chat, calls, and files are encrypted. Supernodes forward sealed content without reading it.</p></article>
-          <article class="privacy-panel"><span class="privacy-check" aria-hidden="true">&#10003;</span><h3>No analytics</h3><p>The site and app have no analytics or tracking pixels.</p></article>
-        </div>
-        <p class="privacy-disclosure">Supernodes can see routing metadata, including who connects and when, and room and file names. <a href="https://github.com/DoubleSlashSpace/DoubleSlash/blob/develop/PRIVACY.md">Read the privacy details.</a></p>
       </div>
     </section>
     <section class="page-view" id="ddns" data-page-view aria-labelledby="hosting-title">
@@ -515,7 +531,7 @@
         <div class="view-heading"><p class="eyebrow">Infrastructure you choose</p><h2 id="hosting-title" tabindex="-1">A place for your group.</h2><p class="section-lede">Use someone else&rsquo;s supernode or run your own. Rooms always use one.</p></div>
         <div class="hosting-grid">
           <article class="operator" id="operators"><div><h3>Run a supernode</h3><p>Host your rooms on a Linux server you operate. The desktop app can set one up over SSH.</p></div><a class="button button-secondary" href="support.html">Run a supernode <span aria-hidden="true">&rarr;</span></a></article>
-          <article class="operator"><div><h3 id="ddns-title">DoubleSlash DDNS</h3><p>An optional stable name for your supernode when its IP address changes. $10 a year for up to 10 names, helping fund development.</p></div><p class="hosting-note"><strong>Sign-ups are in test mode; no payments are taken yet.</strong> Your own DNS or a JSON file on your website works too.</p><a class="button button-secondary" href="support.html#hostnames">How it works <span aria-hidden="true">&rarr;</span></a></article>
+          <article class="operator"><div><h3 id="ddns-title">DoubleSlash DDNS</h3><p>An optional stable name for your supernode when its IP address changes. $10 a year for up to 10 names, helping fund development.</p></div><p class="hosting-note">Renews yearly; cancel from your account. Your own DNS or a JSON file on your website works too.</p><a class="button button-secondary" href="support.html#hostnames">How it works <span aria-hidden="true">&rarr;</span></a></article>
         </div>
       </div>
     </section>
